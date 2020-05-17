@@ -12,7 +12,7 @@ class DnDCharacter {
     private final int hitpoints = 10 + this.modifier(constitution);
 
     int ability() {
-        return 3 + random.nextInt(6) + random.nextInt(6) + random.nextInt(6);
+        return random.ints(4,1,7).sorted().skip(1).sum();
     }
 
     int modifier(int input) {
