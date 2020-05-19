@@ -1,10 +1,23 @@
-/*
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+class Allergies {
+    private final List<Allergen> allergies;
 
-Please remove this comment when submitting your solution.
+    public Allergies(int allergyScore) {
+        allergies = Stream
+                .of(Allergen.values())
+                .filter(a -> (a.getScore() & allergyScore) > 0)
+                .collect(Collectors.toUnmodifiableList());
+    }
 
-*/
+    public boolean isAllergicTo(Allergen allergen) {
+        return allergies.contains(allergen);
+    }
+
+    public Collection<Allergen> getList() {
+        return allergies;
+    }
+}
