@@ -22,10 +22,8 @@ class LargestSeriesProductCalculator {
         }
         return rangeClosed(0, digits.length - numberOfDigits)
                 .mapToLong(start -> Arrays.stream(digits, start, start + numberOfDigits)
-                        .reduce((a, b) -> a * b)
-                        .orElse(1))
-                .max()
-                .orElse(1);
+                        .reduce((a, b) -> a * b).orElse(1))
+                .max().orElse(1);
     }
 
 }
