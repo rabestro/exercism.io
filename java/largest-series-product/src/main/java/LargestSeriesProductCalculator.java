@@ -6,12 +6,10 @@ class LargestSeriesProductCalculator {
     private final int[] digits;
 
     LargestSeriesProductCalculator(String inputNumber) {
-        digits = inputNumber.chars().map(digit -> {
-            if (digit < '0' || digit > '9') {
-                throw new IllegalArgumentException("String to search may only contain digits.");
-            }
-            return digit - '0';
-        }).toArray();
+        if (!inputNumber.matches("\\d*")) {
+            throw new IllegalArgumentException("String to search may only contain digits.");
+        }
+        digits = inputNumber.chars().map(Character::getNumericValue).toArray();
     }
 
     long calculateLargestProductForSeriesLength(int numberOfDigits) {
