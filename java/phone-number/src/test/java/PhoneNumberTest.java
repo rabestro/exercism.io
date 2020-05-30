@@ -123,7 +123,6 @@ public class PhoneNumberTest {
             .hasMessage("area code cannot start with zero");
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void invalidIfAreaCodeStartsWith1() {
         IllegalArgumentException expected =
@@ -135,7 +134,6 @@ public class PhoneNumberTest {
             .hasMessage("area code cannot start with one");
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void invalidIfExchangeCodeStartsWith0() {
         IllegalArgumentException expected =

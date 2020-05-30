@@ -27,6 +27,12 @@ class PhoneNumber {
         if (digits.startsWith("0")) {
             throw new IllegalArgumentException("area code cannot start with zero");
         }
+        if (digits.startsWith("1")) {
+            throw new IllegalArgumentException("area code cannot start with one");
+        }
+        if (digits.charAt(3) == '0') {
+            throw new IllegalArgumentException("exchange code cannot start with zero");
+        }
         this.number = digits;
     }
 
