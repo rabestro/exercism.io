@@ -112,7 +112,6 @@ public class PhoneNumberTest {
             .hasMessage("punctuations not permitted");
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void invalidIfAreaCodeStartsWith0() {
         IllegalArgumentException expected =

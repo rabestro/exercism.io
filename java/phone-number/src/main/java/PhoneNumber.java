@@ -24,6 +24,9 @@ class PhoneNumber {
                 throw new IllegalArgumentException("11 digits must start with 1");
             }
         }
+        if (digits.startsWith("0")) {
+            throw new IllegalArgumentException("area code cannot start with zero");
+        }
         this.number = digits;
     }
 
