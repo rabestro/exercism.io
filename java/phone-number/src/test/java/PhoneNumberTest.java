@@ -50,7 +50,6 @@ public class PhoneNumberTest {
             .hasMessage("incorrect number of digits");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void invalidWhen11DigitsDoesNotStartWith1() {
         IllegalArgumentException expected =
