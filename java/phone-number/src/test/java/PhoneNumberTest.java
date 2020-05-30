@@ -72,7 +72,6 @@ public class PhoneNumberTest {
         );
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void validWhen11DigitsAndStartingWith1EvenWithPunctuation() {
         String expectedNumber = "2234567890";
@@ -95,7 +94,6 @@ public class PhoneNumberTest {
             .hasMessage("more than 11 digits");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void invalidWithLetters() {
         IllegalArgumentException expected =
@@ -107,7 +105,6 @@ public class PhoneNumberTest {
             .hasMessage("letters not permitted");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void invalidWithPunctuations() {
         IllegalArgumentException expected =
