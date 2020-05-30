@@ -8,7 +8,12 @@ class PhoneNumber {
         if (number.matches(".*[@:!].*")) {
             throw new IllegalArgumentException("punctuations not permitted");
         }
+
         var digits = number.replaceAll("[-+.() ]", "");
+
+        if (digits.length() > 11) {
+            throw new IllegalArgumentException("more than 11 digits");
+        }
         if (digits.length() < 10) {
             throw new IllegalArgumentException("incorrect number of digits");
         }

@@ -17,7 +17,6 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cleansNumbersWithDots() {
         String expectedNumber = "2234567890";
@@ -28,7 +27,6 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cleansNumbersWithMultipleSpaces() {
         String expectedNumber = "2234567890";
@@ -61,7 +59,6 @@ public class PhoneNumberTest {
             .hasMessage("11 digits must start with 1");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void validWhen11DigitsAndStartingWith1() {
         String expectedNumber = "2234567890";
@@ -82,7 +79,6 @@ public class PhoneNumberTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void invalidWhenMoreThan11Digits() {
         IllegalArgumentException expected =
