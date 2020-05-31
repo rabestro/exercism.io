@@ -1,11 +1,13 @@
 class Acronym {
+    private final String acronym;
 
     Acronym(String phrase) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        acronym = phrase.replace('-', ' ')
+                .replaceAll("\\b_?(\\w)\\S* *", "$1").toUpperCase();
     }
 
     String get() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return acronym;
     }
 
 }
