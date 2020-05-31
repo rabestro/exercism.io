@@ -1,7 +1,11 @@
 class IsbnVerifier {
 
     boolean isValid(String stringToVerify) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        var digits = stringToVerify.replace("-", "");
+        if (!digits.matches("\\d{9}[X\\d]")) {
+            return false;
+        }
+        return true;
     }
 
 }
