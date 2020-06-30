@@ -9,7 +9,7 @@ class ArmstrongNumbers {
             }
             numberToCheck -= power;
         }
-        return 0 == numberToCheck;
+        return numberToCheck == 0;
     }
 
 }
