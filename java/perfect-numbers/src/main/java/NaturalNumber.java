@@ -17,11 +17,11 @@ final class NaturalNumber {
     }
 
     public Classification getClassification() {
-        final var sum = divisors().sum();
-        if (sum < number) {
+        final int aliquotSum = divisors().sum();
+        if (aliquotSum < number) {
             return Classification.DEFICIENT;
         }
-        if (sum > number) {
+        if (aliquotSum > number) {
             return Classification.ABUNDANT;
         }
         return Classification.PERFECT;
