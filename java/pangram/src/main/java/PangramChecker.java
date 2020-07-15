@@ -1,7 +1,11 @@
 public class PangramChecker {
 
     public boolean isPangram(String input) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return input.toLowerCase()
+                .chars()
+                .filter(Character::isLetter)
+                .distinct()
+                .count() == 26;
     }
 
 }
