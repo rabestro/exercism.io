@@ -1,12 +1,11 @@
 public class PangramChecker {
+    private final static int LETTERS_IN_ALPHABET = 26;
 
     public boolean isPangram(String input) {
-        return input
-                .toLowerCase()
-                .chars()
+        return input.toLowerCase().chars()
                 .filter(Character::isLetter)
                 .distinct()
-                .count() == 26;
+                .count() == LETTERS_IN_ALPHABET;
     }
 
 }
