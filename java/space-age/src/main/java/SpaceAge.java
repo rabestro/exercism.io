@@ -14,11 +14,11 @@ class SpaceAge {
     }
 
     double onMercury() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return onEarth() / 0.2408467;
     }
 
     double onVenus() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return onEarth() / 0.61519726;
     }
 
     double onMars() {
