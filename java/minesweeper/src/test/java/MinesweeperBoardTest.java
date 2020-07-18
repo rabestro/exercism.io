@@ -18,7 +18,6 @@ public class MinesweeperBoardTest {
         assertEquals(expectedNumberedBoard, actualNumberedBoard);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testInputBoardWithOneRowAndNoColumns() {
         List<String> inputBoard = Collections.singletonList("");
