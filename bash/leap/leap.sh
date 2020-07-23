@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ "$#" -ne 1 ]; then
+if ! [[ "$#" -eq 1 && $1 =~ ^[0-9]+$ ]]; then
   echo "Usage: leap.sh <year>"
   exit 1
 fi
