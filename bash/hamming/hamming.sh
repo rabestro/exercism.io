@@ -5,6 +5,12 @@ if [[ "$#" -ne 2 ]]; then
   exit 1
 fi
 
-#size=${#$1}
+first=$1
+second=$2
+
+if [[ "${#first}" -ne "${#second}" ]]; then
+  echo "left and right strands must be of equal length"
+  exit 1
+fi
 
 echo "0"
