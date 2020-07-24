@@ -13,4 +13,12 @@ if [[ "${#first}" -ne "${#second}" ]]; then
   exit 1
 fi
 
-echo "0"
+difference=0
+
+for ((i = 0; i < ${#first}; i++)); do
+  if [[ ${first:$i:1} != "${second:$i:1}" ]]; then
+    difference=$((difference + 1))
+  fi
+done
+
+echo $difference
