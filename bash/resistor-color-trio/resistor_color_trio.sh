@@ -12,4 +12,9 @@ fi
 
 b=${colors[$2]}
 
+if [ -z "$b" ]; then
+  echo "invalid color"
+  exit 1
+fi
+
 echo "$a$b ohms"
