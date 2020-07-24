@@ -6,6 +6,10 @@ if [[ $1%3 -eq 0 ]]; then
   sound=Pling
 fi
 
+if [[ $1%5 -eq 0 ]]; then
+  sound=${sound}Plang
+fi
+
 if [[ -z $sound ]]; then
   sound=$1
 fi
