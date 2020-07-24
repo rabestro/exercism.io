@@ -6,14 +6,21 @@ declare -A colors=(["black"]=0 ["brown"]=1 ["red"]=2 ["orange"]=3 ["yellow"]=4
 a=${colors[$1]}
 
 if [ -z "$a" ]; then
-  echo "invalid color"
+  echo "Invalid first color"
   exit 1
 fi
 
 b=${colors[$2]}
 
 if [ -z "$b" ]; then
-  echo "invalid color"
+  echo "Invalid second color"
+  exit 1
+fi
+
+c=${colors[$3]}
+
+if [ -z "$c" ]; then
+  echo "Invalid third color"
   exit 1
 fi
 
