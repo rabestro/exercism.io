@@ -5,18 +5,18 @@ if (($# != 2)); then
   exit 1
 fi
 
-declare -r first=$1
-declare -r second=$2
+declare -r left=$1
+declare -r right=$2
 
-if ((${#first} != ${#second})); then
+if ((${#left} != ${#right})); then
   echo "left and right strands must be of equal length"
   exit 1
 fi
 
 declare -i difference=0
 
-for ((i = 0; i < ${#first}; i++)); do
-  [[ ${first:$i:1} != "${second:$i:1}" ]] && ((difference++))
+for ((i = 0; i < ${#left}; i++)); do
+  [[ ${left:$i:1} != "${right:$i:1}" ]] && ((difference++))
 done
 
 echo "$difference"
