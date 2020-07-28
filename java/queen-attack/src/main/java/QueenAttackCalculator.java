@@ -1,10 +1,19 @@
-/*
+class Queen {
+    private final int x;
+    private final int y;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+    public Queen(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 
-Please remove this comment when submitting your solution.
+public class QueenAttackCalculator {
 
-*/
+    public QueenAttackCalculator(Queen white, Queen black) {
+    }
+
+    public boolean canQueensAttackOneAnother() {
+        return true;
+    }
+}
