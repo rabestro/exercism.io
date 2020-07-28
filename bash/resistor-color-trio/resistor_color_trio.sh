@@ -10,7 +10,7 @@ validate() {
 declare -A colors=(["black"]=0 ["brown"]=1 ["red"]=2 ["orange"]=3 ["yellow"]=4
   ["green"]=5 ["blue"]=6 ["violet"]=7 ["grey"]=8 ["white"]=9)
 
-suffix=(" ohms" "0 ohms" "00 ohms" " kiloohms" "0 kiloohms")
+suffix=(" ohms" "0 ohms" "00 ohms" " kiloohms" "0 kiloohms" "00 kiloohms")
 
 a=${colors[$1]}
 validate "$a"
@@ -20,5 +20,10 @@ validate "$b"
 
 c=${colors[$3]}
 validate "$c"
+
+if ((b == 0)); then
+  ((c++))
+  unset b
+fi
 
 echo "$a$b${suffix[$c]}"
