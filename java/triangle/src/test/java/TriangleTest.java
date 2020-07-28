@@ -35,7 +35,6 @@ public class TriangleTest {
             () -> new Triangle(0, 0, 0));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void verySmallTrianglesCanBeEquilateral() throws TriangleException {
         Triangle triangle = new Triangle(0.5, 0.5, 0.5);
@@ -43,7 +42,6 @@ public class TriangleTest {
         assertTrue(triangle.isEquilateral());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isoscelesTrianglesHaveLastTwoSidesEqual() throws TriangleException {
         Triangle triangle = new Triangle(3, 4, 4);

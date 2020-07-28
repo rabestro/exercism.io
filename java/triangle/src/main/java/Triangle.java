@@ -18,7 +18,7 @@ class Triangle {
     }
 
     boolean isIsosceles() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return side1 == side2 || side2 == side3 || side1 == side3;
     }
 
     boolean isScalene() {
