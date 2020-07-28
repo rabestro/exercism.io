@@ -1,16 +1,17 @@
-import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;
 
 class Matrix {
-    final int[] cells;
-    final int rows;
-    final int cols;
+    private static final Pattern SPACE = Pattern.compile("\\s");
+    private final int[] cells;
+    private final int rows;
+    private final int cols;
 
     Matrix(String matrixAsString) {
         rows = (int) matrixAsString.lines().count();
-        cells = new Scanner(matrixAsString).tokens().mapToInt(Integer::parseInt).toArray();
+        cells = SPACE.splitAsStream(matrixAsString).mapToInt(Integer::parseInt).toArray();
         cols = cells.length / rows;
     }
 
@@ -21,4 +22,5 @@ class Matrix {
     int[] getColumn(int columnNumber) {
         return range(0, rows).map(i -> cells[i * cols + columnNumber - 1]).toArray();
     }
+
 }
