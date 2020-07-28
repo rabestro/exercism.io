@@ -14,7 +14,6 @@ public class QueenAttackCalculatorTest {
         new Queen(2, 2);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCreateQueenMustHavePositiveRow() {
         IllegalArgumentException expected =
