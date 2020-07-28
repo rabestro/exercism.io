@@ -25,7 +25,6 @@ public class QueenAttackCalculatorTest {
             .hasMessage("Queen position must have positive row.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCreateQueenMustHaveRowOnBoard() {
         IllegalArgumentException expected =
@@ -37,7 +36,6 @@ public class QueenAttackCalculatorTest {
             .hasMessage("Queen position must have row <= 7.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCreateQueenMustHavePositiveColumn() {
         IllegalArgumentException expected =
