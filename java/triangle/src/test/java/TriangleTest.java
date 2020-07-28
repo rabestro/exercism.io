@@ -14,7 +14,6 @@ public class TriangleTest {
         assertTrue(triangle.isEquilateral());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void trianglesWithOneUnequalSideAreNotEquilateral() throws TriangleException {
         Triangle triangle = new Triangle(2, 3, 2);
