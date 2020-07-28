@@ -16,45 +16,45 @@ public class QueenAttackCalculatorTest {
     @Test
     public void testCreateQueenMustHavePositiveRow() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new Queen(-2, 2));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Queen(-2, 2));
 
         assertThat(expected)
-            .hasMessage("Queen position must have positive row.");
+                .hasMessage("Queen position must have positive row.");
     }
 
     @Test
     public void testCreateQueenMustHaveRowOnBoard() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new Queen(8, 4));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Queen(8, 4));
 
         assertThat(expected)
-            .hasMessage("Queen position must have row <= 7.");
+                .hasMessage("Queen position must have row <= 7.");
     }
 
     @Test
     public void testCreateQueenMustHavePositiveColumn() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new Queen(2, -2));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Queen(2, -2));
 
         assertThat(expected)
-            .hasMessage("Queen position must have positive column.");
+                .hasMessage("Queen position must have positive column.");
     }
 
     @Test
     public void testCreateQueenMustHaveColumnOnBoard() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new Queen(4, 8));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new Queen(4, 8));
 
         assertThat(expected)
-            .hasMessage("Queen position must have column <= 7.");
+                .hasMessage("Queen position must have column <= 7.");
     }
 
     @Test
@@ -116,23 +116,23 @@ public class QueenAttackCalculatorTest {
     @Test
     public void testNullPositionsNotAllowed() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new QueenAttackCalculator(null, new Queen(0, 7)));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new QueenAttackCalculator(null, new Queen(0, 7)));
 
         assertThat(expected)
-            .hasMessage("You must supply valid positions for both Queens.");
+                .hasMessage("You must supply valid positions for both Queens.");
     }
 
     @Test
     public void testQueensMustNotOccupyTheSameSquare() {
         IllegalArgumentException expected =
-            assertThrows(
-                IllegalArgumentException.class,
-                () -> new QueenAttackCalculator(new Queen(2, 2), new Queen(2, 2)));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () -> new QueenAttackCalculator(new Queen(2, 2), new Queen(2, 2)));
 
         assertThat(expected)
-            .hasMessage("Queens cannot occupy the same position.");
+                .hasMessage("Queens cannot occupy the same position.");
     }
 
 }
