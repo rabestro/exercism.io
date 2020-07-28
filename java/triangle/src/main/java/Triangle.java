@@ -25,7 +25,7 @@ class Triangle {
     }
 
     boolean isScalene() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return side1 != side2 && side1 != side3 && side2 != side3;
     }
 
 }

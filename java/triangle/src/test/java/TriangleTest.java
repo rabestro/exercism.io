@@ -84,7 +84,6 @@ public class TriangleTest {
             () -> new Triangle(1, 1, 3));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void secondTriangleInequalityViolation() {
         assertThrows(
@@ -92,7 +91,6 @@ public class TriangleTest {
             () -> new Triangle(1, 3, 1));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void thirdTriangleInequalityViolation() {
         assertThrows(
@@ -100,7 +98,6 @@ public class TriangleTest {
             () -> new Triangle(3, 1, 1));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void verySmallTrianglesCanBeIsosceles() throws TriangleException {
         Triangle triangle = new Triangle(0.5, 0.4, 0.5);
@@ -108,7 +105,6 @@ public class TriangleTest {
         assertTrue(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void scaleneTrianglesHaveNoEqualSides() throws TriangleException {
         Triangle triangle = new Triangle(5, 4, 6);
