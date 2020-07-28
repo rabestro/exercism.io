@@ -47,7 +47,6 @@ public class QueenAttackCalculatorTest {
             .hasMessage("Queen position must have positive column.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCreateQueenMustHaveColumnOnBoard() {
         IllegalArgumentException expected =

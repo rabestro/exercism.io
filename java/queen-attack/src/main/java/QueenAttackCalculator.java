@@ -10,13 +10,15 @@ class Queen {
         Map<String, Supplier<Boolean>> validationRules = Map.of(
                 "Queen position must have positive row.", () -> x < 0,
                 "Queen position must have positive column.", () -> y < 0,
-                "Queen position must have row <= 7.", () -> x > 7);
+                "Queen position must have row <= 7.", () -> x > 7,
+                "Queen position must have column <= 7.", () -> y > 7);
 
-        for (var validation : validationRules.entrySet()) {
-            if (validation.getValue().get()) {
-                throw new IllegalArgumentException(validation.getKey());
-            }
-        }
+        validationRules.entrySet().stream()
+                .filter(validation -> validation.getValue().get())
+                .forEach(validation -> {
+                    throw new IllegalArgumentException(validation.getKey());
+                });
+
         this.x = x;
         this.y = y;
     }
