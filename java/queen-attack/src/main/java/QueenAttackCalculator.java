@@ -1,10 +1,9 @@
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 class Queen {
-    private final int x;
-    private final int y;
+    final int x;
+    final int y;
 
     public Queen(int x, int y) {
         Map<String, Supplier<Boolean>> validationRules = Map.of(
@@ -25,11 +24,15 @@ class Queen {
 }
 
 public class QueenAttackCalculator {
+    private final Queen white;
+    private final Queen black;
 
     public QueenAttackCalculator(Queen white, Queen black) {
+        this.white = white;
+        this.black = black;
     }
 
     public boolean canQueensAttackOneAnother() {
-        return true;
+        return white.x == black.x || white.y == black.y;
     }
 }

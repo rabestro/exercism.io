@@ -58,7 +58,6 @@ public class QueenAttackCalculatorTest {
             .hasMessage("Queen position must have column <= 7.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCannotAttack() {
         QueenAttackCalculator calculator
