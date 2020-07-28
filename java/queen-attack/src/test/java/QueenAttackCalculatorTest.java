@@ -66,7 +66,6 @@ public class QueenAttackCalculatorTest {
         assertFalse(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnTheSameRow() {
         QueenAttackCalculator calculator
@@ -75,7 +74,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnTheSameColumn() {
         QueenAttackCalculator calculator
@@ -84,7 +82,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnFirstDiagonal() {
         QueenAttackCalculator calculator
