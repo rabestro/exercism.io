@@ -49,7 +49,6 @@ public class TriangleTest {
         assertTrue(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isoscelesTrianglesHaveTwoFirstSidesEqual() throws TriangleException {
         Triangle triangle = new Triangle(4, 4, 3);
@@ -57,7 +56,6 @@ public class TriangleTest {
         assertTrue(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isoscelesTrianglesHaveFirstAndLastSidesEqual() throws TriangleException {
         Triangle triangle = new Triangle(4, 3, 4);
@@ -65,7 +63,6 @@ public class TriangleTest {
         assertTrue(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void equilateralTrianglesAreAlsoIsosceles() throws TriangleException {
         Triangle triangle = new Triangle(4, 4, 4);
@@ -73,7 +70,6 @@ public class TriangleTest {
         assertTrue(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void noSidesAreEqualCantBeIsoceles() throws TriangleException {
         Triangle triangle = new Triangle(2, 3, 4);
@@ -81,7 +77,6 @@ public class TriangleTest {
         assertFalse(triangle.isIsosceles());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void firstTriangleInequalityViolation() {
         assertThrows(
