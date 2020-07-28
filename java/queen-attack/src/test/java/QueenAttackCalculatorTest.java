@@ -90,7 +90,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnSecondDiagonal() {
         QueenAttackCalculator calculator
@@ -99,7 +98,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnThirdDiagonal() {
         QueenAttackCalculator calculator
@@ -108,7 +106,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensCanAttackOnFourthDiagonal() {
         QueenAttackCalculator calculator
@@ -117,7 +114,6 @@ public class QueenAttackCalculatorTest {
         assertTrue(calculator.canQueensAttackOneAnother());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNullPositionsNotAllowed() {
         IllegalArgumentException expected =

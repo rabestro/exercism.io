@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Supplier;
 import static java.lang.Math.abs;
 
@@ -29,6 +30,9 @@ public class QueenAttackCalculator {
     private final Queen black;
 
     public QueenAttackCalculator(Queen white, Queen black) {
+        if (white == null || black == null) {
+            throw new IllegalArgumentException("You must supply valid positions for both Queens.");
+        }
         this.white = white;
         this.black = black;
     }
