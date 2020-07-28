@@ -3,7 +3,6 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.junit.Ignore;
 
 public class TriangleTest {
 
@@ -112,7 +111,6 @@ public class TriangleTest {
         assertTrue(triangle.isScalene());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void allSidesEqualAreNotScalene() throws TriangleException {
         Triangle triangle = new Triangle(4, 4, 4);
@@ -120,7 +118,6 @@ public class TriangleTest {
         assertFalse(triangle.isScalene());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void twoSidesEqualAreNotScalene() throws TriangleException {
         Triangle triangle = new Triangle(4, 4, 3);
@@ -128,7 +125,6 @@ public class TriangleTest {
         assertFalse(triangle.isScalene());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void mayNotViolateTriangleInequality() {
         assertThrows(
@@ -136,7 +132,6 @@ public class TriangleTest {
             () -> new Triangle(7, 3, 2));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void verySmallTrianglesCanBeScalene() throws TriangleException {
         Triangle triangle = new Triangle(0.5, 0.4, 0.6);
