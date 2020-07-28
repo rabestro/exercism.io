@@ -3,7 +3,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -125,7 +124,6 @@ public class QueenAttackCalculatorTest {
             .hasMessage("You must supply valid positions for both Queens.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testQueensMustNotOccupyTheSameSquare() {
         IllegalArgumentException expected =
