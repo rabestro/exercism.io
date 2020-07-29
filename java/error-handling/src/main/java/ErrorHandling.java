@@ -15,8 +15,8 @@ class ErrorHandling {
         throw new EOFException();
     }
 
-    void handleErrorByThrowingAnyCheckedExceptionWithDetailMessage(String message) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+    void handleErrorByThrowingAnyCheckedExceptionWithDetailMessage(String message) throws EOFException {
+        throw new EOFException(message);
     }
 
     void handleErrorByThrowingAnyUncheckedException() {
