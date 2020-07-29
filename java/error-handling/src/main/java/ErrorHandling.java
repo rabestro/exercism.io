@@ -27,8 +27,8 @@ class ErrorHandling {
         throw new IllegalArgumentException(message);
     }
 
-    void handleErrorByThrowingCustomCheckedException() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+    void handleErrorByThrowingCustomCheckedException() throws CustomCheckedException {
+        throw new CustomCheckedException();
     }
 
     void handleErrorByThrowingCustomCheckedExceptionWithDetailMessage(String message) {
