@@ -20,7 +20,7 @@ class ErrorHandling {
     }
 
     void handleErrorByThrowingAnyUncheckedException() {
-        // Delete this statement and write your own implementation.
+        throw new IllegalArgumentException();
     }
 
     void handleErrorByThrowingAnyUncheckedExceptionWithDetailMessage(String message) {
