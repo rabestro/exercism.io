@@ -4,7 +4,7 @@ class CustomUncheckedException extends RuntimeException {
     }
 
     CustomUncheckedException(String message) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        super(message);
     }
 
 }

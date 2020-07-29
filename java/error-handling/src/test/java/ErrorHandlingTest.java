@@ -96,7 +96,6 @@ public class ErrorHandlingTest {
             errorHandling::handleErrorByThrowingCustomUncheckedException);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThrowCustomUncheckedExceptionWithDetailMessage() {
         CustomUncheckedException expected =

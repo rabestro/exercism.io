@@ -40,7 +40,7 @@ class ErrorHandling {
     }
 
     void handleErrorByThrowingCustomUncheckedExceptionWithDetailMessage(String message) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        throw new CustomUncheckedException(message);
     }
 
     Optional<Integer> handleErrorByReturningOptionalInstance(String integer) {
