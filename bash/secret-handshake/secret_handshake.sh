@@ -10,15 +10,14 @@ handshake=("wink" "double blink" "close your eyes" "jump")
 code=$1
 result=()
 
-is_reverse=((code & 16==1))
-echo $is_reverse
-
-for i in {0..3}; do
-  if ((code % 2 == 1)); then
-    result+=("${handshake[$i]}")
-  fi
-  ((code /= 2))
-done
+if ((code >> 4)); then
+  for i in {3..0..-1}; do
+    ((1 & (code >> i))) && result+=("${handshake[$i]}")
+  done
+else
+  for i in {0..3}; do
+    ((1 & (code >> i))) && result+=("${handshake[$i]}")
+  done
+fi
 
 join_by , "${result[@]}"
-
