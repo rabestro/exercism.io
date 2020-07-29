@@ -28,7 +28,7 @@ As an example, the test for the _hamming_ exercise would be run using
 
 ```
 begin
-  ut_hamming#.run;
+  ut_hello_world#.run;
 end;
 /
 ```
