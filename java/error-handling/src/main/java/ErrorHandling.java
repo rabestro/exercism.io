@@ -7,7 +7,7 @@ class ErrorHandling {
     }
 
     void handleErrorByThrowingIllegalArgumentExceptionWithDetailMessage(String message) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        throw new IllegalArgumentException(message);
     }
 
     void handleErrorByThrowingAnyCheckedException() {

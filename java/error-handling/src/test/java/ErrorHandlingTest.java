@@ -20,7 +20,6 @@ public class ErrorHandlingTest {
             errorHandling::handleErrorByThrowingIllegalArgumentException);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThrowIllegalArgumentExceptionWithDetailMessage() {
         IllegalArgumentException expected =
