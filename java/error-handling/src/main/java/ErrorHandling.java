@@ -1,3 +1,4 @@
+import java.io.EOFException;
 import java.util.Optional;
 
 class ErrorHandling {
@@ -10,8 +11,8 @@ class ErrorHandling {
         throw new IllegalArgumentException(message);
     }
 
-    void handleErrorByThrowingAnyCheckedException() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+    void handleErrorByThrowingAnyCheckedException() throws EOFException {
+        throw new EOFException();
     }
 
     void handleErrorByThrowingAnyCheckedExceptionWithDetailMessage(String message) {

@@ -32,7 +32,6 @@ public class ErrorHandlingTest {
         assertThat(expected).hasMessage("This is the detail message.");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThrowAnyCheckedException() {
         Exception expected =
