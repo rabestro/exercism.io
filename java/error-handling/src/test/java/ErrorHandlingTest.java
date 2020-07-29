@@ -60,7 +60,6 @@ public class ErrorHandlingTest {
             errorHandling::handleErrorByThrowingAnyUncheckedException);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThrowAnyUncheckedExceptionWithDetailMessage() {
         RuntimeException expected =

@@ -24,7 +24,7 @@ class ErrorHandling {
     }
 
     void handleErrorByThrowingAnyUncheckedExceptionWithDetailMessage(String message) {
-        // Delete this statement and write your own implementation.
+        throw new IllegalArgumentException(message);
     }
 
     void handleErrorByThrowingCustomCheckedException() {
