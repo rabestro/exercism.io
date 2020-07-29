@@ -78,7 +78,6 @@ public class ErrorHandlingTest {
             errorHandling::handleErrorByThrowingCustomCheckedException);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThrowCustomCheckedExceptionWithDetailMessage() {
         CustomCheckedException expected =
