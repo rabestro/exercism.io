@@ -3,8 +3,10 @@
 readonly array=("$@")
 readonly target=$1
 
-echo "${array[@]}"
+left=1
+right=${#array[@]}
+((right--))
 
-echo "${array[0]}"
-echo "${array[1]}"
-echo "${array[2]}"
+echo "$right"
+
+echo "${array[@]}"
