@@ -10,6 +10,9 @@ handshake=("wink" "double blink" "close your eyes" "jump")
 code=$1
 result=()
 
+is_reverse=((code & 16==1))
+echo $is_reverse
+
 for i in {0..3}; do
   if ((code % 2 == 1)); then
     result+=("${handshake[$i]}")
