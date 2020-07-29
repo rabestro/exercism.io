@@ -5,11 +5,11 @@ readonly code=$1
 
 ((code >> 4)) && range="3 -1 0" || range="0 3"
 
-for i in $(eval "seq ${range}"); do
-  ((1 & (code >> i))) && {
+for i in $(eval "seq $range"); do
+  if ((1 & (code >> i))); then
     [[ -n $result ]] && result+=","
     result+="${handshake[$i]}"
-  }
+  fi
 done
 
 echo "$result"
