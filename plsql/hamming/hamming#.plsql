@@ -18,6 +18,12 @@ end hamming#;
 
 create or replace package body hamming#
 is
-
+  function distance(
+    i_first                                       varchar2
+   ,i_second                                      varchar2
+    )  return pls_integer  as
+  begin
+      return 0;
+  end distance;
 end hamming#;
 /
