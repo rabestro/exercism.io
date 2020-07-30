@@ -23,6 +23,7 @@ is
    ,i_second                                      varchar2
     )  return pls_integer  as
   begin
+
       return 0;
   end distance;
 end hamming#;
