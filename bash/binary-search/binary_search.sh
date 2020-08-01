@@ -4,21 +4,18 @@ readonly target=$1
 shift
 readonly array=("$@")
 
-left=-1
-right=${#array[@]}
+declare -i left=0
+declare -i right=${#array[@]}
 
 while ((left < right)); do
   mid=$(((left + right) / 2))
-#  echo "[$left ($mid) $right]"
   if ((array[mid] > target)); then
-    right=$mid
+    right=$((--mid))
   elif ((array[mid] < target)); then
-    left=$mid
+    left=$((++mid))
   else
-    left=$mid
-    right=$mid
+    break
   fi
 done
 
-echo $((mid))
-#echo "${array[@]}"
+echo $((array[mid] == target ? mid : -1))
