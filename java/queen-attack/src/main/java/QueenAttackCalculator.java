@@ -2,6 +2,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import static java.lang.Math.abs;
+import static java.util.function.Predicate.not;
 
 final class Queen {
     final int row;
@@ -15,7 +16,7 @@ final class Queen {
                 "Queen position must have column <= 7.", () -> col <= 7);
 
         validationRules.entrySet().stream()
-                .filter(rule -> !rule.getValue().get())
+                .filter(not(rule -> rule.getValue().get()))
                 .findFirst()
                 .ifPresent(rule -> {
                     throw new IllegalArgumentException(rule.getKey());
