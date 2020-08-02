@@ -9,15 +9,16 @@ final class Queen {
 
     public Queen(final int row, final int col) {
         final Map<String, Supplier<Boolean>> validationRules = Map.of(
-                "Queen position must have positive row.", () -> row < 0,
-                "Queen position must have positive column.", () -> col < 0,
-                "Queen position must have row <= 7.", () -> row > 7,
-                "Queen position must have column <= 7.", () -> col > 7);
+                "Queen position must have positive row.", () -> row >= 0,
+                "Queen position must have positive column.", () -> col >= 0,
+                "Queen position must have row <= 7.", () -> row <= 7,
+                "Queen position must have column <= 7.", () -> col <= 7);
 
         validationRules.entrySet().stream()
-                .filter(validation -> validation.getValue().get())
-                .forEach(validation -> {
-                    throw new IllegalArgumentException(validation.getKey());
+                .filter(rule -> !rule.getValue().get())
+                .findFirst()
+                .ifPresent(rule -> {
+                    throw new IllegalArgumentException(rule.getKey());
                 });
 
         this.row = row;
