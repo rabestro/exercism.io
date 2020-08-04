@@ -2,7 +2,7 @@ class LuhnValidator {
 
     boolean isValid(String candidate) {
         final var number = candidate.replaceAll(" ", "");
-        if (!number.matches("[0-9]{2,}")) {
+        if (!number.matches("\\d{2,}")) {
             return false;
         }
         var sum = 0;
