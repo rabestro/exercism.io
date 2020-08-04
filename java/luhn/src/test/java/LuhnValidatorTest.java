@@ -18,7 +18,6 @@ public class LuhnValidatorTest {
         assertFalse(luhnValidator.isValid("1"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSingleZeroIsInvalid() {
         assertFalse(luhnValidator.isValid("0"));
@@ -72,19 +71,16 @@ public class LuhnValidatorTest {
         assertTrue(luhnValidator.isValid("234 567 891 234"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testValidStringsWithANonDigitAtEndInvalid() {
         assertFalse(luhnValidator.isValid("059a"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testStringContainingPunctuationInvalid() {
         assertFalse(luhnValidator.isValid("055-444-285"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testStringContainingSymbolsInvalid() {
         assertFalse(luhnValidator.isValid("055# 444$ 285"));
