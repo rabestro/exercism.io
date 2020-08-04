@@ -22,9 +22,14 @@ is
     i_first                                       varchar2
    ,i_second                                      varchar2
     )  return pls_integer  as
+    result integer := 0;
   begin
-
-      return 0;
+    FOR i IN 1..length(i_first) LOOP
+        if (substr(i_first, i, 1) != substr(i_second, i, 1)) then
+            result = result + 1;
+        end if;
+    END loop;
+    return result;
   end distance;
 end hamming#;
 /
