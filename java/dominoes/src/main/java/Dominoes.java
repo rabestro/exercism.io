@@ -9,11 +9,12 @@ Please remove this comment when submitting your solution.
 
 */
 
+import java.util.Collections;
 import java.util.List;
 
 class Dominoes {
 
     public List<Domino> formChain(List<Domino> dominoesList) {
-        return null;
+        return Collections.emptyList();
     }
 }

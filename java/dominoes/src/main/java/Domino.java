@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-class Domino {
+public class Domino {
     private int left;
     private int right;
     Domino(int left, int right) {
