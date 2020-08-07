@@ -1,4 +1,3 @@
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,7 +16,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testOneFactorHasMultiplesWithinLimit() {
 
@@ -30,7 +28,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMoreThanOneMultipleWithinLimit() {
 
@@ -42,7 +39,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMoreThanOneFactorWithMultiplesWithinLimit() {
 
@@ -55,7 +51,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testEachMultipleIsOnlyCountedOnce() {
 
@@ -68,7 +63,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAMuchLargerLimit() {
 
@@ -81,7 +75,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThreeFactors() {
 
@@ -95,7 +88,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testFactorsNotRelativelyPrime() {
 
@@ -108,7 +100,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSomePairsOfFactorsRelativelyPrimeAndSomeNot() {
 
@@ -122,7 +113,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testOneFactorIsAMultipleOfAnother() {
 
@@ -135,7 +125,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMuchLargerFactors() {
 
@@ -148,7 +137,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAllNumbersAreMultiplesOf1() {
 
@@ -160,7 +148,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNoFactorsMeanAnEmptySum() {
 
@@ -170,7 +157,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSumOfMultiplesOfZeroIsZero() {
 
@@ -182,7 +168,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testFactorZeroDoesNotAffectTheSumOfMultiplesOfOtherFactors() {
 
@@ -195,7 +180,6 @@ public class SumOfMultiplesTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSolutionsUsingIncludeExcludeMustExtendToCardinalityGreater3() {
 
