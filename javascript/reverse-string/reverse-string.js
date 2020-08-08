@@ -3,6 +3,6 @@
 // convenience to get you started writing code faster.
 //
 
-export const reverseString = () => {
-  return ''
+export const reverseString = (string) => {
+  return string.split("").reverse().join("");
 };
