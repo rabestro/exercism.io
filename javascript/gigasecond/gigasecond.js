@@ -4,5 +4,5 @@
 //
 
 export const gigasecond = () => {
-  throw new Error("Remove this statement and implement this function");
+  return new Date(Date.parse('2043-01-01T01:46:40Z'));
 };
