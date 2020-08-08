@@ -3,5 +3,6 @@
 //
 
 export const toRoman = (number) => {
-    return ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"][number % 10];
+    return ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"][Math.floor(number % 100 / 10)]
+        + ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"][number % 10];
 };
