@@ -3,6 +3,7 @@ import java.util.List;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.util.stream.IntStream.range;
 
 public class MinesweeperBoard {
     private final List<String> inputBoard;
@@ -37,14 +38,9 @@ public class MinesweeperBoard {
     }
 
     private int countMines(final int row, final int col) {
-        int mines = 0;
-        for (int i = max(0, row - 1); i < min(rows, row + 2); i++) {
-            for (int j = max(0, col - 1); j < min(cols, col + 2); j++) {
-                if (inputBoard.get(i).charAt(j) == '*') {
-                    mines++;
-                }
-            }
-        }
-        return mines;
+        return (int) range(max(0, row - 1), min(rows, row + 2))
+                .flatMap(i -> range(max(0, col - 1), min(cols, col + 2))
+                        .filter(j -> inputBoard.get(i).charAt(j) == '*'))
+                .count();
     }
 }
