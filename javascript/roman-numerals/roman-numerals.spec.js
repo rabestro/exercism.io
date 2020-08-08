@@ -18,5 +18,5 @@ describe('toRoman()', () => {
   test('converts 575', () => expect(toRoman(575)).toEqual('DLXXV'));
   test('converts 911', () => expect(toRoman(911)).toEqual('CMXI'));
   test('converts 1024', () => expect(toRoman(1024)).toEqual('MXXIV'));
-  xtest('converts 3000', () => expect(toRoman(3000)).toEqual('MMM'));
+  test('converts 3000', () => expect(toRoman(3000)).toEqual('MMM'));
 });
