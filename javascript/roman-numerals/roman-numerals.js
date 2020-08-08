@@ -3,5 +3,5 @@
 //
 
 export const toRoman = (number) => {
-    return ["", "I", "II", "III", "IV", "V", "VI"][number % 10];
+    return ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"][number % 10];
 };
