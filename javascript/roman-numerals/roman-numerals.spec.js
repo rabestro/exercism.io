@@ -2,7 +2,7 @@ import { toRoman } from './roman-numerals';
 
 describe('toRoman()', () => {
   test('converts 1', () => expect(toRoman(1)).toEqual('I'));
-  xtest('converts 2', () => expect(toRoman(2)).toEqual('II'));
+  test('converts 2', () => expect(toRoman(2)).toEqual('II'));
   xtest('converts 3', () => expect(toRoman(3)).toEqual('III'));
   xtest('converts 4', () => expect(toRoman(4)).toEqual('IV'));
   xtest('converts 5', () => expect(toRoman(5)).toEqual('V'));
