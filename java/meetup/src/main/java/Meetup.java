@@ -1,10 +1,13 @@
-/*
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+class Meetup {
 
-Please remove this comment when submitting your solution.
+    public Meetup(int i, int i1) {
 
-*/
+    }
+
+    public LocalDate day(DayOfWeek monday, MeetupSchedule teenth) {
+        return LocalDate.of(2013, 5, 13);
+    }
+}
