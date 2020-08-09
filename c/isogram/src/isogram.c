@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 bool is_isogram(const char phrase[]) {
+    if (phrase == NULL) return false;
+
     unsigned long set = 0;
     bool repeating = false;
 
