@@ -16,7 +16,7 @@ class DiamondPrinter {
                     } else if (i > d) {
                         return " ".repeat(i - d) + (char) ('A' + i) + " ".repeat(2 * d - i) + (char) ('A' + i) + " ".repeat(i - d);
                     }
-                    return a + " ".repeat(d) + a;
+                    return a + " ".repeat(2 * d - 1) + a;
                 })
                 .collect(Collectors.toList());
     }

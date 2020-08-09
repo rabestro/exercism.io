@@ -28,7 +28,6 @@ public class DiamondPrinterTest {
                 " A ");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThreeByThreeDiamond() {
         assertThat(diamondPrinter.printToList('C'))
