@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-sentence=$1
+readonly sentence=${1//[!a-zA-Z]/}
+readonly unique=$(echo "${sentence^^}" | grep -o . | sort | uniq | tr -d "\n")
 
-unique=$(echo "$sentence" | grep -o . | sort | uniq)
-echo "$unique"
-#echo false
-# tr -s [:lower:] [:upper:] | sed 's/[^a-zA-Z]//g' | grep -o . | sort | uniq
+if ((${#unique} == 26)); then
+  echo true
+else
+  echo false
+fi
