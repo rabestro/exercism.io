@@ -1,6 +1,5 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,7 +51,6 @@ public class DiamondPrinterTest {
                 "   A   ");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testFullDiamond() {
         assertThat(diamondPrinter.printToList('Z'))
