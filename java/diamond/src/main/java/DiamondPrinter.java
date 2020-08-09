@@ -12,9 +12,9 @@ class DiamondPrinter {
                     if (i == 0 || i == 2 * d) {
                         return " ".repeat(d) + "A" + " ".repeat(d);
                     } else if (i < d) {
-                        return " ".repeat(d - i) + (char) ('A' + i) + " ".repeat(i) + (char) ('A' + i) + " ".repeat(d - i);
+                        return " ".repeat(d - i) + (char) ('A' + i) + " ".repeat(2 * i - 1) + (char) ('A' + i) + " ".repeat(d - i);
                     } else if (i > d) {
-                        return " ".repeat(i - d) + (char) ('A' + i) + " ".repeat(2 * d - i) + (char) ('A' + i) + " ".repeat(i - d);
+                        return " ".repeat(i - d) + (char) ('A' + 2 * d - i) + " ".repeat(2 * (2 * d - i) - 1) + (char) ('A' + 2 * d - i) + " ".repeat(i - d);
                     }
                     return a + " ".repeat(2 * d - 1) + a;
                 })

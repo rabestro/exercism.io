@@ -39,7 +39,6 @@ public class DiamondPrinterTest {
                 "  A  ");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testFourByFourDiamond() {
         assertThat(diamondPrinter.printToList('D'))
