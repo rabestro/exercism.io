@@ -16,6 +16,8 @@ fi
 
 if [[ -z $sentence ]]; then
   echo "Fine. Be that way!"
+elif [[ $sentence == "${sentence^^}" ]]; then
+  echo "Whoa, chill out!"
 else
   echo "Whatever."
 fi
