@@ -23,13 +23,13 @@ static void test_null(void)
 
 static void test_lower_case_only(void)
 {
-   TEST_IGNORE();
+//   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("isogram"));
 }
 
 static void test_duplicated_letter(void)
 {
-   TEST_IGNORE();
+//   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("eleven"));
 }
 
