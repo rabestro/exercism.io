@@ -27,7 +27,6 @@ class Meetup {
             }
             case TEENTH -> startDay = 13;
         }
-
         return Stream.iterate(LocalDate.of(year, month, startDay), nextDate)
                 .filter(date -> date.getDayOfWeek() == day)
                 .skip(skipDays)
