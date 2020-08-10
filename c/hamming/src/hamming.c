@@ -8,5 +8,5 @@ int compute(const char *lhs, const char *rhs) {
     while (*lhs != '\0' && *rhs != '\0') {
         if (*lhs++ != *rhs++) ++difference;
     }
-    return difference;
+    return *lhs == *rhs ? difference : -1;
 }

@@ -21,49 +21,41 @@ static void test_rejects_null_strand(void)
 
 static void test_rejects_other_null_strand(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(-1, compute("A", NULL));
 }
 
 static void test_no_difference_between_identical_strands(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(0, compute("A", "A"));
 }
 
 static void test_identical_long_strands(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(0, compute("GGACTGA", "GGACTGA"));
 }
 
 static void test_hamming_distance_for_single_nucleotide_strand(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(1, compute("A", "G"));
 }
 
 static void test_complete_hamming_distance_for_small_strand(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(2, compute("AG", "CT"));
 }
 
 static void test_small_hamming_distance(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(1, compute("AT", "CT"));
 }
 
 static void test_small_hamming_distance_in_longer_strand(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(1, compute("GGACG", "GGTCG"));
 }
 
 static void test_rejects_extra_length_on_first_strand_when_longer(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_EQUAL(-1, compute("AAAG", "AAA"));
 }
 
