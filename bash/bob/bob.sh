@@ -11,7 +11,7 @@ else
   isUpper=false
 fi
 
-if [[ -z $1 ]]; then
+if [[ $1 =~ ^[[:space:]\\t\\n]*$ ]]; then
   echo "Fine. Be that way!"
 elif [[ ${#sentence} -gt 1 && $sentence == "${sentence^^}" && $sentence =~ \?$ ]]; then
   echo "Calm down, I know what I'm doing!"
