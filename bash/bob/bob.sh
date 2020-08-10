@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-readonly sentence=${1//[!a-zA-Z]/}
+#isQuestion=[[ $1 =~ "\?$" ]]
+readonly sentence=${1//[!a-zA-Z?]/}
 
-if [[ $sentence =~ "\?$" ]]; then
-  isQuestion=true
-else
-  isQuestion=false
-fi
+#echo "$isQuestion"
 
 if [[ $sentence == "${sentence^^}" ]]; then
   isUpper=true
@@ -14,10 +11,14 @@ else
   isUpper=false
 fi
 
-if [[ -z $sentence ]]; then
+if [[ -z $1 ]]; then
   echo "Fine. Be that way!"
-elif [[ $sentence == "${sentence^^}" ]]; then
+elif [[ ${#sentence} -gt 1 && $sentence == "${sentence^^}" && $sentence =~ \?$ ]]; then
+  echo "Calm down, I know what I'm doing!"
+elif [[ ${#sentence} -gt 0 && $sentence == "${sentence^^}" ]]; then
   echo "Whoa, chill out!"
+elif [[ $sentence =~ \?$ ]]; then
+  echo "Sure."
 else
   echo "Whatever."
 fi
