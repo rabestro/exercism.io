@@ -6,8 +6,8 @@
 bool is_pangram(const char *sentence) {
     if (sentence == NULL) return false;
     uint32_t set = 0;
-    while (*sentence != '\0') {
-        if (isalpha(*sentence)) set |= 1 << (tolower(*sentence) - 'a');
+    for (const char *c = sentence; *c != '\0'; ++c) {
+        if (isalpha(*c)) set |= 1 << (tolower(*c) - 'a');
     }
-    return set == (1 << 27) - 1;
+    return set == (1 << 26) - 1;
 }
