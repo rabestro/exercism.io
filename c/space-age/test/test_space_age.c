@@ -41,7 +41,6 @@ static void test_convert_saturn_year(void)
 
 static void test_convert_uranus_year(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FLOAT_WITHIN(0.1, 1.21, convert_planet_age(URANUS, 3210123456));
 }
 
