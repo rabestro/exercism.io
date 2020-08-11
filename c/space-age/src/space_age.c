@@ -9,9 +9,9 @@ float convert_planet_age(planet_t planet, int64_t input) {
         case VENUS:
             return convert_planet_age(EARTH, input) / 0.61519726;
         case MARS:
-            return convert_planet_age(EARTH, input) / 0.2408467;
+            return convert_planet_age(EARTH, input) / 1.8808158;
         case JUPITER:
-            return convert_planet_age(EARTH, input) / 0.2408467;
+            return convert_planet_age(EARTH, input) / 11.862615;
         case SATURN:
             return convert_planet_age(EARTH, input) / 0.2408467;
         case URANUS:
