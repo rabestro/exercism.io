@@ -5,6 +5,7 @@ float convert_planet_age(planet_t planet, int64_t input) {
         case EARTH:
             return input / 31557600.0;
         case MERCURY:
+            return convert_planet_age(EARTH, input) / 0.2408467;
         case VENUS:
         case MARS:
         case JUPITER:

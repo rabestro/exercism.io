@@ -16,7 +16,6 @@ static void test_convert_earth_year(void)
 
 static void test_convert_mercury_year(void)
 {
-   TEST_IGNORE();               // delete this line to run test
    TEST_ASSERT_FLOAT_WITHIN(3, 280.88, convert_planet_age(MERCURY, 2134835688));
 }
 
