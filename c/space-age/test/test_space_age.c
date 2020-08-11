@@ -46,7 +46,6 @@ static void test_convert_uranus_year(void)
 
 static void test_convert_neptune_year(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FLOAT_WITHIN(0.1, 1.58, convert_planet_age(NEPTUNE, 8210123456));
 }
 
