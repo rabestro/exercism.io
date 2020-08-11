@@ -31,13 +31,11 @@ static void test_convert_mars_year(void)
 
 static void test_convert_jupiter_year(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FLOAT_WITHIN(0.1, 2.41, convert_planet_age(JUPITER, 901876382));
 }
 
 static void test_convert_saturn_year(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FLOAT_WITHIN(0.1, 3.23, convert_planet_age(SATURN, 3000000000));
 }
 
