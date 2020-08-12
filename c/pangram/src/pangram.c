@@ -6,5 +6,5 @@ bool is_pangram(const char *sentence) {
     for (const char *c = sentence; *c != '\0'; ++c) {
         if (isalpha(*c)) set |= 1 << (tolower(*c) - 'a');
     }
-    return set == (1l << 26) - 1;
+    return set == (1ul << 26) - 1;
 }
