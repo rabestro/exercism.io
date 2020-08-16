@@ -16,25 +16,21 @@ static void test_a_known_leap_year(void)
 
 static void test_any_old_year(void)
 {
-   TEST_IGNORE();               // delete this line to run test
    TEST_ASSERT_FALSE(is_leap_year(1997));
 }
 
 static void test_turn_of_the_20th_century(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_leap_year(1900));
 }
 
 static void test_turn_of_the_21st_century(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_leap_year(2000));
 }
 
 static void test_turn_of_the_25th_century(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_leap_year(2400));
 }
 
