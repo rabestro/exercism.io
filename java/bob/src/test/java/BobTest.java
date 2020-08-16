@@ -155,7 +155,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void silence() {
         assertEquals(
@@ -163,7 +162,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void prolongedSilence() {
         assertEquals(
@@ -171,7 +169,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void alternateSilence() {
         assertEquals(
