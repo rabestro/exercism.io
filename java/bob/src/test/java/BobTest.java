@@ -21,7 +21,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void shouting() {
         assertEquals(
@@ -30,7 +29,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void shoutingGibberish() {
         assertEquals(
@@ -83,7 +81,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void forcefulQuestions() {
         assertEquals(
@@ -203,7 +200,6 @@ public class BobTest {
         );
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void otherWhiteSpace() {
         assertEquals(
