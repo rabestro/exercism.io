@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.IntStream.range;
 
-class Matrix {
+final class Matrix {
 
     private final List<List<Integer>> matrix;
     private final int rows;
@@ -27,6 +27,6 @@ class Matrix {
     private boolean isSaddlePoint(final int row, final int col) {
         final int maxInRow = matrix.get(row).stream().max(Integer::compareTo).orElseThrow();
         final int minInCol = range(0, rows).map(i -> matrix.get(i).get(col)).min().orElseThrow();
-        return minInCol == maxInRow;
+        return maxInRow == minInCol;
     }
 }
