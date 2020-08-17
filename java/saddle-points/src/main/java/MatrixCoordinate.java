@@ -1,4 +1,4 @@
-class MatrixCoordinate implements Comparable<MatrixCoordinate> {
+public class MatrixCoordinate implements Comparable<MatrixCoordinate> {
     private final int row;
     private final int col;
 
