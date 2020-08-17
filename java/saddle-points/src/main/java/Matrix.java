@@ -25,8 +25,8 @@ class Matrix {
     }
 
     private boolean isSaddlePoint(final int row, final int col) {
-        final var point = matrix.get(row).get(col);
-        return matrix.get(row).stream().max(Integer::compareTo).orElseThrow().equals(point)
-                && range(0, rows).map(i -> matrix.get(i).get(col)).min().orElseThrow() == point;
+        final int maxInRow = matrix.get(row).stream().max(Integer::compareTo).orElseThrow();
+        final int minInCol = range(0, rows).map(i -> matrix.get(i).get(col)).min().orElseThrow();
+        return minInCol == maxInRow;
     }
 }
