@@ -12,7 +12,7 @@ class Matrix {
 
     Matrix(List<List<Integer>> values) {
         this.rows = values.size();
-        this.cols = values.get(0).size();
+        this.cols = rows > 0 ? values.get(0).size() : 0;
         this.matrix = values;
     }
 
