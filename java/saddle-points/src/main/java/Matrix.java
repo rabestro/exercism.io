@@ -6,27 +6,34 @@ import static java.util.stream.IntStream.range;
 
 final class Matrix {
 
-    private final List<List<Integer>> matrix;
     private final int rows;
     private final int cols;
+    private final int[] rowsMax;
+    private final int[] colsMin;
 
     Matrix(List<List<Integer>> values) {
         this.rows = values.size();
         this.cols = rows > 0 ? values.get(0).size() : 0;
-        this.matrix = values;
+
+        this.rowsMax = values.stream()
+                .mapToInt(row -> row.stream()
+                        .mapToInt(Integer::intValue)
+                        .max().orElseThrow())
+                .toArray();
+
+        this.colsMin = range(0, cols)
+                .map(col -> range(0, rows)
+                        .map(i -> values.get(i).get(col))
+                        .min().orElseThrow())
+                .toArray();
     }
 
     Set<MatrixCoordinate> getSaddlePoints() {
         return range(0, rows).boxed()
                 .flatMap(row -> range(0, cols)
-                        .filter(col -> isSaddlePoint(row, col))
+                        .filter(col -> rowsMax[row] == colsMin[col])
                         .mapToObj(col -> new MatrixCoordinate(row + 1, col + 1)))
                 .collect(Collectors.toSet());
     }
 
-    private boolean isSaddlePoint(final int row, final int col) {
-        final int maxInRow = matrix.get(row).stream().max(Integer::compareTo).orElseThrow();
-        final int minInCol = range(0, rows).map(i -> matrix.get(i).get(col)).min().orElseThrow();
-        return maxInRow == minInCol;
-    }
 }
