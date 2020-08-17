@@ -1,7 +1,6 @@
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 import static java.util.stream.IntStream.range;
 
@@ -18,7 +17,11 @@ class Matrix {
     }
 
     Set<MatrixCoordinate> getSaddlePoints() {
-        return Collections.singleton(new MatrixCoordinate(2, 1));
+        return range(0, rows).boxed()
+                .flatMap(row -> range(0, cols)
+                        .filter(col -> isSaddlePoint(row, col))
+                        .mapToObj(col -> new MatrixCoordinate(row + 1, col + 1)))
+                .collect(Collectors.toSet());
     }
 
     private boolean isSaddlePoint(final int row, final int col) {
