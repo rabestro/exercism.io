@@ -2,9 +2,9 @@
 
 readonly phrase=${1//[!a-zA-Z?]/}
 
-if [[ $1 =~ ^[[:space:]\\t\\n]*$ ]]; then
+if [[ $1 =~ ^[[:space:]]*$ ]]; then
   echo "Fine. Be that way!"
-elif [[  $phrase =~ ^[A-Z]+\?$ ]]; then
+elif [[  $phrase =~ ^[[:upper:]]+\?$ ]]; then
   echo "Calm down, I know what I'm doing!"
 elif [[ $phrase =~ \?$ ]]; then
   echo "Sure."
