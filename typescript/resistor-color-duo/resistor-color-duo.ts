@@ -7,11 +7,7 @@ export class ResistorColor {
     }
 
     value = (): number => {
-        const colorsMap: Map<string, number> = new Map([
-            ['black', 0],
-            ['brown', 1]
-        ]);
-        // colorsMap.has('brown') ? colorsMap.get('brown') : 0
-        return colorsMap.get('brown') * 10;
+        const colorsMap = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white'];
+        return colorsMap.indexOf(this.colors[0]) * 10 + colorsMap.indexOf(this.colors[1])
     }
 }
