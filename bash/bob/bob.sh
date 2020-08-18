@@ -6,10 +6,10 @@ if [[ $1 =~ ^[[:space:]]*$ ]]; then
   echo "Fine. Be that way!"
 elif [[  $phrase =~ ^[[:upper:]]+\?$ ]]; then
   echo "Calm down, I know what I'm doing!"
+elif [[ $phrase =~ ^[[:upper:]]+$ ]]; then
+  echo "Whoa, chill out!"
 elif [[ $phrase =~ \?$ ]]; then
   echo "Sure."
-elif [[ $phrase =~ ^[A-Z]+$ ]]; then
-  echo "Whoa, chill out!"
 else
   echo "Whatever."
 fi
