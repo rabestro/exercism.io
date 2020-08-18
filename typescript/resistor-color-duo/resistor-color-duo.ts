@@ -3,6 +3,9 @@ export class ResistorColor {
     private readonly colors: string[];
 
     constructor(colors: string[]) {
+        if (colors.length < 2) {
+            throw "At least two colors need to be present";
+        }
         this.colors = colors;
     }
 
