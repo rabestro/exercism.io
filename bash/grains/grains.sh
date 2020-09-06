@@ -2,7 +2,7 @@
 
 readonly cell=$1
 if [[ $cell == "total" ]]; then
-  echo 18446744073709551615
+  printf "%u" 0xFFFFFFFFFFFFFFFF
   exit 0
 fi
 if ((cell < 1 || cell > 64)); then
