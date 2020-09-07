@@ -7,13 +7,13 @@ declare -A code_table=(
 declare -r input=${2//[[:blank:][:punct:]]/}
 declare -r phrase=${input,,}
 declare -i len=${#phrase}
-declare -i group=0
 
 for ((i = 0; i < len; i++)); do
-  ((group++))
-  symbol=${code_table[${phrase:i:1}]}
+  symbol=${phrase:i:1}
+  if [[ $symbol =~ [[:alpha:]] ]]; then
+    symbol=${code_table[$symbol]}
+  fi
   result=$result$symbol
-  ((group %= 5))
 done
 
-echo "$result"
+echo "$result" | sed 's/.\{5\}/& /g'
