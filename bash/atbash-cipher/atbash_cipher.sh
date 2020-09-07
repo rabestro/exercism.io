@@ -1,24 +1,15 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+declare -A code_table=(
+  [a]=z [b]=y [c]=x [d]=w [e]=v [f]=u [g]=t [h]=s [i]=r [j]=q [k]=p [l]=o [m]=n
+  [n]=m [o]=l [p]=k [q]=j [r]=i [s]=h [t]=g [u]=f [v]=e [w]=d [x]=c [y]=b [z]=a)
+
+declare -r input=${1//[[:blank:][:punct:]]/}
+declare -r phrase=${input,,}
+declare -i len=${#phrase}
+
+for ((i = 0; i < len; i++)); do
+  result=$result${code_table[${phrase:i:1}]}
+done
+
+printf "%s" "$result"
