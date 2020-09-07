@@ -7,6 +7,7 @@ declare -A code_table=(
 declare -r input=${2//[[:blank:][:punct:]]/}
 declare -r phrase=${input,,}
 declare -i len=${#phrase}
+declare -i group=0
 
 for ((i = 0; i < len; i++)); do
   symbol=${code_table[${phrase:i:1}]}
