@@ -10,8 +10,10 @@ declare -i len=${#phrase}
 declare -i group=0
 
 for ((i = 0; i < len; i++)); do
+  ((group++))
   symbol=${code_table[${phrase:i:1}]}
   result=$result$symbol
+  ((group %= 5))
 done
 
 echo "$result"
