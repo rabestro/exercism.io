@@ -17,7 +17,7 @@ for ((i = 0; i < len; i++)); do
 done
 
 if [[ $1 == encode ]]; then
-  echo "$result" | sed 's/.\{5\}/& /g'
+  echo "$result" | sed 's/.\{5\}/& /g' | sed 's/ *$//g'
 else
   echo "$result"
 fi
