@@ -1,24 +1,16 @@
 export const age = (planet, seconds) => {
-    const onEarth = seconds / 31557600;
-    switch (planet) {
-        case 'earth':
-            return round(onEarth);
-        case 'mercury':
-            return round(onEarth / 0.2408467);
-        case 'venus':
-            return round(onEarth / 0.61519726);
-        case 'mars':
-            return round(onEarth / 1.8808158);
-        case 'jupiter':
-            return round(onEarth / 11.862615);
-        case 'saturn':
-            return round(onEarth / 29.447498);
-        case 'uranus':
-            return round(onEarth / 84.016846);
-        case 'neptune':
-            return round(onEarth / 164.79132);
+    const orbitalPeriods = {
+        earth: 1,
+        mercury: 0.2408467,
+        venus: 0.61519726,
+        mars: 1.8808158,
+        jupiter: 11.862615,
+        saturn: 29.447498,
+        uranus: 84.016846,
+        neptune: 164.79132
     }
-    return 0;
+    const ageOnEarth = seconds / 3.15576e7;
+    return round(ageOnEarth * orbitalPeriods[planet]);
 };
 
 function round(number) {
