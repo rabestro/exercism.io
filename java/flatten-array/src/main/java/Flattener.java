@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,6 +12,6 @@ class Flattener {
             } else {
                 return Stream.of(o);
             }
-        }).collect(Collectors.toList());
+        }).filter(Objects::nonNull).collect(Collectors.toList());
     }
 }
