@@ -10,7 +10,7 @@ export const age = (planet, seconds) => {
         neptune: 164.79132
     }
     const ageOnEarth = seconds / 3.15576e7;
-    return round(ageOnEarth * orbitalPeriods[planet]);
+    return round(ageOnEarth / orbitalPeriods[planet]);
 };
 
 function round(number) {
