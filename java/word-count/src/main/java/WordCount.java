@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
 public final class WordCount {
-    private static final Pattern WORDS_DELIMITER = Pattern.compile("[^'a-z]|(?<![a-z])'|'(?![a-z])");
+    private static final Pattern WORDS_DELIMITER = Pattern.compile("[^'a-z0-9]|(?<![a-z])'|'(?![a-z])");
 
     public Map<String, Integer> phrase(String text) {
         return WORDS_DELIMITER
