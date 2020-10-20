@@ -1,8 +1,18 @@
 import java.util.Map;
+import java.util.regex.Pattern;
 
-class WordCount {
+import static java.util.function.Predicate.not;
+import static java.util.function.UnaryOperator.identity;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 
-    public Map<String, Integer> phrase(String word) {
-        return Map.of("word", 1);
+public final class WordCount {
+    private static final Pattern WORDS_DELIMITER = Pattern.compile("[^'a-z]|(?<![a-z])'|'(?![a-z])");
+
+    public Map<String, Integer> phrase(String text) {
+        return WORDS_DELIMITER
+                .splitAsStream(text.toLowerCase())
+                .filter(not(String::isBlank))
+                .collect(groupingBy(identity(), summingInt(e -> 1)));
     }
 }
