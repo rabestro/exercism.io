@@ -14,8 +14,9 @@ final class Robot {
     }
 
     public void reset() {
-        names.remove(name);
+        var oldName = name;
         name = generateName();
+        names.remove(oldName);
     }
 
     private static String generateName() {
@@ -31,4 +32,5 @@ final class Robot {
         names.add(name.toString());
         return name.toString();
     }
+
 }
