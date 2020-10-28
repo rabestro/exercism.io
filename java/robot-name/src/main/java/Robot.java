@@ -1,29 +1,34 @@
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 final class Robot {
     private static final Random random = new Random();
     private static final int LETTERS = 1 + 'Z' - 'A';
-    private String name;
+    private static final Set<String> names = new HashSet<>();
 
-    {
-        name = generateName();
-    }
+    private String name = generateName();
 
     public String getName() {
         return name;
     }
 
     public void reset() {
+        names.remove(name);
         name = generateName();
     }
 
     private static String generateName() {
-        final var name = new StringBuilder();
-        name.appendCodePoint('A' + random.nextInt(LETTERS));
-        name.appendCodePoint('A' + random.nextInt(LETTERS));
-        name.append(random.nextInt(10));
-        name.append(random.nextInt(10));
-        name.append(random.nextInt(10));
+        StringBuilder name;
+        do {
+            name = new StringBuilder();
+            name.appendCodePoint('A' + random.nextInt(LETTERS));
+            name.appendCodePoint('A' + random.nextInt(LETTERS));
+            name.append(random.nextInt(10));
+            name.append(random.nextInt(10));
+            name.append(random.nextInt(10));
+        } while (names.contains(name.toString()));
+        names.add(name.toString());
         return name.toString();
     }
 }
