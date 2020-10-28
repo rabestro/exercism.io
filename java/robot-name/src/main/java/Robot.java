@@ -1,10 +1,29 @@
-/*
+import java.util.Random;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+final class Robot {
+    private static final Random random = new Random();
+    private static final int LETTERS = 1 + 'Z' - 'A';
+    private String name;
 
-Please remove this comment when submitting your solution.
+    {
+        name = generateName();
+    }
 
-*/
+    public String getName() {
+        return name;
+    }
+
+    public void reset() {
+        name = generateName();
+    }
+
+    private static String generateName() {
+        final var name = new StringBuilder();
+        name.appendCodePoint('A' + random.nextInt(LETTERS));
+        name.appendCodePoint('A' + random.nextInt(LETTERS));
+        name.append(random.nextInt(10));
+        name.append(random.nextInt(10));
+        name.append(random.nextInt(10));
+        return name.toString();
+    }
+}
