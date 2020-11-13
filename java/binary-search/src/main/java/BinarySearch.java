@@ -1,10 +1,15 @@
-/*
+import java.util.List;
+import java.util.stream.Collectors;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+public final class BinarySearch {
 
-Please remove this comment when submitting your solution.
+    private List<Integer> list;
 
-*/
+    public BinarySearch(List<Integer> list) {
+        this.list = list.stream().sorted().collect(Collectors.toList());
+    }
+
+    public int indexOf(int i) {
+        return 0;
+    }
+}
