@@ -1,15 +1,20 @@
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.Arrays.binarySearch;
 
 public final class BinarySearch {
 
-    private List<Integer> list;
+    private int[] arr;
 
     public BinarySearch(List<Integer> list) {
-        this.list = list.stream().sorted().collect(Collectors.toList());
+        this.arr = list.stream().mapToInt(Integer::intValue).sorted().toArray();
     }
 
-    public int indexOf(int i) {
-        return 0;
+    public int indexOf(int i) throws ValueNotFoundException {
+        int result = binarySearch(arr, i);
+        if (result < 0) {
+            throw new ValueNotFoundException("Value not in array");
+        }
+        return result;
     }
 }
