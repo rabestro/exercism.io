@@ -30,7 +30,9 @@ public final class BankAccount {
     }
 
     public synchronized void withdraw(int money) throws BankAccountActionInvalidException {
-        if (!isOpen) throw ACCOUNT_CLOSED;
+        if (!isOpen) {
+            throw ACCOUNT_CLOSED;
+        }
         if (money < 0) {
             throw NEGATIVE_AMOUNT;
         }
