@@ -1,10 +1,23 @@
-/*
+public final class BankAccount {
+    private int balance;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+    public void open() {
+        balance = 0;
+    }
 
-Please remove this comment when submitting your solution.
+    public int getBalance() {
+        return balance;
+    }
 
-*/
+    public void deposit(int i) {
+
+    }
+
+    public void withdraw(int i) throws BankAccountActionInvalidException {
+
+    }
+
+    public void close() {
+
+    }
+}
