@@ -14,6 +14,7 @@ public final class BankAccount {
     }
 
     public void withdraw(int money) throws BankAccountActionInvalidException {
+        if (balance == 0) throw new BankAccountActionInvalidException("Cannot withdraw money from an empty account");
         balance -= money;
     }
 
