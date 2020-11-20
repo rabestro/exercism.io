@@ -14,12 +14,14 @@ public final class BankAccount {
     }
 
     public void deposit(int money) throws BankAccountActionInvalidException {
+        if (!isOpen) throw new BankAccountActionInvalidException("Account closed");
         if (money < 0) throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
 
         balance += money;
     }
 
     public void withdraw(int money) throws BankAccountActionInvalidException {
+        if (!isOpen) throw new BankAccountActionInvalidException("Account closed");
         if (money < 0)
             throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
         if (balance == 0)

@@ -128,7 +128,6 @@ public class BankAccountTest {
         assertThat(expected).hasMessage("Account closed");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cannotDepositMoneyIntoClosedAccount() {
         bankAccount.open();
@@ -142,7 +141,6 @@ public class BankAccountTest {
         assertThat(expected).hasMessage("Account closed");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cannotWithdrawMoneyFromClosedAccount() throws BankAccountActionInvalidException {
         bankAccount.open();
