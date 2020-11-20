@@ -16,6 +16,8 @@ public final class BankAccount {
     }
 
     public void withdraw(int money) throws BankAccountActionInvalidException {
+        if (money < 0)
+            throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
         if (balance == 0)
             throw new BankAccountActionInvalidException("Cannot withdraw money from an empty account");
         if (money > balance)
