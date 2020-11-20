@@ -10,6 +10,8 @@ public final class BankAccount {
     }
 
     public void deposit(int money) throws BankAccountActionInvalidException {
+        if (money < 0) throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
+
         balance += money;
     }
 

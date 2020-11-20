@@ -87,7 +87,6 @@ public class BankAccountTest {
 
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cannotDepositNegativeAmount() {
         bankAccount.open();
