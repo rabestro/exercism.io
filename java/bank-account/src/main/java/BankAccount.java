@@ -1,11 +1,15 @@
 public final class BankAccount {
     private int balance;
+    private boolean isOpen;
 
     public void open() {
         balance = 0;
+        isOpen = true;
     }
 
-    public int getBalance() {
+    public int getBalance() throws BankAccountActionInvalidException {
+        if (!isOpen) throw new BankAccountActionInvalidException("Account closed");
+
         return balance;
     }
 
@@ -27,6 +31,6 @@ public final class BankAccount {
     }
 
     public void close() {
-
+        isOpen = false;
     }
 }

@@ -114,7 +114,6 @@ public class BankAccountTest {
             .hasMessage("Cannot deposit or withdraw negative amount");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void cannotGetBalanceOfClosedAccount() throws BankAccountActionInvalidException {
         bankAccount.open();
