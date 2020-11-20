@@ -155,7 +155,6 @@ public class BankAccountTest {
         assertThat(expected).hasMessage("Account closed");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void bankAccountIsClosedBeforeItIsOpened() {
         BankAccountActionInvalidException expected =
@@ -166,7 +165,6 @@ public class BankAccountTest {
         assertThat(expected).hasMessage("Account closed");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void canAdjustBalanceConcurrently() throws BankAccountActionInvalidException, InterruptedException {
         bankAccount.open();
