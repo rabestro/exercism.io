@@ -13,8 +13,8 @@ public final class BankAccount {
         balance += money;
     }
 
-    public void withdraw(int i) throws BankAccountActionInvalidException {
-
+    public void withdraw(int money) throws BankAccountActionInvalidException {
+        balance -= money;
     }
 
     public void close() {

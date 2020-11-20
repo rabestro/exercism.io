@@ -47,7 +47,6 @@ public class BankAccountTest {
         assertEquals(5, bankAccount.getBalance());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void canWithdrawMoneySequentially() throws BankAccountActionInvalidException {
         bankAccount.open();
