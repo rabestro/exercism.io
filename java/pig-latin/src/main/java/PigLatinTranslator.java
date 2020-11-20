@@ -4,6 +4,6 @@ public final class PigLatinTranslator {
         if (word.matches("([aeoui]|xr|yt).+")) {
             return word + "ay";
         }
-        return word;
+        return word.replaceFirst("(qu|[^aeoui][^aeouiy]*?qu|[^aeoui][^aeouiy]*)(.*)", "$2$1ay");
     }
 }
