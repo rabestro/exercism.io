@@ -9,8 +9,8 @@ public final class BankAccount {
         return balance;
     }
 
-    public void deposit(int i) {
-
+    public void deposit(int money) throws BankAccountActionInvalidException {
+        balance += money;
     }
 
     public void withdraw(int i) throws BankAccountActionInvalidException {
