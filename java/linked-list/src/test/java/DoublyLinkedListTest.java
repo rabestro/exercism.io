@@ -1,7 +1,7 @@
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DoublyLinkedListTest {
 
@@ -31,7 +31,6 @@ public class DoublyLinkedListTest {
         assertThat(list.shift()).isEqualTo("30");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUnshiftShift() {
         DoublyLinkedList<Character> list = new DoublyLinkedList<>();
