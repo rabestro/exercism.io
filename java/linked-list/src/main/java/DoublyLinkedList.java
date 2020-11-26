@@ -7,7 +7,7 @@ public class DoublyLinkedList<T> {
     public void push(T data) {
         final var box = new Box<>(data);
 
-        if (isNull(head)) {
+        if (head==null) {
             head = box;
             tail = head;
             return;
@@ -23,14 +23,22 @@ public class DoublyLinkedList<T> {
         }
         final var box = tail;
         tail = tail.getPrev();
-        if (isNull(tail)) {
+        if (tail == null) {
             head  = null;
         }
         return box.getData();
     }
 
     public T shift() {
-        return null;
+        if (head == null) {
+            return null;
+        }
+        final var box = head;
+        head = head.getNext();
+        if (head == null) {
+            tail  = null;
+        }
+        return box.getData();
     }
 
     public void unshift(T c) {
@@ -60,6 +68,10 @@ public class DoublyLinkedList<T> {
 
         public T getData() {
             return data;
+        }
+
+        public Box<T> getNext() {
+            return next;
         }
     }
 }
