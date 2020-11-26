@@ -19,7 +19,9 @@ public class DoublyLinkedList<T> {
         if (tail == null) {
             return null;
         }
+
         final var box = tail;
+
         tail = tail.getPrev();
         if (tail == null) {
             head = null;
@@ -31,7 +33,9 @@ public class DoublyLinkedList<T> {
         if (head == null) {
             return null;
         }
+
         final var box = head;
+
         head = head.getNext();
         if (head == null) {
             tail = null;

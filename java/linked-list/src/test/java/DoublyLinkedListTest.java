@@ -44,7 +44,6 @@ public class DoublyLinkedListTest {
         assertThat(list.shift()).isEqualTo('1');
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUnshiftPop() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
@@ -58,7 +57,6 @@ public class DoublyLinkedListTest {
         assertThat(list.pop()).isEqualTo(30);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testExample() {
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
