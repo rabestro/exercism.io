@@ -1,10 +1,17 @@
-/*
+public class DoublyLinkedList<T> {
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+    public void push(T i) {
+    }
 
-Please remove this comment when submitting your solution.
+    public T pop() {
+        return null;
+    }
 
-*/
+    public T shift() {
+        return null;
+    }
+
+    public void unshift(T c) {
+
+    }
+}
