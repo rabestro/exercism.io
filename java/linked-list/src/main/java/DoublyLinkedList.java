@@ -2,7 +2,7 @@ public class DoublyLinkedList<T> {
     private Box<T> head;
     private Box<T> tail;
 
-    public void push(T data) {
+    public void push(final T data) {
         final var box = new Box<>(data);
 
         if (head == null) {
@@ -43,7 +43,7 @@ public class DoublyLinkedList<T> {
         return box.getData();
     }
 
-    public void unshift(T data) {
+    public void unshift(final T data) {
         final var box = new Box<>(data);
 
         if (head == null) {
@@ -56,12 +56,12 @@ public class DoublyLinkedList<T> {
         head = box;
     }
 
-    private static class Box<T> {
+    private static final class Box<T> {
         private Box<T> prev;
         private Box<T> next;
         private final T data;
 
-        public Box(T data) {
+        public Box(final T data) {
             this.data = data;
         }
 
@@ -69,7 +69,7 @@ public class DoublyLinkedList<T> {
             return prev;
         }
 
-        public void setPrev(Box<T> element) {
+        public void setPrev(final Box<T> element) {
             prev = element;
         }
 
@@ -81,7 +81,7 @@ public class DoublyLinkedList<T> {
             return next;
         }
 
-        public void setNext(Box<T> element) {
+        public void setNext(final Box<T> element) {
             next = element;
         }
     }
