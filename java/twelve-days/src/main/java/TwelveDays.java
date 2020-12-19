@@ -1,4 +1,6 @@
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class TwelveDays {
     String verse(int verseNumber) {
@@ -15,7 +17,10 @@ class TwelveDays {
     }
 
     String verses(int startVerse, int endVerse) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return IntStream
+                .rangeClosed(startVerse, endVerse)
+                .mapToObj(this::verse)
+                .collect(Collectors.joining("\n"));
     }
 
     String sing() {
