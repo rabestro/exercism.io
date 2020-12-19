@@ -4,12 +4,12 @@ class TwelveDays {
     String verse(int verseNumber) {
         int i = verseNumber - 1;
         final var days = Days.values();
-        final var song = new StringJoiner(", and ",
+        final var song = new StringJoiner(" ",
                 "On the " + days[i].name().toLowerCase() + " day of Christmas my true love gave to me: ",
                 ".\n");
 
-        while (i >= 0) {
-            song.add(days[i--].getGift());
+        for (; i >= 0; --i) {
+            song.add(days[i].getGift());
         }
         return song.toString();
     }
@@ -24,7 +24,17 @@ class TwelveDays {
 
     enum Days {
         FIRST("a Partridge in a Pear Tree"),
-        SECOND("two Turtle Doves");
+        SECOND("two Turtle Doves, and"),
+        THIRD("three French Hens,"),
+        FOURTH("four Calling Birds,"),
+        FIFTH("five Gold Rings,"),
+        SIXTH("six Geese-a-Laying,"),
+        SEVENTH("seven Swans-a-Swimming,"),
+        EIGHTH("eight Maids-a-Milking,"),
+        NINTH("nine Ladies Dancing,"),
+        TENTH("ten Lords-a-Leaping,"),
+        ELEVENTH("eleven Pipers Piping,"),
+        TWELFTH("twelve Drummers Drumming,");
 
         private String gift;
 
