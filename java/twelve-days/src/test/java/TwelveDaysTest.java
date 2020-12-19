@@ -19,7 +19,6 @@ public class TwelveDaysTest {
         assertEquals(expectedVerseOne, twelveDays.verse(1));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testVerseTwo() {
         String expectedVerseTwo = "On the second day of Christmas my true love gave to me: two Turtle Doves, " +
