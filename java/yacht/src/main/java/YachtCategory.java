@@ -15,7 +15,7 @@ enum YachtCategory {
     FOUR_OF_A_KIND(dice -> 0),
     LITTLE_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).max().getAsInt() == 5 ? 30 : 0),
     BIG_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).min().getAsInt() == 2 ? 30 : 0),
-    CHOICE(dice -> 0);
+    CHOICE(dice -> stream(dice).sum());
 
     private final ToIntFunction<int[]> scoreFormula;
 

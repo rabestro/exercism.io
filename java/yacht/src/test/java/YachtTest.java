@@ -127,7 +127,6 @@ public class YachtTest {
         assertEquals(30, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void littleStraightAsBigStraight() {
         Yacht yacht = new Yacht(new int[]{ 1, 2, 3, 4, 5 }, YachtCategory.BIG_STRAIGHT);
@@ -171,14 +170,12 @@ public class YachtTest {
         assertEquals(0, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void choice() {
         Yacht yacht = new Yacht(new int[]{ 3, 3, 5, 6, 6 }, YachtCategory.CHOICE);
         assertEquals(23, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void yachtAsChoice() {
         Yacht yacht = new Yacht(new int[]{ 2, 2, 2, 2, 2 }, YachtCategory.CHOICE);
