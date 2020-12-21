@@ -5,12 +5,12 @@ import static java.util.Arrays.stream;
 enum YachtCategory {
 
     YACHT(dice -> stream(dice).distinct().count() == 1 ? 50 : 0),
-    ONES(dice -> (int) stream(dice).filter(i -> i == 1).count()),
-    TWOS(dice -> 0),
-    THREES(dice -> 0),
-    FOURS(dice -> 0),
-    FIVES(dice -> 0),
-    SIXES(dice -> 0),
+    ONES(dice -> stream(dice).filter(i -> i == 1).sum()),
+    TWOS(dice -> stream(dice).filter(i -> i == 2).sum()),
+    THREES(dice -> stream(dice).filter(i -> i == 3).sum()),
+    FOURS(dice -> stream(dice).filter(i -> i == 4).sum()),
+    FIVES(dice -> stream(dice).filter(i -> i == 5).sum()),
+    SIXES(dice -> stream(dice).filter(i -> i == 6).sum()),
     FULL_HOUSE(dice -> 0),
     FOUR_OF_A_KIND(dice -> 0),
     LITTLE_STRAIGHT(dice -> 0),
