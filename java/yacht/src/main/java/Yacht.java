@@ -1,11 +1,14 @@
 class Yacht {
+    private final int[] dice;
+    private final YachtCategory yachtCategory;
 
     Yacht(int[] dice, YachtCategory yachtCategory) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        this.dice = dice;
+        this.yachtCategory = yachtCategory;
     }
 
     int score() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return yachtCategory.calculateScore(dice);
     }
 
 }
