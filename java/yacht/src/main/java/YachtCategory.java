@@ -1,11 +1,10 @@
-import java.util.HashSet;
 import java.util.function.ToIntFunction;
 
-import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
 
 enum YachtCategory {
 
-    YACHT(dice -> new HashSet(asList(dice)).size() == 1 ? 50 : 0),
+    YACHT(dice -> stream(dice).distinct().count() == 1 ? 50 : 0),
     ONES(dice -> 0),
     TWOS(dice -> 0),
     THREES(dice -> 0),

@@ -11,7 +11,6 @@ public class YachtTest {
         assertEquals(50, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void notYacht() {
         Yacht yacht = new Yacht(new int[]{ 1, 3, 3, 2, 5 }, YachtCategory.YACHT);
