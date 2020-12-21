@@ -11,8 +11,10 @@ enum YachtCategory {
     FOURS(dice -> stream(dice).filter(i -> i == 4).sum()),
     FIVES(dice -> stream(dice).filter(i -> i == 5).sum()),
     SIXES(dice -> stream(dice).filter(i -> i == 6).sum()),
-    FULL_HOUSE(dice -> stream(dice).distinct().count() == 2 ? stream(dice).sum() : 0),
-    FOUR_OF_A_KIND(dice -> stream(dice).distinct().count() == 2 ? 50 : 0),
+    FULL_HOUSE(dice -> stream(dice).distinct().count() == 2
+            && stream(dice).sorted().skip(1).limit(3).distinct().count() == 2 ? stream(dice).sum() : 0),
+    FOUR_OF_A_KIND(dice -> stream(dice).distinct().count() == 2
+             ? 50 : 0),
     LITTLE_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).max().getAsInt() == 5 ? 30 : 0),
     BIG_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).min().getAsInt() == 2 ? 30 : 0),
     CHOICE(dice -> stream(dice).sum());
