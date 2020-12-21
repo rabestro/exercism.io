@@ -65,14 +65,12 @@ public class YachtTest {
         assertEquals(6, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fullHouseTwoSmallThreeBig() {
         Yacht yacht = new Yacht(new int[]{ 2, 2, 4, 4, 4 }, YachtCategory.FULL_HOUSE);
         assertEquals(16, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fullHouseThreeSmallTwoBig() {
         Yacht yacht = new Yacht(new int[]{ 5, 3, 3, 5, 3 }, YachtCategory.FULL_HOUSE);
