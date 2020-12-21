@@ -13,8 +13,8 @@ enum YachtCategory {
     SIXES(dice -> stream(dice).filter(i -> i == 6).sum()),
     FULL_HOUSE(dice -> 0),
     FOUR_OF_A_KIND(dice -> 0),
-    LITTLE_STRAIGHT(dice -> 0),
-    BIG_STRAIGHT(dice -> 0),
+    LITTLE_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).max().getAsInt() == 5 ? 30 : 0),
+    BIG_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).min().getAsInt() == 2 ? 30 : 0),
     CHOICE(dice -> 0);
 
     private final ToIntFunction<int[]> scoreFormula;

@@ -121,7 +121,6 @@ public class YachtTest {
         assertEquals(0, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void littleStraight() {
         Yacht yacht = new Yacht(new int[]{ 3, 5, 4, 1, 2 }, YachtCategory.LITTLE_STRAIGHT);
@@ -142,35 +141,30 @@ public class YachtTest {
         assertEquals(0, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void noPairsButNotALittleStraight() {
         Yacht yacht = new Yacht(new int[]{ 1, 2, 3, 4, 6 }, YachtCategory.LITTLE_STRAIGHT);
         assertEquals(0, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void minimumIs1MaximumIs5ButNotALittleStraight() {
         Yacht yacht = new Yacht(new int[]{ 1, 1, 3, 4, 5 }, YachtCategory.LITTLE_STRAIGHT);
         assertEquals(0, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void bigStraight() {
         Yacht yacht = new Yacht(new int[]{ 4, 6, 2, 5, 3 }, YachtCategory.BIG_STRAIGHT);
         assertEquals(30, yacht.score());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void bigStraightAsLittleStraight() {
         Yacht yacht = new Yacht(new int[]{ 6, 5, 4, 3, 2 }, YachtCategory.LITTLE_STRAIGHT);
         assertEquals(0, yacht.score());
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void noPairsButNotABigStraight() {
         Yacht yacht = new Yacht(new int[]{ 6, 5, 4, 3, 1 }, YachtCategory.BIG_STRAIGHT);
