@@ -5,7 +5,7 @@ import static java.util.Arrays.stream;
 enum YachtCategory {
 
     YACHT(dice -> stream(dice).distinct().count() == 1 ? 50 : 0),
-    ONES(dice -> 0),
+    ONES(dice -> (int) stream(dice).filter(i -> i == 1).count()),
     TWOS(dice -> 0),
     THREES(dice -> 0),
     FOURS(dice -> 0),
