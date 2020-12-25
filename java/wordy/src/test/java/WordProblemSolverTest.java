@@ -39,7 +39,6 @@ public class WordProblemSolverTest {
         assertEquals(16, solver.solve("What is 4 minus -12?"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSingleMultiplication() {
         assertEquals(-75, solver.solve("What is -3 multiplied by 25?"));
