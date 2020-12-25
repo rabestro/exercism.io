@@ -95,7 +95,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNonMathQuestion() {
         // See https://en.wikipedia.org/wiki/President_of_the_United_States if you really need to know!
