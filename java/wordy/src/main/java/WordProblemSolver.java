@@ -21,6 +21,9 @@ class WordProblemSolver {
                 case "multiplied":
                     result *= operand;
                     break;
+                case "divided":
+                    result /= operand;
+                    break;
             }
         }
         return result;
