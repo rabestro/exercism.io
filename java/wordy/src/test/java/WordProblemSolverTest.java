@@ -84,7 +84,6 @@ public class WordProblemSolverTest {
         assertEquals(2, solver.solve("What is -12 divided by 2 divided by -3?"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUnknownOperation() {
         IllegalArgumentException expected =

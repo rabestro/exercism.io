@@ -10,20 +10,21 @@ class WordProblemSolver {
         int result = scanner.nextInt();
         while (scanner.hasNext()) {
             final var operator = scanner.next();
-            final var operand = scanner.nextInt();
             switch (operator) {
                 case "plus":
-                    result += operand;
+                    result += scanner.nextInt();
                     break;
                 case "minus":
-                    result -= operand;
+                    result -= scanner.nextInt();
                     break;
                 case "multiplied":
-                    result *= operand;
+                    result *= scanner.nextInt();
                     break;
                 case "divided":
-                    result /= operand;
+                    result /= scanner.nextInt();
                     break;
+                default:
+                    throw new IllegalArgumentException("I'm sorry, I don't understand the question!");
             }
         }
         return result;
