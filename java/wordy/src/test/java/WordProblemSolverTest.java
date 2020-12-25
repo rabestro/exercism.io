@@ -107,7 +107,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMissingAnOperand() {
         IllegalArgumentException expected =
@@ -119,7 +118,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testNoOperandsOrOperators() {
         IllegalArgumentException expected =
@@ -131,7 +129,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoOperationsInARow() {
         IllegalArgumentException expected =
@@ -143,7 +140,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoNumbersAfterOperation() {
         IllegalArgumentException expected =
@@ -155,7 +151,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testPostfixNotation() {
         IllegalArgumentException expected =
@@ -167,7 +162,6 @@ public class WordProblemSolverTest {
             .hasMessage("I'm sorry, I don't understand the question!");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testPrefixNotation() {
         IllegalArgumentException expected =

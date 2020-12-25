@@ -9,13 +9,13 @@ class WordProblemSolver {
         if (!MATH_QUESTION.matcher(input).matches()) {
             throw new IllegalArgumentException("I'm sorry, I don't understand the question!");
         }
-        final var scanner = new Scanner(input.replaceFirst("What is (.+)\\?", "$1"))
-                .useDelimiter("( by)? ");
+        final var scanner = new Scanner(
+                input.replaceFirst("What is (.+)\\?", "$1")
+        ).useDelimiter("( by)? ");
 
         int result = scanner.nextInt();
         while (scanner.hasNext()) {
-            final var operator = scanner.next();
-            switch (operator) {
+            switch (scanner.next()) {
                 case "plus" -> result += scanner.nextInt();
                 case "minus" -> result -= scanner.nextInt();
                 case "multiplied" -> result *= scanner.nextInt();
