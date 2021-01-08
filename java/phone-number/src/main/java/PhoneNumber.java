@@ -1,42 +1,27 @@
+import java.util.Map;
+
 class PhoneNumber {
     private final String number;
 
     public PhoneNumber(String number) {
-        if (number.matches(".*\\p{Alpha}.*")) {
-            throw new IllegalArgumentException("letters not permitted");
-        }
-        if (number.matches(".*[@:!].*")) {
-            throw new IllegalArgumentException("punctuations not permitted");
-        }
-
         var digits = number.replaceAll("[-+.() ]", "");
+        var errors = Map.of(
+                ".*\\p{Alpha}.*", "letters not permitted",
+                ".*[@:!].*", "punctuations not permitted",
+                "\\d{12,}", "more than 11 digits",
+                "\\d{0,9}", "incorrect number of digits",
+                "[^1]\\d{10}", "11 digits must start with 1",
+                "1?0\\d{9}", "area code cannot start with zero",
+                "1?1\\d{9}", "area code cannot start with one",
+                "1?\\d{3}0\\d{6}", "exchange code cannot start with zero",
+                "1?\\d{3}1\\d{6}", "exchange code cannot start with one");
 
-        if (digits.length() > 11) {
-            throw new IllegalArgumentException("more than 11 digits");
-        }
-        if (digits.length() < 10) {
-            throw new IllegalArgumentException("incorrect number of digits");
-        }
-        if (digits.length() == 11) {
-            if (digits.startsWith("1")) {
-                digits = digits.substring(1);
-            } else {
-                throw new IllegalArgumentException("11 digits must start with 1");
+        for (var error : errors.entrySet()) {
+            if (digits.matches(error.getKey())) {
+                throw new IllegalArgumentException(error.getValue());
             }
         }
-        if (digits.charAt(0) == '0') {
-            throw new IllegalArgumentException("area code cannot start with zero");
-        }
-        if (digits.charAt(0) == '1') {
-            throw new IllegalArgumentException("area code cannot start with one");
-        }
-        if (digits.charAt(3) == '0') {
-            throw new IllegalArgumentException("exchange code cannot start with zero");
-        }
-        if (digits.charAt(3) == '1') {
-            throw new IllegalArgumentException("exchange code cannot start with one");
-        }
-        this.number = digits;
+        this.number = digits.length() == 11 ? digits.substring(1) : digits;
     }
 
     public String getNumber() {
