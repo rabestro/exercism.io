@@ -1,9 +1,9 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Gigasecond {
-    private static final long GIGASECOND = 1_000_000_000;
+    private static final Duration GIGA_SECOND = Duration.ofSeconds(1_000_000_000);
 
     private final LocalDateTime moment;
 
@@ -12,7 +12,7 @@ public class Gigasecond {
     }
 
     public Gigasecond(LocalDateTime moment) {
-        this.moment = moment.plusSeconds(GIGASECOND);
+        this.moment = moment.plus(GIGA_SECOND);
     }
 
     public LocalDateTime getDateTime() {
