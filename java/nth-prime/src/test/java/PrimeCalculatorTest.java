@@ -13,13 +13,11 @@ public class PrimeCalculatorTest {
         assertThat(primeCalculator.nth(1)).isEqualTo(2);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSecondPrime() {
         assertThat(primeCalculator.nth(2)).isEqualTo(3);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSixthPrime() {
         assertThat(primeCalculator.nth(6)).isEqualTo(13);
