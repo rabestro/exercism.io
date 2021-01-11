@@ -1,8 +1,7 @@
+import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
-
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class PrimeCalculatorTest {
 
@@ -23,7 +22,6 @@ public class PrimeCalculatorTest {
         assertThat(primeCalculator.nth(6)).isEqualTo(13);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testBigPrime() {
         assertThat(primeCalculator.nth(10001)).isEqualTo(104743);
@@ -32,8 +30,8 @@ public class PrimeCalculatorTest {
     @Test
     public void testUndefinedPrime() {
         assertThrows(
-            IllegalArgumentException.class,
-            () -> primeCalculator.nth(0));
+                IllegalArgumentException.class,
+                () -> primeCalculator.nth(0));
     }
 
 }
