@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Knapsack {
-    public int maximumValue(int i, ArrayList<Item> items) {
+    public int maximumValue(int maxWeight, List<Item> items) {
         return 0;
     }
 }
