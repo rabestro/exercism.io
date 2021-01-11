@@ -14,10 +14,8 @@ class Anagram {
     }
 
     List<String> match(final List<String> possibleAnagrams) {
-        return possibleAnagrams
-                .stream()
-                .filter(not(sourceWord::equalsIgnoreCase))
-                .filter(this::isAnagram)
+        return possibleAnagrams.stream()
+                .filter(not(sourceWord::equalsIgnoreCase).and(this::isAnagram))
                 .collect(toUnmodifiableList());
     }
 
