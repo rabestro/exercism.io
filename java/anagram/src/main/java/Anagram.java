@@ -5,15 +5,12 @@ import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 class Anagram {
-    private final int[] source;
+    private final int[] sortedChars;
     private final String sourceWord;
 
     Anagram(final String word) {
         sourceWord = word;
-        source = sourceWord.chars()
-                .map(Character::toLowerCase)
-                .sorted()
-                .toArray();
+        sortedChars = toSortedChars(sourceWord);
     }
 
     List<String> match(final List<String> possibleAnagrams) {
@@ -25,11 +22,10 @@ class Anagram {
     }
 
     private boolean isAnagram(final String otherWord) {
-        final int[] other = otherWord.chars()
-                .map(Character::toLowerCase)
-                .sorted()
-                .toArray();
+        return Arrays.equals(sortedChars, toSortedChars(otherWord));
+    }
 
-        return Arrays.equals(source, other);
+    private int[] toSortedChars(final String word) {
+        return word.toLowerCase().chars().sorted().toArray();
     }
 }
