@@ -29,7 +29,6 @@ public class PrimeCalculatorTest {
         assertThat(primeCalculator.nth(10001)).isEqualTo(104743);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUndefinedPrime() {
         assertThrows(
