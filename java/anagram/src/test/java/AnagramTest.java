@@ -1,13 +1,11 @@
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-public class AnagramTest {
+import static org.assertj.core.api.Assertions.assertThat;
 
+public class AnagramTest {
 
     @Test
     public void testNoMatches() {
@@ -80,9 +78,9 @@ public class AnagramTest {
         Anagram detector = new Anagram("Orchestra");
 
         assertThat(
-            detector.match(
-                Arrays.asList("cashregister", "Carthorse", "radishes")))
-            .containsExactlyInAnyOrder​("Carthorse");
+                detector.match(
+                        Arrays.asList("cashregister", "Carthorse", "radishes")))
+                .containsExactlyInAnyOrder("Carthorse");
     }
 
     @Test
@@ -90,9 +88,9 @@ public class AnagramTest {
         Anagram detector = new Anagram("Orchestra");
 
         assertThat(
-            detector.match(
-                Arrays.asList("cashregister", "carthorse", "radishes")))
-            .containsExactlyInAnyOrder​("carthorse");
+                detector.match(
+                        Arrays.asList("cashregister", "carthorse", "radishes")))
+                .containsExactlyInAnyOrder("carthorse");
     }
 
     @Test
@@ -100,9 +98,9 @@ public class AnagramTest {
         Anagram detector = new Anagram("orchestra");
 
         assertThat(
-            detector.match(
-                Arrays.asList("cashregister", "Carthorse", "radishes")))
-            .containsExactlyInAnyOrder​("Carthorse");
+                detector.match(
+                        Arrays.asList("cashregister", "Carthorse", "radishes")))
+                .containsExactlyInAnyOrder("Carthorse");
     }
 
     @Test
@@ -134,7 +132,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("LISTEN");
 
         assertThat(detector.match(Arrays.asList("Listen", "Silent", "LISTEN")))
-            .containsExactlyInAnyOrder​("Silent");
+                .containsExactlyInAnyOrder("Silent");
     }
 
 }
