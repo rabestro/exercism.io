@@ -1,30 +1,35 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.function.Predicate.not;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 class Anagram {
-    private final char[] wordChars;
-    private final String word;
+    private final int[] source;
+    private final String sourceWord;
 
     Anagram(final String word) {
-        this.word = word;
-        wordChars = this.word.toLowerCase().toCharArray();
-        Arrays.sort(wordChars);
+        sourceWord = word;
+        source = sourceWord.chars()
+                .map(Character::toLowerCase)
+                .sorted()
+                .toArray();
     }
 
     List<String> match(final List<String> possibleAnagrams) {
         return possibleAnagrams
                 .stream()
-                .filter(not(word::equalsIgnoreCase))
+                .filter(not(sourceWord::equalsIgnoreCase))
                 .filter(this::isAnagram)
-                .collect(Collectors.toList());
+                .collect(toUnmodifiableList());
     }
 
     private boolean isAnagram(final String otherWord) {
-        final char[] otherChars = otherWord.toLowerCase().toCharArray();
-        Arrays.sort(otherChars);
-        return Arrays.equals(wordChars, otherChars);
+        final int[] other = otherWord.chars()
+                .map(Character::toLowerCase)
+                .sorted()
+                .toArray();
+
+        return Arrays.equals(source, other);
     }
 }
