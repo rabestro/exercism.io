@@ -1,32 +1,14 @@
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import static java.util.function.Predicate.not;
-import static java.util.stream.Collectors.toUnmodifiableList;
+import java.util.function.ToIntFunction;
+import java.util.stream.IntStream;
 
 public class Knapsack {
-    public int maximumValue(int maxWeight, List<Item> items) {
-        final var smallItems = items.stream()
-                .filter(item -> item.getWeight() <= maxWeight)
-                .collect(toUnmodifiableList());
-
-        int maxValue = 0;
-        for (final var item : smallItems) {
-            final var otherItems = smallItems.stream()
-                    .filter(not(item::equals))
-                    .collect(toUnmodifiableList());
-            final var restWeight = maxWeight - item.getWeight();
-
-            var value = item.getValue();
-            if (restWeight > 0 ) {
-                value += maximumValue(restWeight, otherItems);
-            }
-            if (value > maxValue) {
-                maxValue = value;
-            }
-        }
-        return maxValue;
+    int maximumValue(int capacity, List<Item> items) {
+        return IntStream.range(0, items.size()).map(i -> {
+            final var weight = capacity - items.get(i).getWeight();
+            final var value = items.get(i).getValue();
+            return weight < 0 ? 0 : value + maximumValue(weight, items.subList(i + 1, items.size()));
+        }).max().orElse(0);
     }
 }
 
