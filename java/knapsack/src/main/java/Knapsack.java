@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.function.ToIntFunction;
 import java.util.stream.IntStream;
 
 public class Knapsack {
