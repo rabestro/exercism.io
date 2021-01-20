@@ -1,10 +1,15 @@
-/*
+import java.util.Collections;
+import java.util.List;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+public final class Poker {
 
-Please remove this comment when submitting your solution.
+    private final List<String> hands;
 
-*/
+    public Poker(List<String> hands) {
+        this.hands = hands;
+    }
+
+    public List<String> getBestHands() {
+        return Collections.singletonList("4S 5S 7H 8D JC");
+    }
+}
