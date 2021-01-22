@@ -141,7 +141,6 @@ public class PokerTest {
                      new Poker(Arrays.asList(straightTo8, straightTo9)).getBestHands());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void theLowestStraightStartsWithAce() {
         String straight = "2H 3C 4D 5D 6H";

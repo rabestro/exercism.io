@@ -6,39 +6,37 @@ public class Hand {
     private static final String ONE_PAIR = "(.*)(.)\\2(.*)";
 
     private final String representation;
-    private final boolean isFlush;
-    private final boolean isStright;
-    private final String cards;
     private final String value;
 
     public Hand(String representation) {
         this.representation = representation;
-        isFlush = representation.matches(".0?([SDHC])( .0?\\1){4}");
-        cards = representation.replaceAll("[1SDHC ]", "")
+        final var cards = representation.replaceAll("[1SDHC ]", "")
                 .codePoints()
                 .map("AKQJ098765432"::indexOf)
                 .map("ABCDEFGHIJKLM"::charAt)
                 .sorted()
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-        isStright = "ABCDEFGHIJKLM AJKLM".contains(cards);
+
+        final var isFlush = representation.matches(".0?([SDHC])( .0?\\1){4}");
+        final var isStright = "ABCDEFGHIJKLM AJKLM".contains(cards);
 
         if (isStright & isFlush) {
             value = "A" + cards.charAt(4);
         } else if (isFlush) {
             value = "D" + cards;
         } else if (isStright) {
-            value = "E" + cards.charAt(4);
+            value = "E" + (cards.startsWith("AJ") ? 'J' : cards.charAt(0));
         } else if (cards.matches(FOUR_KIND)) {
-            value = "B" + cards.replaceFirst(FOUR_KIND, "$2$1$3");
+            value = cards.replaceFirst(FOUR_KIND, "B$2$1$3");
         } else if (cards.matches(FULL_HOUSE)) {
-            value = "C" + cards.replaceFirst(FULL_HOUSE, "$1$4$2$3");
+            value = cards.replaceFirst(FULL_HOUSE, "C$1$4$2$3");
         } else if (cards.matches(THREE)) {
-            value = "F" + cards.replaceFirst(THREE, "$2$1$3");
+            value = cards.replaceFirst(THREE, "F$2$1$3");
         } else if (cards.matches(TWO_PAIRS)) {
-            value = "G" + cards.replaceFirst(TWO_PAIRS, "$2$4$1$3$5");
+            value = cards.replaceFirst(TWO_PAIRS, "G$2$4$1$3$5");
         } else if (cards.matches(ONE_PAIR)) {
-            value = "H" + cards.replaceFirst(ONE_PAIR, "$2$1$3");
+            value = cards.replaceFirst(ONE_PAIR, "H$2$1$3");
         } else {
             value = "I" + cards;
         }
@@ -46,10 +44,6 @@ public class Hand {
 
     public String getValue() {
         return value;
-    }
-
-    public String getCards() {
-        return cards;
     }
 
     @Override
