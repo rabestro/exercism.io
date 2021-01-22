@@ -1,9 +1,9 @@
 public class Hand {
-    private static final String FOUR_KIND = "(.?)(.)\\1{3}(.?)";
-    private static final String FULL_HOUSE = "(.)\\1\\1(.)\\2|(.)\\1(.)\\2\\2";
-    private static final String THREE = "(.*)(.)\\1\\1(.*)";
-    private static final String TWO_PAIRS = "(.?)(.)\\1(.?)(.)\\2(.?)";
-    private static final String ONE_PAIR = "(.*)(.)\\1(.*)";
+    private static final String FOUR_KIND = "(.?)(.)\\2{3}(.?)";
+    private static final String FULL_HOUSE = "(.)\\1\\1(.)\\2|(.)\\3(.)\\4\\4";
+    private static final String THREE = "(.*)(.)\\2\\2(.*)";
+    private static final String TWO_PAIRS = "(.?)(.)\\2(.?)(.)\\4(.?)";
+    private static final String ONE_PAIR = "(.*)(.)\\2(.*)";
 
     private final String representation;
     private final boolean isFlush;
@@ -46,6 +46,10 @@ public class Hand {
 
     public String getValue() {
         return value;
+    }
+
+    public String getCards() {
+        return cards;
     }
 
     @Override
