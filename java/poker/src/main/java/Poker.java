@@ -17,7 +17,7 @@ public final class Poker {
     public List<String> getBestHands() {
         final var bestValue = hands.get(0).getValue();
         return hands.stream()
-                .filter(hand -> hand.getValue().equals(bestValue))
+                .takeWhile(hand -> hand.getValue().equals(bestValue))
                 .map(Hand::toString)
                 .collect(toUnmodifiableList());
     }
