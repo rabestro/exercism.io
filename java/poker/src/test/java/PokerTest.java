@@ -13,7 +13,6 @@ public class PokerTest {
         assertEquals(Collections.singletonList(hand), new Poker(Collections.singletonList(hand)).getBestHands());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void highestCardWins() {
         String highest8 = "4D 5S 6S 8D 3C";
@@ -23,7 +22,6 @@ public class PokerTest {
                      new Poker(Arrays.asList(highest8, highest10, highestJ)).getBestHands());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void tieHasMultipleWinners() {
         String highest8 = "4D 5S 6S 8D 3C";
@@ -34,7 +32,6 @@ public class PokerTest {
                      new Poker(Arrays.asList(highest8, highest10, highestJh, highestJd)).getBestHands());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void sameHighCards() {
         String nextHighest3 = "3S 5H 6S 8D 7H";
@@ -43,7 +40,6 @@ public class PokerTest {
                      new Poker(Arrays.asList(nextHighest3, nextHighest2)).getBestHands());
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void nothingVsOnePair() {
         String nothing = "4S 5H 6C 8D KH";
