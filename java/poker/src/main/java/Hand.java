@@ -21,12 +21,10 @@ public class Hand {
         final var isFlush = representation.matches(".0?([SDHC])( .0?\\1){4}");
         final var isStright = "ABCDEFGHIJKLM AJKLM".contains(cards);
 
-        if (isStright & isFlush) {
-            value = "A" + cards.charAt(4);
+        if (isStright) {
+            value = (isFlush ? "A" : "E") + (cards.startsWith("AJ") ? 'J' : cards.charAt(0));
         } else if (isFlush) {
             value = "D" + cards;
-        } else if (isStright) {
-            value = "E" + (cards.startsWith("AJ") ? 'J' : cards.charAt(0));
         } else if (cards.matches(FOUR_KIND)) {
             value = cards.replaceFirst(FOUR_KIND, "B$2$1$3");
         } else if (cards.matches(FULL_HOUSE)) {
