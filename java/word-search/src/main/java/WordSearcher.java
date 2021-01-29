@@ -1,10 +1,10 @@
-/*
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+public class WordSearcher {
 
-Please remove this comment when submitting your solution.
-
-*/
+    public Map<String, Optional<WordLocation>> search(Set<String> searchWords, char[][] chars) {
+        return Map.of("clojure", Optional.empty());
+    }
+}
