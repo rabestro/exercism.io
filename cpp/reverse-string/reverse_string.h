@@ -6,7 +6,7 @@
 using std::string;
 
 namespace reverse_string {
-    std::string reverse_string(std::string phrase);
+    string reverse_string(string phrase);
 }  // namespace reverse_string
 
 #endif // REVERSE_STRING_H

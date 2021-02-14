@@ -1,7 +1,9 @@
+#include <algorithm>
 #include "reverse_string.h"
 
 namespace reverse_string {
-    std::string reverse_string(std::string phrase) {
+    string reverse_string(string phrase) {
+        reverse(phrase.begin(), phrase.end());
         return phrase;
     }
 }  // namespace reverse_string
