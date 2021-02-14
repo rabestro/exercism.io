@@ -17,11 +17,12 @@ public class MinesweeperBoard {
     }
 
     public List<String> withNumbers() {
-        return range(0, rows).mapToObj(row -> range(0, cols)
-                .map(col -> inputBoard.get(row).charAt(col) == '*' ? '*' : countMines(row, col))
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString()
-        ).collect(Collectors.toList());
+        return range(0, rows)
+                .mapToObj(row -> range(0, cols)
+                        .map(col -> inputBoard.get(row).charAt(col) == '*' ? '*' : countMines(row, col))
+                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                        .toString()
+                ).collect(Collectors.toList());
     }
 
     private char countMines(final int row, final int col) {
