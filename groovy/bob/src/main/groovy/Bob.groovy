@@ -1,17 +1,18 @@
 class Bob {
     static response(phrase) {
-        if (phrase.matches("\\s*")) {
-            return "Fine. Be that way!";
+
+        switch (phrase) {
+            case ~/^\s*$/:
+                return "Fine. Be that way!"
+            case ~/[^a-z]*[A-Z][^a-z]*\?/:
+                return "Calm down, I know what I'm doing!"
+            case ~/.*\?\s*/:
+                return "Sure."
+            case ~/[^a-z]*[A-Z][^a-z]*/:
+                return "Whoa, chill out!"
+            default:
+                return "Whatever."
         }
-        if (phrase.matches("[^a-z]*[A-Z][^a-z]*\\?")) {
-            return "Calm down, I know what I'm doing!";
-        }
-        if (phrase.matches(".*\\?\\s*")) {
-            return "Sure.";
-        }
-        if (phrase.matches("[^a-z]*[A-Z][^a-z]*")) {
-            return "Whoa, chill out!";
-        }
-        return "Whatever.";
+
     }
 }
