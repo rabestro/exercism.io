@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 class Anagram {
     String subject
 
-    def find(List<String> candidates) {
+    def find(String[] candidates) {
         sortedChars = toSortedChars(subject)
 
         return candidates.stream()
