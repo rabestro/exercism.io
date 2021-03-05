@@ -1,5 +1,5 @@
 class Isogram {
     static boolean isIsogram(String phrase) {
-        !phrase.matches(/(.).*\1/)
+        !phrase.matches(/.*(.).*\1.*/)
     }
 }
