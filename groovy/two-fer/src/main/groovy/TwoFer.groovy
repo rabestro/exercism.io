@@ -1,6 +1,6 @@
 class TwoFer {
 
-    static String twoFer(String name) {
-        throw new UnsupportedOperationException('Method is not implemented')
+    static String twoFer(String name = 'you') {
+        "One for $name, one for me."
     }
 }
