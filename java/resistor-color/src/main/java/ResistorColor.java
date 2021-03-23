@@ -1,16 +1,14 @@
-import java.util.stream.Stream;
+import java.util.List;
 
 class ResistorColor {
-    enum Colors {BLACK, BROWN, RED, ORANGE, YELLOW, GREEN, BLUE, VIOLET, GREY, WHITE}
+    private static final List<String> colors = List.of(
+            "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white");
 
     int colorCode(String color) {
-        return Colors.valueOf(color.toUpperCase()).ordinal();
+        return colors.indexOf(color);
     }
 
     String[] colors() {
-        return Stream.of(Colors.values())
-                .map(Enum::toString)
-                .map(String::toLowerCase)
-                .toArray(String[]::new);
+        return colors.toArray(String[]::new);
     }
 }
