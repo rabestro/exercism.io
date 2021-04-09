@@ -11,10 +11,10 @@ public final class PigLatinTranslator {
     public String translate(String sentence) {
         return WORDS_DELIMITER
                 .splitAsStream(sentence)
-                .map(this::toPigLatin)
+                .map(this::translateWord)
                 .collect(joining(" "));
     }
-    private String toPigLatin(String word) {
+    private String translateWord(String word) {
         return RULES.matcher(word).replaceFirst(TEMPLATE);
     }
 }
