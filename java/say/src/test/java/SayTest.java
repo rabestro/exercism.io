@@ -47,7 +47,6 @@ public class SayTest {
         assertEquals("one thousand", say.say(1_000));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void oneThousandTwoHundredThirtyFour() {
         assertEquals("one thousand two hundred thirty-four", say.say(1_234));

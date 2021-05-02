@@ -15,12 +15,17 @@ public class Say {
         if (number == 0) {
             return numbers[0];
         }
-        final var iter = List.of("", " hundred", " thousand").iterator();
+        final var iter = List.of("", " hundred", " thousand", " million").iterator();
 
         var sj = new StringJoiner(" ");
 
-        int i = (int) (number / 1000);
-        var out = say(i, " thousand");
+        int i = (int) (number / 1000000);
+        var out = say(i, " million");
+        if (!out.isBlank()) sj.add(out);
+        number %= 1000000;
+
+        i = (int) (number / 1000);
+        out = say(i, " thousand");
         if (!out.isBlank()) sj.add(out);
         number %= 1000;
 
