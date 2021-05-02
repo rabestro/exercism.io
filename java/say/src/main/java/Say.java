@@ -1,4 +1,6 @@
-import java.util.StringJoiner;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.LongStream;
 
 public class Say {
     private static final String[] numbers = new String[]{
@@ -14,21 +16,17 @@ public class Say {
         if (number == 0) {
             return numbers[0];
         }
-        return say((int) number);
+        final var iter = List.of("", " hundred").iterator();
+        return LongStream
+                .iterate(number, i -> i > 0, i -> i / 100)
+                .mapToObj(i -> say((int) (i % 100), iter.next()))
+                .filter(Predicate.not(String::isBlank))
+                .reduce("", (a, b) -> b + (a.isBlank() ? "" : " " + a));
     }
 
-    private String say(int number) {
-        var sj = new StringJoiner(" ");
-        int hundred = number / 100;
-        int rest = number % 100;
-        if (hundred > 0) {
-            sj.add(numbers[hundred]).add("hundred");
-        }
-        if (rest > 20) {
-            sj.add(numbers[18 + rest / 10] + "-" + numbers[rest % 10]);
-        } else if (rest > 0) {
-            sj.add(numbers[rest]);
-        }
-        return sj.toString();
+    private String say(int number, String unit) {
+        return number > 20 ? numbers[18 + number / 10] + "-" + numbers[number % 10] + unit :
+                number > 0 ? numbers[number] + unit : "";
     }
+
 }
