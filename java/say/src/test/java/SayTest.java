@@ -52,13 +52,11 @@ public class SayTest {
         assertEquals("one thousand two hundred thirty-four", say.say(1_234));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void oneMillion() {
         assertEquals("one million", say.say(1_000_000));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void oneMillionTwoThousandThreeHundredFortyFive() {
         assertEquals("one million two thousand three hundred forty-five", say.say(1_002_345));
