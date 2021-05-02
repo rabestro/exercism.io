@@ -84,7 +84,6 @@ public class SayTest {
                      " three hundred twenty-one thousand one hundred twenty-three", say.say(987_654_321_123L));
     }
     
-    @Ignore("Remove to run test")
     @Test(expected = IllegalArgumentException.class)
     public void illegalNegativeNumber() {
         say.say(-1);

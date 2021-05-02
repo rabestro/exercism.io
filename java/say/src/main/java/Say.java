@@ -4,6 +4,9 @@ public class Say {
     };
 
     public String say(long number) {
+        if (number < 0) {
+            throw new IllegalArgumentException();
+        }
         return numbers[(int) number];
     }
 }
