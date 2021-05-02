@@ -32,7 +32,6 @@ public class SayTest {
         assertEquals("twenty-two", say.say(22));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void oneHundred() {
         assertEquals("one hundred", say.say(100));

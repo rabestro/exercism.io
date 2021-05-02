@@ -1,3 +1,5 @@
+import java.util.StringJoiner;
+
 public class Say {
     private static final String[] numbers = new String[]{
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
@@ -16,16 +18,17 @@ public class Say {
     }
 
     private String say(int number) {
+        var sj = new StringJoiner(" ");
         int hundred = number / 100;
         int rest = number % 100;
-        var result = hundred > 0 ? numbers[hundred] + " hundred " : "";
-        if (rest > 20) {
-            int dozens = rest / 10;
-            int units = rest % 10;
-            result += numbers[18 + dozens] + "-" + numbers[units];
-        } else {
-            result += rest > 0 ? numbers[rest] : "";
+        if (hundred > 0) {
+            sj.add(numbers[hundred]).add("hundred");
         }
-        return result;
+        if (rest > 20) {
+            sj.add(numbers[18 + rest / 10] + "-" + numbers[rest % 10]);
+        } else if (rest > 0) {
+            sj.add(numbers[rest]);
+        }
+        return sj.toString();
     }
 }
