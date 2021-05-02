@@ -15,27 +15,32 @@ public class Say {
         if (number == 0) {
             return numbers[0];
         }
-        final var iter = List.of("", " hundred", " thousand", " million").iterator();
+        final var iter = List.of(" billion", " million", " thousand", " hundred", "").iterator();
 
         var sj = new StringJoiner(" ");
 
-        int i = (int) (number / 1000000);
-        var out = say(i, " million");
+        int i = (int) (number / 1000000000);
+        var out = say(i, iter.next());
+        if (!out.isBlank()) sj.add(out);
+        number %= 1000000000;
+
+        i = (int) (number / 1000000);
+        out = say(i, iter.next());
         if (!out.isBlank()) sj.add(out);
         number %= 1000000;
 
         i = (int) (number / 1000);
-        out = say(i, " thousand");
+        out = say(i, iter.next());
         if (!out.isBlank()) sj.add(out);
         number %= 1000;
 
         i = (int) (number / 100);
-        out = say(i, " hundred");
+        out = say(i, iter.next());
         if (!out.isBlank()) sj.add(out);
         number %= 100;
 
         i = (int) number;
-        out = say(i, "");
+        out = say(i, iter.next());
         if (!out.isBlank()) sj.add(out);
 
         return sj.toString();
