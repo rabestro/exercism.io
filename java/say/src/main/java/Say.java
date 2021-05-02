@@ -1,7 +1,8 @@
 public class Say {
     private static final String[] numbers = new String[]{
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-            "eleven", "twelve", "threaten", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+            "eleven", "twelve", "threaten", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+            "twenty"
     };
 
     public String say(long number) {
