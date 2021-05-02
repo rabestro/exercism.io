@@ -88,7 +88,6 @@ public class SayTest {
         say.say(-1);
     }
 
-    @Ignore("Remove to run test")
     @Test(expected = IllegalArgumentException.class)
     public void illegalTooBigNumber() {
         say.say(1_000_000_000_000L);

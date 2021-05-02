@@ -5,7 +5,7 @@ public class Say {
     };
 
     public String say(long number) {
-        if (number < 0) {
+        if (number < 0 || number > 999_999_999_999L) {
             throw new IllegalArgumentException();
         }
         return numbers[(int) number];
