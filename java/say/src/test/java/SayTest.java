@@ -42,7 +42,6 @@ public class SayTest {
         assertEquals("one hundred twenty-three", say.say(123));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void oneThousand() {
         assertEquals("one thousand", say.say(1_000));
