@@ -12,7 +12,6 @@ public class SayTest {
         assertEquals("zero", say.say(0));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void one() {
         assertEquals("one", say.say(1));
