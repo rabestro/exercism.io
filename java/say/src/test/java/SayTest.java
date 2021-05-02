@@ -67,7 +67,6 @@ public class SayTest {
         assertEquals("one billion", say.say(1_000_000_000));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void nineHundredEightySevenBillionSixHundredFiftyFourThreeHundredTwentyOneThousandOneHundredTwentyThree() {
         assertEquals("nine hundred eighty-seven billion six hundred fifty-four million" +

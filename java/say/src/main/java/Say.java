@@ -1,11 +1,13 @@
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Say {
     private static final String[] numbers = new String[]{
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "threaten", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
-            "twenty", "thirty", "forty"
+            "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
     };
 
     public String say(long number) {
@@ -15,35 +17,14 @@ public class Say {
         if (number == 0) {
             return numbers[0];
         }
-        final var iter = List.of(" billion", " million", " thousand", " hundred", "").iterator();
+        final var units = List.of(" billion", " million", " thousand", " hundred", "").iterator();
 
-        var sj = new StringJoiner(" ");
+        return LongStream.of(number / 1_000_000_000, number % 1_000_000_000 / 1_000_000,
+                number % 1_000_000 / 1_000, number % 1_000 / 100, number % 100)
+                .mapToObj(i -> say((int) i, units.next()))
+                .filter(Predicate.not(String::isBlank))
+                .collect(Collectors.joining(" "));
 
-        int i = (int) (number / 1000000000);
-        var out = say(i, iter.next());
-        if (!out.isBlank()) sj.add(out);
-        number %= 1000000000;
-
-        i = (int) (number / 1000000);
-        out = say(i, iter.next());
-        if (!out.isBlank()) sj.add(out);
-        number %= 1000000;
-
-        i = (int) (number / 1000);
-        out = say(i, iter.next());
-        if (!out.isBlank()) sj.add(out);
-        number %= 1000;
-
-        i = (int) (number / 100);
-        out = say(i, iter.next());
-        if (!out.isBlank()) sj.add(out);
-        number %= 100;
-
-        i = (int) number;
-        out = say(i, iter.next());
-        if (!out.isBlank()) sj.add(out);
-
-        return sj.toString();
     }
 
     private String say(int number, String unit) {
