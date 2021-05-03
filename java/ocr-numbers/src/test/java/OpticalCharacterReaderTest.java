@@ -200,7 +200,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("9", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesSequence1234567890() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(

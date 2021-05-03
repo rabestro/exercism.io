@@ -23,7 +23,8 @@ class OpticalCharacterReader {
         if (asList.get(0).length() % WIDTH != 0) {
             throw new IllegalArgumentException("Number of input columns must be a positive multiple of 3");
         }
-        int cols = asList.get(0).length() / WIDTH;
+        final int cols = asList.get(0).length() / WIDTH;
+        final int rows = asList.size() / HEIGHT;
 
         IntFunction<String> getSymbol = col -> range(0, HEIGHT)
                 .mapToObj(i -> asList.get(i).substring(WIDTH * col, WIDTH + col * WIDTH))
