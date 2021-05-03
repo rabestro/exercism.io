@@ -10,7 +10,7 @@ class OpticalCharacterReader {
     private static final int HEIGHT = 4;
 
     private static final Map<String, String> map = Map.of(
-            " _ | ||_|   ", "0", "     |  |   ", "1"
+            " _ | ||_|   ", "0", "     |  |   ", "1",                 " _  _||_    ", "2"
     );
 
     public String parse(List<String> asList) {
