@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ class OpticalCharacterReader {
     private static final int WIDTH = 3;
     private static final int HEIGHT = 4;
 
-    private static final Map<String, String> map = Map.of(
+    private static final Map<String, String> DIGITS = Map.of(
             " _ | ||_|   ", "0", "     |  |   ", "1", " _  _||_    ", "2",
             " _  _| _|   ", "3", "   |_|  |   ", "4", " _ |_  _|   ", "5",
             " _ |_ |_|   ", "6", " _   |  |   ", "7",
@@ -26,13 +27,16 @@ class OpticalCharacterReader {
         final int cols = asList.get(0).length() / WIDTH;
         final int rows = asList.size() / HEIGHT;
 
-        IntFunction<String> getSymbol = col -> range(0, HEIGHT)
-                .mapToObj(i -> asList.get(i).substring(WIDTH * col, WIDTH + col * WIDTH))
+        BiFunction<Integer, Integer, String> getSymbol = (row, col) ->
+                range(HEIGHT * row, HEIGHT + HEIGHT * row)
+                        .mapToObj(i -> asList.get(i).substring(WIDTH * col, WIDTH + col * WIDTH))
+                        .collect(Collectors.joining());
+
+        IntFunction<String> getLine = row -> range(0, cols)
+                .mapToObj(col -> getSymbol.apply(row, col))
+                .map(symbol -> DIGITS.getOrDefault(symbol, "?"))
                 .collect(Collectors.joining());
 
-        return range(0, cols)
-                .mapToObj(getSymbol)
-                .map(symbol -> map.getOrDefault(symbol, "?"))
-                .collect(Collectors.joining());
+        return range(0, rows).mapToObj(getLine).collect(Collectors.joining(","));
     }
 }

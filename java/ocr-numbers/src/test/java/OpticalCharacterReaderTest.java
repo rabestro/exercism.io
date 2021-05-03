@@ -212,7 +212,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("1234567890", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesAndCorrectlyFormatsMultiRowInput() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
