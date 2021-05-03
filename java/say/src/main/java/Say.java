@@ -20,9 +20,9 @@ public class Say {
         }
         final var units = List.of("billion", "million", "thousand", "").iterator();
 
-        return LongStream.of(number / 1_000_000_000, number % 1_000_000_000 / 1_000_000,
-                number % 1_000_000 / 1_000, number % 1_000)
-                .mapToObj(i -> say((int) i, units.next()))
+        return LongStream.of(1_000_000_000, 1_000_000, 1_000, 1)
+                .mapToInt(i -> (int) (number % (i * 1000) / i))
+                .mapToObj(i -> say(i, units.next()))
                 .filter(Predicate.not(String::isBlank))
                 .collect(Collectors.joining(" "));
     }
