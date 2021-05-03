@@ -21,7 +21,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("0", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesSingle1() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
@@ -34,7 +33,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("1", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderReturnsQuestionMarkForUnreadableButCorrectlySizedInput() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
