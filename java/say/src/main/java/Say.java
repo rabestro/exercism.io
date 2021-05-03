@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -18,8 +17,7 @@ public class Say {
         if (number == 0) {
             return numbers[0];
         }
-        final var units = List.of("billion", "million", "thousand", "").iterator();
-
+        final var units = List.of(" billion", " million", " thousand", "").iterator();
         return LongStream.of(1_000_000_000, 1_000_000, 1_000, 1)
                 .mapToInt(i -> (int) (number % (i * 1000) / i))
                 .mapToObj(i -> say(i, units.next()))
@@ -28,20 +26,18 @@ public class Say {
     }
 
     private String say(int number, String unit) {
-        if (number == 0) {
+        if (number < 1) {
             return "";
         }
-        var sj = new StringJoiner(" ");
-        if (number >= 100) {
-            sj.add(say(number / 100, "hundred"));
+        if (number < 21) {
+            return numbers[number] + unit;
         }
-        number %= 100;
-        if (number > 20) {
-            sj.add(numbers[18 + number / 10] + "-" + numbers[number % 10]);
-        } else if (number > 0) {
-            sj.add(numbers[number]);
+        if (number < 100) {
+            final var units = number % 10;
+            return numbers[18 + number / 10] + (units == 0 ? "" : "-" + numbers[units]) + unit;
         }
-        return unit.isBlank() ? sj.toString() : sj.add(unit).toString();
+        final var units = say(number % 100);
+        return say(number / 100, " hundred") + (units.isBlank() ? "" : " " + units) + unit;
     }
 
 }
