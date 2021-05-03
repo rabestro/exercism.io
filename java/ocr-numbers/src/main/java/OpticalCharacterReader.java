@@ -11,7 +11,8 @@ class OpticalCharacterReader {
 
     private static final Map<String, String> map = Map.of(
             " _ | ||_|   ", "0", "     |  |   ", "1", " _  _||_    ", "2",
-            " _  _| _|   ", "3", "   |_|  |   ", "4", " _ |_  _|   ", "5"
+            " _  _| _|   ", "3", "   |_|  |   ", "4", " _ |_  _|   ", "5",
+            " _ |_ |_|   ", "6"
     );
 
     public String parse(List<String> asList) {
