@@ -1,21 +1,27 @@
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.IntFunction;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 import static java.util.stream.IntStream.range;
 
 class OpticalCharacterReader {
     private static final int WIDTH = 3;
     private static final int HEIGHT = 4;
+    private static final Map<String, String> DIGITS;
 
-    private static final Map<String, String> DIGITS = Map.of(
-            " _ | ||_|   ", "0", "     |  |   ", "1", " _  _||_    ", "2",
-            " _  _| _|   ", "3", "   |_|  |   ", "4", " _ |_  _|   ", "5",
-            " _ |_ |_|   ", "6", " _   |  |   ", "7",
-            " _ |_||_|   ", "8", " _ |_| _|   ", "9"
-    );
+    static {
+        List<String> in = List.of(
+                " _     _  _     _  _  _  _  _ ",
+                "| |  | _| _||_||_ |_   ||_||_|",
+                "|_|  ||_  _|  | _||_|  ||_| _|",
+                "                              "
+        );
+        Function<Integer, String> getDigit = i -> extractSymbol(in, 0, i);
+        DIGITS = range(0, 10).boxed().collect(toUnmodifiableMap(getDigit, String::valueOf));
+    }
 
     public String parse(List<String> asList) {
         if (asList.size() % HEIGHT != 0) {
@@ -27,16 +33,17 @@ class OpticalCharacterReader {
         final int cols = asList.get(0).length() / WIDTH;
         final int rows = asList.size() / HEIGHT;
 
-        BiFunction<Integer, Integer, String> getSymbol = (row, col) ->
-                range(HEIGHT * row, HEIGHT + HEIGHT * row)
-                        .mapToObj(i -> asList.get(i).substring(WIDTH * col, WIDTH + col * WIDTH))
-                        .collect(Collectors.joining());
-
         IntFunction<String> getLine = row -> range(0, cols)
-                .mapToObj(col -> getSymbol.apply(row, col))
+                .mapToObj(col -> extractSymbol(asList, row, col))
                 .map(symbol -> DIGITS.getOrDefault(symbol, "?"))
-                .collect(Collectors.joining());
+                .collect(joining());
 
-        return range(0, rows).mapToObj(getLine).collect(Collectors.joining(","));
+        return range(0, rows).mapToObj(getLine).collect(joining(","));
+    }
+
+    private static String extractSymbol(List<String> text, int row, int col) {
+        return range(HEIGHT * row, HEIGHT + HEIGHT * row)
+                .mapToObj(r -> text.get(r).substring(WIDTH * col, WIDTH + col * WIDTH))
+                .collect(joining());
     }
 }
