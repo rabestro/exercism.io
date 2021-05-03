@@ -116,7 +116,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("2", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesSingle3() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
