@@ -64,7 +64,6 @@ public class OpticalCharacterReaderTest {
                 "Number of input rows must be a positive multiple of 4");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderThrowsExceptionWhenNumberOfInputColumnsIsNotAMultipleOf3() {
         IllegalArgumentException expected =
