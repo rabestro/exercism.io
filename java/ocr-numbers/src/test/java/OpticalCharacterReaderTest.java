@@ -80,7 +80,6 @@ public class OpticalCharacterReaderTest {
                 "Number of input columns must be a positive multiple of 3");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesBinarySequence110101100() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
@@ -93,7 +92,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("110101100", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderReplacesUnreadableDigitsWithQuestionMarksWithinSequence() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
