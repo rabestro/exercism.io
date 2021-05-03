@@ -1,10 +1,8 @@
-/*
+import java.util.List;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+class OpticalCharacterReader {
 
-Please remove this comment when submitting your solution.
-
-*/
+    public String parse(List<String> asList) {
+        return "0";
+    }
+}
