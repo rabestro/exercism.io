@@ -47,7 +47,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("?", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderThrowsExceptionWhenNumberOfInputLinesIsNotAMultipleOf4() {
         IllegalArgumentException expected =
