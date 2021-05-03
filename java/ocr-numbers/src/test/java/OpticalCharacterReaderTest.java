@@ -140,7 +140,6 @@ public class OpticalCharacterReaderTest {
         assertEquals("4", parsedInput);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testReaderRecognizesSingle5() {
         String parsedInput = new OpticalCharacterReader().parse(Arrays.asList(
