@@ -16,11 +16,11 @@ public class ComplexNumber {
     }
 
     public ComplexNumber times(ComplexNumber complexNumber) {
-        return  new ComplexNumber(-1.0, 0);
+        return new ComplexNumber(-1.0, 0);
     }
 
-    public ComplexNumber add(ComplexNumber complexNumber) {
-        return null;
+    public ComplexNumber add(ComplexNumber other) {
+        return new ComplexNumber(this.real + other.real, this.imag + other.imag);
     }
 
     public ComplexNumber minus(ComplexNumber complexNumber) {
