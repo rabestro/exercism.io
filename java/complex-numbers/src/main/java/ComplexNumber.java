@@ -1,44 +1,48 @@
 public class ComplexNumber {
-    private double real;
-    private double imag;
+    private double a;
+    private double b;
 
-    ComplexNumber(double r, double i) {
-        this.real = r;
-        this.imag = i;
+    ComplexNumber(double real, double imag) {
+        this.a = real;
+        this.b = imag;
     }
 
     public double getReal() {
-        return real;
+        return a;
     }
 
     public double getImag() {
-        return imag;
+        return b;
     }
 
     public ComplexNumber times(ComplexNumber other) {
-        return new ComplexNumber(
-                real * other.real - imag * other.imag,
-                imag * other.real + real * other.imag );
+        return new ComplexNumber(a * other.a - b * other.b, b * other.a + a * other.b);
     }
 
     public ComplexNumber add(ComplexNumber other) {
-        return new ComplexNumber(this.real + other.real, this.imag + other.imag);
+        return new ComplexNumber(this.a + other.a, this.b + other.b);
     }
 
     public ComplexNumber minus(ComplexNumber other) {
-        return new ComplexNumber(this.real - other.real, this.imag - other.imag);
+        return new ComplexNumber(this.a - other.a, this.b - other.b);
     }
 
-    public ComplexNumber div(ComplexNumber complexNumber) {
-        return null;
+    // Dividing a complex number a + i * b by another c + i * d gives:
+    // (a + i * b) / (c + i * d) =
+    // (a * c + b * d)/(c^2 + d^2) + (b * c - a * d)/(c^2 + d^2) * i
+
+    public ComplexNumber div(ComplexNumber o) {
+        return new ComplexNumber(
+                (a * o.a + b * o.b) / (o.a * o.a + o.b * o.b),
+                (b * o.a - a * o.b) / (o.a * o.a + o.b * o.b));
     }
 
     public double abs() {
-        return Math.sqrt(real * real + imag * imag);
+        return Math.sqrt(a * a + b * b);
     }
 
     public ComplexNumber conjugate() {
-        return new ComplexNumber(real, -imag);
+        return new ComplexNumber(a, -b);
     }
 
     public ComplexNumber exponentialOf() {
