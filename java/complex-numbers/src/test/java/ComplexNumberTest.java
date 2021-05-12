@@ -195,7 +195,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAbsoluteValueOfNumberWithRealAndImaginaryParts() {
         double expected = 5.0;
@@ -203,7 +202,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testConjugationOfPurelyRealNumber() {
         ComplexNumber expected = new ComplexNumber(5.0, 0);
@@ -211,7 +209,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testConjugationOfPurelyImaginaryNumber() {
         ComplexNumber expected = new ComplexNumber(0, -5.0);
@@ -219,7 +216,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testConjugationOfNumberWithRealAndImaginaryParts() {
         ComplexNumber expected = new ComplexNumber(1.0, -1.0);

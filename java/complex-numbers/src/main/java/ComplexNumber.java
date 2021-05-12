@@ -36,7 +36,7 @@ public class ComplexNumber {
     }
 
     public ComplexNumber conjugate() {
-        return null;
+        return new ComplexNumber(real, -imag);
     }
 
     public ComplexNumber exponentialOf() {
