@@ -1,4 +1,3 @@
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -211,7 +210,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testExponentialOfPurelyImaginaryNumber() {
         ComplexNumber expected = new ComplexNumber(-1.0, 0);
@@ -219,7 +217,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testExponentialOfZero() {
         ComplexNumber expected = new ComplexNumber(1.0, 0);
@@ -227,7 +224,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testExponentialOfPurelyRealNumber() {
         ComplexNumber expected = new ComplexNumber(Math.E, 0);
@@ -235,7 +231,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testExponentialOfNumberWithRealAndImaginaryParts() {
         ComplexNumber expected = new ComplexNumber(-2.0, 0);

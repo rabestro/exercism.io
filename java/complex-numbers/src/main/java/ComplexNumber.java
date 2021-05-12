@@ -1,51 +1,50 @@
 public class ComplexNumber {
-    private double a;
-    private double b;
+    private double real;
+    private double imag;
 
     ComplexNumber(double real, double imag) {
-        this.a = real;
-        this.b = imag;
+        this.real = real;
+        this.imag = imag;
     }
 
     public double getReal() {
-        return a;
+        return real;
     }
 
     public double getImag() {
-        return b;
+        return imag;
     }
 
     public ComplexNumber times(ComplexNumber other) {
-        return new ComplexNumber(a * other.a - b * other.b, b * other.a + a * other.b);
+        return new ComplexNumber(
+                real * other.real - imag * other.imag,
+                imag * other.real + real * other.imag);
     }
 
     public ComplexNumber add(ComplexNumber other) {
-        return new ComplexNumber(this.a + other.a, this.b + other.b);
+        return new ComplexNumber(this.real + other.real, this.imag + other.imag);
     }
 
     public ComplexNumber minus(ComplexNumber other) {
-        return new ComplexNumber(this.a - other.a, this.b - other.b);
+        return new ComplexNumber(this.real - other.real, this.imag - other.imag);
     }
 
-    // Dividing a complex number a + i * b by another c + i * d gives:
-    // (a + i * b) / (c + i * d) =
-    // (a * c + b * d)/(c^2 + d^2) + (b * c - a * d)/(c^2 + d^2) * i
-
-    public ComplexNumber div(ComplexNumber o) {
+    public ComplexNumber div(ComplexNumber other) {
         return new ComplexNumber(
-                (a * o.a + b * o.b) / (o.a * o.a + o.b * o.b),
-                (b * o.a - a * o.b) / (o.a * o.a + o.b * o.b));
+                (real * other.real + imag * other.imag) / (other.real * other.real + other.imag * other.imag),
+                (imag * other.real - real * other.imag) / (other.real * other.real + other.imag * other.imag));
     }
 
     public double abs() {
-        return Math.sqrt(a * a + b * b);
+        return Math.sqrt(real * real + imag * imag);
     }
 
     public ComplexNumber conjugate() {
-        return new ComplexNumber(a, -b);
+        return new ComplexNumber(real, -imag);
     }
 
     public ComplexNumber exponentialOf() {
-        return null;
+        final var k = Math.pow(Math.E, real);
+        return new ComplexNumber(k * Math.cos(imag), k * Math.sin(imag));
     }
 }
