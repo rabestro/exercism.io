@@ -32,7 +32,7 @@ public class ComplexNumber {
     }
 
     public double abs() {
-        return 0;
+        return Math.sqrt(real * real + imag * imag);
     }
 
     public ComplexNumber conjugate() {

@@ -167,7 +167,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAbsoluteValueOfPositivePurelyRealNumber() {
         double expected = 5.0;
@@ -175,7 +174,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAbsoluteValueOfNegativePurelyRealNumber() {
         double expected = 5.0;
@@ -183,7 +181,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAbsoluteValueOfPurelyImaginaryNumberWithPositiveImaginaryPart() {
         double expected = 5.0;
@@ -191,7 +188,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAbsoluteValueOfPurelyImaginaryNumberWithNegativeImaginaryPart() {
         double expected = 5.0;
