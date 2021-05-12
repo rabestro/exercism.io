@@ -15,8 +15,10 @@ public class ComplexNumber {
         return imag;
     }
 
-    public ComplexNumber times(ComplexNumber complexNumber) {
-        return new ComplexNumber(-1.0, 0);
+    public ComplexNumber times(ComplexNumber other) {
+        return new ComplexNumber(
+                real * other.real - imag * other.imag,
+                imag * other.real + real * other.imag );
     }
 
     public ComplexNumber add(ComplexNumber other) {
@@ -24,7 +26,7 @@ public class ComplexNumber {
     }
 
     public ComplexNumber minus(ComplexNumber other) {
-        return  new ComplexNumber(this.real - other.real, this.imag - other.imag);
+        return new ComplexNumber(this.real - other.real, this.imag - other.imag);
     }
 
     public ComplexNumber div(ComplexNumber complexNumber) {

@@ -113,7 +113,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMultiplicationWithPurelyRealNumbers() {
         ComplexNumber expected = new ComplexNumber(2.0, 0);
@@ -121,7 +120,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMultiplicationWithPurelyImaginaryNumbers() {
         ComplexNumber expected = new ComplexNumber(-2.0, 0);
@@ -129,7 +127,6 @@ public class ComplexNumberTest {
         assertComplexNumbersEqual(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMultiplicationWithRealAndImaginaryParts() {
         ComplexNumber expected = new ComplexNumber(-5.0, 10.0);
