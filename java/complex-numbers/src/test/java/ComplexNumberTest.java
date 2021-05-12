@@ -29,7 +29,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testRealPartOfPurelyImaginaryNumber() {
         double expected = 0.0;
@@ -37,7 +36,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testRealPartOfNumberWithRealAndImaginaryParts() {
         double expected = 1.0;
@@ -45,7 +43,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "real");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testImaginaryPartOfPurelyRealNumber() {
         double expected = 0.0;
@@ -53,7 +50,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "imaginary");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testImaginaryPartOfPurelyImaginaryNumber() {
         double expected = 1.0;
@@ -61,7 +57,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "imaginary");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testImaginaryPartOfNumberWithRealAndImaginaryParts() {
         double expected = 2.0;
@@ -69,7 +64,6 @@ public class ComplexNumberTest {
         assertDoublesEqual(expected, actual, "imaginary");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testImaginaryUnitExhibitsDefiningProperty() {
         ComplexNumber expected = new ComplexNumber(-1.0, 0);
