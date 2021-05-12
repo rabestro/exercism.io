@@ -23,8 +23,8 @@ public class ComplexNumber {
         return new ComplexNumber(this.real + other.real, this.imag + other.imag);
     }
 
-    public ComplexNumber minus(ComplexNumber complexNumber) {
-        return null;
+    public ComplexNumber minus(ComplexNumber other) {
+        return  new ComplexNumber(this.real - other.real, this.imag - other.imag);
     }
 
     public ComplexNumber div(ComplexNumber complexNumber) {
