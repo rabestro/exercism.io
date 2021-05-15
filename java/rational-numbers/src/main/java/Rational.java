@@ -48,8 +48,11 @@ class Rational {
         return result;
     }
 
-    public Rational subtract(Rational rational) {
-        return null;
+    public Rational subtract(Rational other) {
+        int n = numerator * other.getDenominator() - denominator * other.getNumerator();
+        int d = n == 0 ? 1 : denominator * other.getDenominator();
+
+        return new Rational(n, d);
     }
 
     public Rational multiply(Rational rational) {

@@ -43,7 +43,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSubtractTwoPositiveRationalNumbers() {
         Rational expected = new Rational(-1, 6);
