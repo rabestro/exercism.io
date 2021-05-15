@@ -22,7 +22,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAddAPositiveRationalNumberAndANegativeRationalNumber() {
         Rational expected = new Rational(-1, 6);
@@ -30,7 +29,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAddTwoNegativeRationalNumbers() {
         Rational expected = new Rational(-7, 6);
