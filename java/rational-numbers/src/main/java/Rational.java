@@ -1,15 +1,24 @@
 class Rational {
+    private final int numerator;
+    private final int denominator;
 
     Rational(int numerator, int denominator) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     int getNumerator() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return numerator;
     }
 
     int getDenominator() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return denominator;
+    }
+
+    Rational add(Rational other) {
+        int a = numerator * other.getDenominator();
+        int b = denominator * other.getNumerator();
+        return new Rational(a + b, denominator * other.getDenominator());
     }
 
     @Override
@@ -25,7 +34,7 @@ class Rational {
 
         Rational other = (Rational) obj;
         return this.getNumerator() == other.getNumerator()
-            && this.getDenominator() == other.getDenominator();
+                && this.getDenominator() == other.getDenominator();
     }
 
     @Override
@@ -36,5 +45,29 @@ class Rational {
         result = prime * result + this.getDenominator();
 
         return result;
+    }
+
+    public Rational subtract(Rational rational) {
+        return null;
+    }
+
+    public Rational multiply(Rational rational) {
+        return null;
+    }
+
+    public Rational divide(Rational rational) {
+        return null;
+    }
+
+    public Rational abs() {
+        return null;
+    }
+
+    public Rational pow(int i) {
+        return null;
+    }
+
+    public double exp(double v) {
+        return 0;
     }
 }
