@@ -50,7 +50,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSubtractAPositiveRationalNumberAndANegativeRationalNumber() {
         Rational expected = new Rational(7, 6);
@@ -58,7 +57,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSubtractTwoNegativeRationalNumbers() {
         Rational expected = new Rational(1, 6);
@@ -66,7 +64,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSubtractARationalNumberFromItself() {
         Rational expected = new Rational(0, 1);
@@ -74,7 +71,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testMultiplyTwoPositiveRationalNumbers() {
         Rational expected = new Rational(1, 3);

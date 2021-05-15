@@ -1,4 +1,5 @@
 class Rational {
+    public static final Rational ZERO = new Rational(0, 1);
     private final int numerator;
     private final int denominator;
 
@@ -55,8 +56,13 @@ class Rational {
         return new Rational(n, d);
     }
 
-    public Rational multiply(Rational rational) {
-        return null;
+    public Rational multiply(Rational other) {
+        int n = numerator * other.getNumerator();
+        if (n == 0) {
+            return ZERO;
+        }
+        int d = denominator * other.getDenominator();
+        return simplify(n, d);
     }
 
     public Rational divide(Rational rational) {
@@ -73,5 +79,38 @@ class Rational {
 
     public double exp(double v) {
         return 0;
+    }
+
+    private Rational simplify(int a, int b) {
+        int cd = gdc(a, b);
+        return cd == 1 ? new Rational(a, b) : new Rational(a / cd, b / cd);
+    }
+
+    private int gdc(int n, int m) {
+        if (n == 0) {
+            return m;
+        }
+        if (m == 0) {
+            return n;
+        }
+        if (n == m) {
+            return m;
+        }
+        final var isFirstEven = (n & 1) == 0;
+        final var isSecondEven = (m & 1) == 0;
+
+        if (isFirstEven && isSecondEven) {
+            return gdc(n >> 1, m >> 1);
+        }
+        if (isFirstEven) {
+            return gdc(n >> 1, m);
+        }
+        if (isSecondEven) {
+            return gdc(n, m >> 1);
+        }
+        if (n > m) {
+            return gdc((n - m) / 2, m);
+        }
+        return gdc((m - n) / 2, n);
     }
 }
