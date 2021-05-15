@@ -16,9 +16,10 @@ class Rational {
     }
 
     Rational add(Rational other) {
-        int a = numerator * other.getDenominator();
-        int b = denominator * other.getNumerator();
-        return new Rational(a + b, denominator * other.getDenominator());
+        int n = numerator * other.getDenominator() + denominator * other.getNumerator();
+        int d = n == 0 ? 1 : denominator * other.getDenominator();
+
+        return new Rational(n, d);
     }
 
     @Override

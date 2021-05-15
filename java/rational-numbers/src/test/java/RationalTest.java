@@ -36,7 +36,6 @@ public class RationalTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testAddARationalNumberToItsAdditiveInverse() {
         Rational expected = new Rational(0, 1);
