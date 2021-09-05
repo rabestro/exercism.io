@@ -1,21 +1,15 @@
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class Gigasecond {
     static def GIGA_SECOND = Duration.ofSeconds(1_000_000_000)
 
-    LocalDateTime moment
-
-    public Gigasecond(LocalDate moment) {
-        this(moment.atStartOfDay());
+    static add(LocalDateTime moment) {
+        return moment + GIGA_SECOND
     }
 
-    public Gigasecond(LocalDateTime moment) {
-        this.moment = moment.plus(GIGA_SECOND);
-    }
-
-    public LocalDateTime getDateTime() {
-        return moment;
+    static add(LocalDate moment) {
+        return add(moment.atStartOfDay())
     }
 }
