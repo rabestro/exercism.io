@@ -12,9 +12,9 @@ public class AnagramTest {
         Anagram detector = new Anagram("diaper");
 
         assertThat(
-            detector.match(
-                Arrays.asList("hello", "world", "zombies", "pants")))
-            .isEmpty();
+                detector.match(
+                        Arrays.asList("hello", "world", "zombies", "pants")))
+                .isEmpty();
     }
 
     @Test
@@ -37,24 +37,24 @@ public class AnagramTest {
         Anagram detector = new Anagram("listen");
 
         assertThat(
-            detector.match(
-                Arrays.asList("enlists", "google", "inlets", "banana")))
-            .containsExactlyInAnyOrder("inlets");
+                detector.match(
+                        Arrays.asList("enlists", "google", "inlets", "banana")))
+                .containsExactlyInAnyOrder("inlets");
     }
 
     @Test
     public void testDetectMultipleAnagramsForLongerWord() {
         Anagram detector = new Anagram("allergy");
         assertThat(
-            detector.match(
-                Arrays.asList(
-                    "gallery",
-                    "ballerina",
-                    "regally",
-                    "clergy",
-                    "largely",
-                    "leading")))
-            .containsExactlyInAnyOrder("gallery", "regally", "largely");
+                detector.match(
+                        Arrays.asList(
+                                "gallery",
+                                "ballerina",
+                                "regally",
+                                "clergy",
+                                "largely",
+                                "leading")))
+                .containsExactlyInAnyOrder("gallery", "regally", "largely");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("nose");
 
         assertThat(detector.match(Arrays.asList("Eons", "ONES")))
-            .containsExactlyInAnyOrder("Eons", "ONES");
+                .containsExactlyInAnyOrder("Eons", "ONES");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("mass");
 
         assertThat(detector.match(Collections.singletonList("last")))
-            .isEmpty();
+                .isEmpty();
     }
 
     @Test
@@ -108,7 +108,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("go");
 
         assertThat(detector.match(Collections.singletonList("go Go GO")))
-            .isEmpty();
+                .isEmpty();
     }
 
     @Test
@@ -116,7 +116,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("tapper");
 
         assertThat(detector.match(Collections.singletonList("patter")))
-            .isEmpty();
+                .isEmpty();
     }
 
     @Test
@@ -124,7 +124,7 @@ public class AnagramTest {
         Anagram detector = new Anagram("BANANA");
 
         assertThat(detector.match(Arrays.asList("BANANA", "Banana", "banana")))
-            .isEmpty();
+                .isEmpty();
     }
 
     @Test
