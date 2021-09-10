@@ -1,10 +1,18 @@
 public class CarsAssemble {
 
     public double productionRatePerHour(int speed) {
-        throw new UnsupportedOperationException("Please implement the AssemblyLine.productionRateperHour() method");
+        return successRate(speed) * 221 * speed / 100.0;
+
     }
 
     public int workingItemsPerMinute(int speed) {
-        throw new UnsupportedOperationException("Please implement the AssemblyLine.workingItemsPerMinute() method");
+        return successRate(speed) * 221 * speed / 6000;
+    }
+
+    private int successRate(int speed) {
+        return speed < 5 ? 100
+                : speed < 9 ? 90
+                : speed < 10 ? 80
+                : 77;
     }
 }
