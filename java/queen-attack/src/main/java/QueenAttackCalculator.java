@@ -12,7 +12,7 @@ final class Queen {
         this.col = col;
     }
 
-    private static void checkArgument(boolean condition, String message) {
+    static void checkArgument(boolean condition, String message) {
         if (!condition) {
             throw new IllegalArgumentException(message);
         }
@@ -40,12 +40,10 @@ public final class QueenAttackCalculator {
     private final Queen black;
 
     public QueenAttackCalculator(final Queen white, final Queen black) {
-        if (white == null || black == null) {
-            throw new IllegalArgumentException("You must supply valid positions for both Queens.");
-        }
-        if (white.hasSamePosition(black)) {
-            throw new IllegalArgumentException("Queens cannot occupy the same position.");
-        }
+        Queen.checkArgument(white != null && black != null,
+                "You must supply valid positions for both Queens.");
+        Queen.checkArgument(!white.hasSamePosition(black),
+                "Queens cannot occupy the same position.");
         this.white = white;
         this.black = black;
     }
