@@ -1,34 +1,19 @@
-import java.util.regex.Pattern;
-
 public class LogLevels {
 
     public static String message(String logLine) {
-        return new Log(logLine).message;
+        return parse(logLine)[1];
     }
 
     public static String logLevel(String logLine) {
-        return new Log(logLine).level;
+        return parse(logLine)[0];
     }
 
     public static String reformat(String logLine) {
-        final var log = new Log(logLine);
-        return log.message + " (" + log.level + ")";
+        return String.format("%2$s (%1$s)", (Object[]) parse(logLine));
     }
-}
 
-class Log {
-    private static final Pattern LOG_PATTERN =
-            Pattern.compile("\\[(?<level>.+)]:\\s+(?<message>.+?)\\s*");
-    String message;
-    String level;
-
-    Log(String logLine) {
-        var matcher = LOG_PATTERN.matcher(logLine);
-        if (matcher.matches()) {
-            message = matcher.group("message");
-            level = matcher.group("level").toLowerCase();
-        } else {
-            throw new IllegalArgumentException();
-        }
+    private static String[] parse(String log) {
+        int index = log.indexOf(']');
+        return new String[]{log.substring(1, index).toLowerCase(), log.substring(index + 2).strip()};
     }
 }
