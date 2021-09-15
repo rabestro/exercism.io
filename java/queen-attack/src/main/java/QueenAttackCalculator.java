@@ -1,5 +1,3 @@
-import static java.lang.Math.abs;
-
 final class Queen {
     final int row;
     final int col;
@@ -19,6 +17,22 @@ final class Queen {
             throw new IllegalArgumentException(message);
         }
     }
+
+    boolean hasSameRow(Queen other) {
+        return this.row == other.row;
+    }
+
+    boolean hasSameCol(Queen other) {
+        return this.col == other.col;
+    }
+
+    boolean hasSameDiagonal(Queen other) {
+        return Math.abs(this.row - other.row) == Math.abs(this.col - other.col);
+    }
+
+    boolean hasSamePosition(Queen other) {
+        return this.row == other.row && this.col == other.col;
+    }
 }
 
 public final class QueenAttackCalculator {
@@ -29,7 +43,7 @@ public final class QueenAttackCalculator {
         if (white == null || black == null) {
             throw new IllegalArgumentException("You must supply valid positions for both Queens.");
         }
-        if (white.row == black.row && white.col == black.col) {
+        if (white.hasSamePosition(black)) {
             throw new IllegalArgumentException("Queens cannot occupy the same position.");
         }
         this.white = white;
@@ -37,7 +51,8 @@ public final class QueenAttackCalculator {
     }
 
     public boolean canQueensAttackOneAnother() {
-        return white.row == black.row || white.col == black.col
-                || abs(white.row - black.row) == abs(white.col - black.col);
+        return white.hasSameRow(black)
+                || white.hasSameCol(black)
+                || white.hasSameDiagonal(black);
     }
 }
