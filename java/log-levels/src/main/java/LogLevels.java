@@ -9,7 +9,8 @@ public class LogLevels {
     }
 
     public static String reformat(String logLine) {
-        return String.format("%2$s (%1$s)", (Object[]) parse(logLine));
+        String[] log = parse(logLine);
+        return log[1] + " (" + log[0] + ")";
     }
 
     private static String[] parse(String log) {
