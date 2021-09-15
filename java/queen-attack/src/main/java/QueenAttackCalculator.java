@@ -1,6 +1,3 @@
-import java.util.Map;
-import java.util.function.Supplier;
-
 import static java.lang.Math.abs;
 
 final class Queen {
@@ -8,20 +5,19 @@ final class Queen {
     final int col;
 
     public Queen(final int row, final int col) {
-        final Map<String, Supplier<Boolean>> validationRules = Map.of(
-                "Queen position must have positive row.", () -> row >= 0,
-                "Queen position must have positive column.", () -> col >= 0,
-                "Queen position must have row <= 7.", () -> row <= 7,
-                "Queen position must have column <= 7.", () -> col <= 7);
-
-        for (var rule: validationRules.entrySet()) {
-            if (!rule.getValue().get()) {
-                throw new IllegalArgumentException(rule.getKey());
-            }
-        }
+        checkArgument(row >= 0, "Queen position must have positive row.");
+        checkArgument(col >= 0, "Queen position must have positive column.");
+        checkArgument(row <= 7, "Queen position must have row <= 7.");
+        checkArgument(col <= 7, "Queen position must have column <= 7.");
 
         this.row = row;
         this.col = col;
+    }
+
+    private static void checkArgument(boolean condition, String message) {
+        if (!condition) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }
 
