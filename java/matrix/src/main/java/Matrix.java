@@ -1,26 +1,25 @@
-import java.util.regex.Pattern;
-
-import static java.util.Arrays.copyOfRange;
-import static java.util.stream.IntStream.range;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
 class Matrix {
-    private static final Pattern SPACE = Pattern.compile("\\s");
-    private final int[] matrix;
-    private final int rows;
-    private final int cols;
+    private final int[][] matrix;
 
     Matrix(String matrixAsString) {
-        rows = (int) matrixAsString.lines().count();
-        matrix = SPACE.splitAsStream(matrixAsString).mapToInt(Integer::parseInt).toArray();
-        cols = matrix.length / rows;
+        matrix = matrixAsString.lines()
+                .map(Scanner::new)
+                .map(Scanner::tokens)
+                .map(s -> s.mapToInt(Integer::parseInt))
+                .map(IntStream::toArray)
+                .toArray(int[][]::new);
     }
 
     int[] getRow(int rowNumber) {
-        return copyOfRange(matrix, cols * (rowNumber - 1), cols * rowNumber);
+        return matrix[rowNumber - 1];
     }
 
     int[] getColumn(int columnNumber) {
-        return range(0, rows).map(i -> matrix[i * cols + columnNumber - 1]).toArray();
+        return Arrays.stream(matrix).mapToInt(ints -> ints[columnNumber - 1]).toArray();
     }
 
 }
