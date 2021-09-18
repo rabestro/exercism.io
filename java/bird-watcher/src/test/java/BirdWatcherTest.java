@@ -59,7 +59,6 @@ public class BirdWatcherTest {
         assertThat(birdWatcher.hasDayWithoutBirds()).isFalse();
     }
 
-
     @Test
     public void itTestGetCountForFirstDays() {
         assertThat(birdWatcher.getCountForFirstDays(4)).isEqualTo(DAY1 + DAY2 + DAY3 + DAY4);
@@ -72,14 +71,12 @@ public class BirdWatcherTest {
     }
 
     @Test
-    @Ignore("Remove to run test")
     public void itTestGetCountForBusyDays() {
         // DAY3, DAY5 and DAY6 are all >= 5 birds
         assertThat(birdWatcher.getBusyDays()).isEqualTo(3);
     }
 
     @Test
-    @Ignore("Remove to run test")
     public void itShouldNotHaveBusyDays() {
         birdWatcher = new BirdWatcher(new int[]{1, 2, 3, 3, 2, 1, 4});
         assertThat(birdWatcher.getBusyDays()).isEqualTo(0);
