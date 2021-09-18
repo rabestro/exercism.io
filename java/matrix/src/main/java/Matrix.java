@@ -5,9 +5,7 @@ class Matrix {
     private final int[][] matrix;
 
     Matrix(String matrixAsString) {
-        matrix = matrixAsString.lines()
-                .map(this::parseLine)
-                .toArray(int[][]::new);
+        matrix = matrixAsString.lines().map(this::parseLine).toArray(int[][]::new);
     }
 
     private int[] parseLine(String line) {
