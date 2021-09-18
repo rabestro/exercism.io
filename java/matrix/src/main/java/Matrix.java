@@ -1,17 +1,17 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 class Matrix {
     private final int[][] matrix;
 
     Matrix(String matrixAsString) {
         matrix = matrixAsString.lines()
-                .map(Scanner::new)
-                .map(Scanner::tokens)
-                .map(s -> s.mapToInt(Integer::parseInt))
-                .map(IntStream::toArray)
+                .map(this::parseLine)
                 .toArray(int[][]::new);
+    }
+
+    private int[] parseLine(String line) {
+        return new Scanner(line).tokens().mapToInt(Integer::parseInt).toArray();
     }
 
     int[] getRow(int rowNumber) {
