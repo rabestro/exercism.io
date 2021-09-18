@@ -49,13 +49,11 @@ public class BirdWatcherTest {
     }
 
     @Test
-    @Ignore("Remove to run test")
     public void itHasDayWithoutBirds() {
         assertThat(birdWatcher.hasDayWithoutBirds()).isTrue();
     }
 
     @Test
-    @Ignore("Remove to run test")
     public void itShouldNotHaveDaysWithoutBirds() {
         birdWatcher = new BirdWatcher(new int[]{1, 2, 5, 3, 7, 8, 4});
         assertThat(birdWatcher.hasDayWithoutBirds()).isFalse();
