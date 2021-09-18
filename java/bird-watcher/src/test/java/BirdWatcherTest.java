@@ -61,13 +61,11 @@ public class BirdWatcherTest {
 
 
     @Test
-    @Ignore("Remove to run test")
     public void itTestGetCountForFirstDays() {
         assertThat(birdWatcher.getCountForFirstDays(4)).isEqualTo(DAY1 + DAY2 + DAY3 + DAY4);
     }
 
     @Test
-    @Ignore("Remove to run test")
     public void itTestGetCountForMoreDaysThanTheArraySize() {
         assertThat(birdWatcher.getCountForFirstDays(10))
             .isEqualTo(DAY1 + DAY2 + DAY3 + DAY4 + DAY5 + DAY6 + TODAY);
