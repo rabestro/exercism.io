@@ -8,13 +8,3 @@ which is an important part of programming in Java.
 Please remove this comment when submitting your solution.
 
 */
-
-import java.util.Collections;
-import java.util.List;
-
-class Dominoes {
-
-    public List<Domino> formChain(List<Domino> dominoesList) {
-        return Collections.emptyList();
-    }
-}
