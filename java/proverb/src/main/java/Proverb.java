@@ -1,3 +1,6 @@
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 class Proverb {
     private final String[] words;
 
@@ -6,7 +9,14 @@ class Proverb {
     }
 
     String recite() {
-        return lastSentence();
+        return IntStream.range(0, words.length - 1)
+                .mapToObj(this::cite)
+                .collect(Collectors.joining())
+                + lastSentence();
+    }
+
+    private String cite(int i) {
+        return "For want of a " + words[i] + " the " + words[i + 1] + " was lost.\n";
     }
 
     private String lastSentence() {
