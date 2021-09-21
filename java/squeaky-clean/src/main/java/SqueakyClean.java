@@ -1,5 +1,5 @@
 class SqueakyClean {
     static String clean(String identifier) {
-        return "";
+        return identifier;
     }
 }

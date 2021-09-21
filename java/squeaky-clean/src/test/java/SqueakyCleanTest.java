@@ -10,13 +10,11 @@ public class SqueakyCleanTest {
         assertThat(SqueakyClean.clean("")).isEmpty();
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void single_letter() {
         assertThat(SqueakyClean.clean("A")).isEqualTo("A");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void string() {
         assertThat(SqueakyClean.clean("àḃç")).isEqualTo("àḃç");
