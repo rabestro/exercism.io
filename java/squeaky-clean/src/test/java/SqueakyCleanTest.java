@@ -30,7 +30,6 @@ public class SqueakyCleanTest {
         assertThat(SqueakyClean.clean(" myId ")).isEqualTo("_myId_");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void ctrl() {
         assertThat(SqueakyClean.clean("my\0Id")).isEqualTo("myCTRLId");
