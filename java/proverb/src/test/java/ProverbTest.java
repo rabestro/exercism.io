@@ -12,7 +12,6 @@ public class ProverbTest {
         assertThat(new Proverb(words).recite()).isEqualTo("");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void singlePieceOfProverb() {
         String[] words  = new String[]{"nail"};
