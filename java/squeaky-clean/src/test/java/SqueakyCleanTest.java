@@ -20,13 +20,11 @@ public class SqueakyCleanTest {
         assertThat(SqueakyClean.clean("àḃç")).isEqualTo("àḃç");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void spaces() {
         assertThat(SqueakyClean.clean("my   Id")).isEqualTo("my___Id");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void leading_and_trailing_spaces() {
         assertThat(SqueakyClean.clean(" myId ")).isEqualTo("_myId_");
