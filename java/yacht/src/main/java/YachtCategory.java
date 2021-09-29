@@ -1,34 +1,66 @@
+import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 
 import static java.util.Arrays.stream;
 
-enum YachtCategory {
-
-    YACHT(dice -> stream(dice).distinct().count() == 1 ? 50 : 0),
-    ONES(dice -> stream(dice).filter(i -> i == 1).sum()),
-    TWOS(dice -> stream(dice).filter(i -> i == 2).sum()),
-    THREES(dice -> stream(dice).filter(i -> i == 3).sum()),
-    FOURS(dice -> stream(dice).filter(i -> i == 4).sum()),
-    FIVES(dice -> stream(dice).filter(i -> i == 5).sum()),
-    SIXES(dice -> stream(dice).filter(i -> i == 6).sum()),
-    FULL_HOUSE(dice -> stream(dice).distinct().count() == 2
-            && stream(dice).sorted().skip(1).limit(3).distinct().count() == 2
-            ? stream(dice).sum() : 0),
-    FOUR_OF_A_KIND(dice -> stream(dice).distinct().count() < 3
-            && stream(dice).sorted().skip(1).limit(3).distinct().count() == 1
-             ? stream(dice).sorted().skip(1).limit(1).sum() * 4 : 0),
-    LITTLE_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).max().getAsInt() == 5 ? 30 : 0),
-    BIG_STRAIGHT(dice -> stream(dice).distinct().count() == 5 && stream(dice).min().getAsInt() == 2 ? 30 : 0),
+enum YachtCategory implements Predicate<int[]> {
+    YACHT(dice -> 50, different(1)),
+    ONES(any(1)),
+    TWOS(any(2)),
+    THREES(any(3)),
+    FOURS(any(4)),
+    FIVES(any(5)),
+    SIXES(any(6)),
+    FULL_HOUSE(dice -> stream(dice).sum(), different(2).and(hasTreeSame())),
+    FOUR_OF_A_KIND(dice -> stream(dice).sorted().skip(1).limit(1).sum() * 4) {
+        @Override
+        public boolean test(int[] dice) {
+            return stream(dice).distinct().count() < 3
+                    && stream(dice).sorted().skip(1).limit(3).distinct().count() == 1;
+        }
+    },
+    LITTLE_STRAIGHT(dice -> 30, YachtCategory::lowStraight),
+    BIG_STRAIGHT(dice -> 30, YachtCategory::bigStraight),
     CHOICE(dice -> stream(dice).sum());
 
     private final ToIntFunction<int[]> scoreFormula;
+    private final Predicate<int[]> applyTo;
+
+    YachtCategory(ToIntFunction<int[]> scoreFormula, Predicate<int[]> applyTo) {
+        this.scoreFormula = scoreFormula;
+        this.applyTo = applyTo;
+    }
 
     YachtCategory(ToIntFunction<int[]> scoreFormula) {
-        this.scoreFormula = scoreFormula;
+        this(scoreFormula, dice -> true);
     }
 
     public int calculateScore(int[] dice) {
-        return scoreFormula.applyAsInt(dice);
+        return test(dice) ? scoreFormula.applyAsInt(dice) : 0;
+    }
+
+    public boolean test(int[] dice) {
+        return applyTo.test(dice);
+    }
+
+    static Predicate<int[]> different(int number) {
+        return dice -> stream(dice).distinct().count() == number;
+    }
+
+    private static Predicate<int[]> hasTreeSame() {
+        return dice -> stream(dice).sorted().skip(1).limit(3).distinct().count() == 2;
+    }
+
+    private static boolean lowStraight(int[] dice) {
+        return different(5).test(dice) && stream(dice).max().orElse(0) == 5;
+    }
+
+    private static boolean bigStraight(int[] dice) {
+        return different(5).test(dice) && stream(dice).min().orElse(0) == 2;
+    }
+
+    private static ToIntFunction<int[]> any(int number) {
+        return dice -> stream(dice).filter(i -> i == number).sum();
     }
 
 }

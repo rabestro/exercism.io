@@ -1,11 +1,17 @@
-import java.util.regex.Pattern;
-
-class IsogramChecker {
-    private static final Pattern REPEATING_LETTER =
-            Pattern.compile("(\\pL).*\\1", Pattern.CASE_INSENSITIVE);
+public class IsogramChecker {
 
     boolean isIsogram(String phrase) {
-        return !REPEATING_LETTER.matcher(phrase).find();
+        int set = 0;
+        for (char symbol : phrase.toCharArray()) {
+            int digit = Character.getNumericValue(symbol) - 10;
+            if (digit >= 0) {
+                if (0 < (set & 1 << digit)) {
+                    return false;
+                }
+                set |= 1 << digit;
+            }
+        }
+        return true;
     }
 
 }
