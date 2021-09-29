@@ -1,11 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Ignore;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class WordCountTest {
 
@@ -26,7 +25,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("word");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -38,7 +37,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("one of each");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -52,7 +51,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("one fish two fish red fish blue fish");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -64,7 +63,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("one,two,three");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -76,7 +75,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("one,\ntwo,\nthree");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -90,7 +89,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("car : carpet as java : javascript!!&@$%^&");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
 
     }
@@ -103,7 +102,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("testing, 1, 2 testing");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -114,7 +113,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("go Go GO Stop stop");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -128,7 +127,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("First: don't laugh. Then: don't cry.");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -145,7 +144,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("Joe can't tell between app, apple and a.");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -160,7 +159,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase("Joe can't tell between 'large' and large.");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
@@ -171,7 +170,7 @@ public class WordCountTest {
 
         actualWordCount = wordCount.phrase(" multiple   whitespaces");
         assertEquals(
-            expectedWordCount, actualWordCount
+                expectedWordCount, actualWordCount
         );
     }
 
