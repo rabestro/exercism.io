@@ -68,5 +68,4 @@ public class AcronymTest {
         assertEquals(expected, new Acronym(phrase).get());
     }
 
-
 }

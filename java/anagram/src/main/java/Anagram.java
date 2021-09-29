@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 class Anagram {
@@ -15,15 +14,16 @@ class Anagram {
 
     List<String> match(final List<String> possibleAnagrams) {
         return possibleAnagrams.stream()
-                .filter(not(sourceWord::equalsIgnoreCase).and(this::isAnagram))
+                .filter(this::isAnagram)
                 .collect(toUnmodifiableList());
     }
 
     private boolean isAnagram(final String otherWord) {
-        return Arrays.equals(sortedChars, toSortedChars(otherWord));
+        return !sourceWord.equalsIgnoreCase(otherWord)
+                && Arrays.equals(sortedChars, toSortedChars(otherWord));
     }
 
     private int[] toSortedChars(final String word) {
-        return word.toLowerCase().chars().sorted().toArray();
+        return word.chars().map(Character::toLowerCase).sorted().toArray();
     }
 }
