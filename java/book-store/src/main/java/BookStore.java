@@ -1,41 +1,24 @@
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class BookStore {
     private static final double BOOK_PRICE = 8.0;
-    private static final double[] DISCOUNTS = {1, 0.95, 0.90, 0.80, 0.75};
 
     public double calculateBasketCost(final List<Integer> booksInStore) {
-        // Stage 1
-        Integer[] books = {0, 0, 0, 0, 0};
+        int[] books = {0, 0, 0, 0, 0};
         booksInStore.forEach(i -> books[--i]++);
-        Arrays.sort(books, Collections.reverseOrder());
+        Arrays.sort(books);
 
-        // Stage 2
-        var purchaseCount = books[3] - books[4];
-        var price = purchaseCount * 4 * BOOK_PRICE * DISCOUNTS[3];
-        books[3] -= purchaseCount;
-        books[2] -= purchaseCount;
-        books[1] -= purchaseCount;
-        books[0] -= purchaseCount;
+        int p1 = books[4] - books[3];
+        int p2 = books[3] - books[2];
+        int p3 = books[2] - books[1];
+        int p4 = books[1] - books[0];
+        int pc = Math.min(p3, books[0]);
 
-        // Stage 3
-        purchaseCount = Math.min(books[2] - books[3], books[4]);
-        price += 2 * purchaseCount * 4 * BOOK_PRICE * DISCOUNTS[3];
-        books[4] -= purchaseCount;
-        books[3] -= purchaseCount;
-        books[2] -= 2 * purchaseCount;
-        books[1] -= 2 * purchaseCount;
-        books[0] -= 2 * purchaseCount;
-
-        // Stage 4
-        for (int i = 4; i >= 0; --i) {
-            price += books[i] * (1 + i) * BOOK_PRICE * DISCOUNTS[i];
-            for (int k = 0; k <= i; ++k) {
-                books[k] -= books[i];
-            }
-        }
-        return price;
+        return BOOK_PRICE * (p1
+                + 0.95 * 2 * p2
+                + 0.90 * 3 * (p3 - pc)
+                + 0.80 * 4 * (p4 + 2 * pc)
+                + 0.75 * 5 * (books[0] - pc));
     }
 }
