@@ -1,29 +1,37 @@
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static java.util.function.Predicate.not;
 
 class ProteinTranslator {
-    private static final Pattern CODONS = Pattern.compile("(?<=\\G.{3})");
+    private static final Pattern SEQUENCE_SPLITTER = Pattern.compile("(?<=\\G.{3})");
+    private static final Map<String, String> TRANSLATION = new HashMap<>();
 
-    private String codonToProtein(String codon) {
-        return switch (codon) {
-            case "AUG" -> "Methionine";
-            case "UUU", "UUC" -> "Phenylalanine";
-            case "UUA", "UUG" -> "Leucine";
-            case "UCU", "UCC", "UCA", "UCG" -> "Serine";
-            case "UAU", "UAC" -> "Tyrosine";
-            case "UGU", "UGC" -> "Cysteine";
-            case "UGG" -> "Tryptophan";
-            default -> "STOP";
-        };
+    private static void loadTranslation(String protein, String... codons) {
+        for (String codon : codons) {
+            TRANSLATION.put(codon, protein);
+        }
+    }
+
+    static {
+        loadTranslation("Methionine", "AUG");
+        loadTranslation("Phenylalanine", "UUU", "UUC");
+        loadTranslation("Leucine", "UUA", "UUG");
+        loadTranslation("Serine", "UCU", "UCC", "UCA", "UCG");
+        loadTranslation("Tyrosine", "UAU", "UAC");
+        loadTranslation("Cysteine", "UGU", "UGC");
+        loadTranslation("Tryptophan", "UGG");
+        loadTranslation("STOP", "UAA", "UAG", "UGA");
     }
 
     List<String> translate(String rnaSequence) {
-        return CODONS.splitAsStream(rnaSequence)
-                .map(this::codonToProtein)
+        return SEQUENCE_SPLITTER.splitAsStream(rnaSequence)
+                .map(TRANSLATION::get)
                 .takeWhile(not("STOP"::equals))
-                .toList();
+                .collect(Collectors.toList());
     }
 
 }
