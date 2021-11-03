@@ -13,12 +13,13 @@ public class BookStore {
         int p2 = books[3] - books[2];
         int p3 = books[2] - books[1];
         int p4 = books[1] - books[0];
-        int pc = Math.min(p3, books[0]);
+        int p5 = books[0];
+        int pc = Math.min(p3, p5);
 
         return BOOK_PRICE * (p1
                 + 0.95 * 2 * p2
                 + 0.90 * 3 * (p3 - pc)
                 + 0.80 * 4 * (p4 + 2 * pc)
-                + 0.75 * 5 * (books[0] - pc));
+                + 0.75 * 5 * (p5 - pc));
     }
 }
