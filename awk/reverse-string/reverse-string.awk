@@ -2,10 +2,8 @@ BEGIN {
     FS=""
 }
 {
-    {
-        for (; NF > 0; --NF) {
-            printf $(NF)
-        }
-        print ""
+    while (NF > 0) {
+        printf $(NF--)
     }
+    print ""
 }
