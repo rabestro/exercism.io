@@ -2,5 +2,9 @@ BEGIN {
 
 }
 {
-    print $0"ay"
+    print pigify($0)
+}
+
+function pigify(word) {
+    return word"ay"
 }

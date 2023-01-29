@@ -43,7 +43,6 @@ load bats-extra
 # first letter and ay are moved to the end of words that start with consonants
 
 @test word_beginning_with_p {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "pig"
     assert_success
     assert_output "igpay"
