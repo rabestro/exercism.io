@@ -11,35 +11,30 @@ load bats-extra
 }
 
 @test word_beginning_with_e {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "ear"
     assert_success
     assert_output "earay"
 }
 
 @test word_beginning_with_i {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "igloo"
     assert_success
     assert_output "iglooay"
 }
 
 @test word_beginning_with_o {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "object"
     assert_success
     assert_output "objectay"
 }
 
 @test word_beginning_with_u {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "under"
     assert_success
     assert_output "underay"
 }
 
 @test word_beginning_with_equ {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f pig-latin.awk <<< "equal"
     assert_success
     assert_output "equalay"
