@@ -106,7 +106,6 @@ load bats-extra
 }
 
 @test "Non math question" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "Who is the President of the United States?"
     assert_failure
     assert_output "unknown operation"
