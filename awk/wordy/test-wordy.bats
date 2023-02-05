@@ -136,7 +136,6 @@ load bats-extra
 }
 
 @test "reject two numbers in a row" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 1 plus 2 1?"
     assert_failure
     assert_output "syntax error"

@@ -1,6 +1,7 @@
 BEGIN {
     FPAT = "-?[[:digit:]]+|[[:lower:]]{4,}( by)?"
     Operands = @/plus|minus|multiplied by|divided by/
+    Number = @/-?[[:digit:]]+/
 }
 !/^What is/ {
     die("unknown operation")
@@ -9,6 +10,7 @@ BEGIN {
 #    print $1, $2, $3
     for (i = 2; i <= NF; ++i) {
         operand = $i
+        if (operand ~ Number) die("syntax error")
         if (operand !~ Operands) die("unknown operation")
         if (++i > NF || $i ~ Operands) die("syntax error")
 
@@ -20,7 +22,7 @@ BEGIN {
             default: die("unknown operation")
         }
     }
-    if ($1 !~ /-?[[:digit:]]+/) die("syntax error")
+    if ($1 !~ Number) die("syntax error")
     print $1
 }
 
