@@ -27,14 +27,12 @@ load bats-extra
 }
 
 @test "large addition" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 123 plus 45678?"
     assert_success
     assert_output "45801"
 }
 
 @test "subtraction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 4 minus -12?"
     assert_success
     assert_output "16"
