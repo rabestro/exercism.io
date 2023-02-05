@@ -1,4 +1,9 @@
 BEGIN {
-    print "Implement this solution" > "/dev/stderr"
-    exit 1
+    Command = "tr GCTA CGAU"
+}
+/[^GCTA]/ {
+    print "Invalid nucleotide detected."; exit 1
+}
+{
+    print | Command
 }
