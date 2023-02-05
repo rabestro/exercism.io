@@ -8,7 +8,12 @@ BEGIN {
 #    print $1, $2, $3
     for (i = 2; i <= NF; ++i) {
         operand = $i
-        ++i
+
+        if (operand !~ /plus|minus|multiplied by|divided by/)
+            die("unknown operation")
+
+        if (++i > NF) die("syntax error")
+
         switch (operand) {
             case "plus": $1 += $i; break
             case "minus": $1 -= $i; break
@@ -17,6 +22,7 @@ BEGIN {
             default: die("unknown operation")
         }
     }
+    if ($1 !~ /-?[[:digit:]]+/) die("syntax error")
     print $1
 }
 
