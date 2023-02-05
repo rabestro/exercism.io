@@ -1,15 +1,12 @@
 NR == 1 {
     Dmax = split($0, Denominations)
 }
-$0 < 0 {
-    print "target can't be negative"
-    exit 1
-}
+$0 < 0 {die("target can't be negative")}
 NR == 2 {
-    print getChange($0)
+    print change($0)
 }
 
-function getChange(amount,    i,j,size,key,value,changes,amounts,total,coin) {
+function change(amount,    i,j,size,key,value,changes,amounts,total,coin) {
     size = 1
     amounts[size] = 0
     changes[0] = ""
@@ -29,6 +26,10 @@ function getChange(amount,    i,j,size,key,value,changes,amounts,total,coin) {
             }
         }
     }
-    print "can't make target with given coins"
+    die("can't make target with given coins")
+}
+
+function die(message) {
+    print message > "/dev/stderr"
     exit 1
 }
