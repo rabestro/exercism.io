@@ -1,8 +1,11 @@
 BEGIN {
-    FPAT = "-?[[:digit:]]+|plus|minus|(multiplied|divided) by"
+#    FPAT = "-?[[:digit:]]+|plus|minus|(multiplied|divided) by"
+    FPAT = "-?[[:digit:]]+|[[:lower:]]{4,}( by)?"
 }
+function die(message) {print message > "/dev/stderr"; exit 1}
 
-/What is -?[[:digit:]]+( (plus|minus|multiplied by|divided by) -?[[:digit:]]+)*\?/ {
+/^What is/ {
+#    print $1, $2, $3
     for (i = 2; i <= NF; ++i) {
         operand = $i
         ++i
@@ -11,6 +14,7 @@ BEGIN {
             case "minus": $1 -= $i; break
             case "multiplied by": $1 *= $i; break
             case "divided by": $1 /= $i; break
+            default: die("unknown operation")
         }
     }
     print $1

@@ -57,49 +57,42 @@ load bats-extra
 }
 
 @test "addition and subtraction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 1 plus 5 minus -2?"
     assert_success
     assert_output "8"
 }
 
 @test "multiple subtraction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 20 minus 4 minus 13?"
     assert_success
     assert_output "3"
 }
 
 @test "subtraction then addition" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 17 minus 6 plus 3?"
     assert_success
     assert_output "14"
 }
 
 @test "multiple multiplication" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 2 multiplied by -2 multiplied by 3?"
     assert_success
     assert_output "-12"
 }
 
 @test "addition and multiplication" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is -3 plus 7 multiplied by -2?"
     assert_success
     assert_output "-8"
 }
 
 @test "multiple division" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is -12 divided by 2 divided by -3?"
     assert_success
     assert_output "2"
 }
 
 @test "strict left to right, ignores typical order of operations" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 2 plus 3 multiplied by 4?"
     assert_success
     [[ $output != "14" ]]
@@ -107,7 +100,6 @@ load bats-extra
 }
 
 @test "unknown operation" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 52 cubed?"
     assert_failure
     assert_output "unknown operation"
