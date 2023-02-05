@@ -1,10 +1,19 @@
+#!/usr/bin/gawk --exec
+#
+# Copyright (c) 2023 Jegors Čemisovs
+# License: Apache-2.0 license
+#
+# Correctly determine the fewest number of coins to be given to a customer
+# such that the sum of the coins' value would equal the correct amount of change.
+#
+# The first line of the file is a list where the nominations
+# and all subsequent lines are the amounts to provide change.
+#
 NR == 1 {
-    Dmax = split($0, Denominations)
+    Dmax = split($0, Denominations); next
 }
 $0 < 0 {die("target can't be negative")}
-NR == 2 {
-    print change($0)
-}
+{print change($0)}
 
 function change(amount,    i,j,size,key,value,changes,amounts,total,coin) {
     size = 1
