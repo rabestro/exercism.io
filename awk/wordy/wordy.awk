@@ -6,8 +6,7 @@ BEGIN {
 !/^What is/ {
     die("unknown operation")
 }
-/^What is/ {
-#    print $1, $2, $3
+{
     for (i = 2; i <= NF; ++i) {
         operand = $i
         if (operand ~ Number) die("syntax error")
@@ -19,11 +18,9 @@ BEGIN {
             case "minus": $1 -= $i; break
             case "multiplied by": $1 *= $i; break
             case "divided by": $1 /= $i; break
-            default: die("unknown operation")
         }
     }
-    if ($1 !~ Number) die("syntax error")
-    print $1
+    print $1 ~ Number ? $1 : die("syntax error")
 }
 
 function die(message) {print message > "/dev/stderr"; exit 1}

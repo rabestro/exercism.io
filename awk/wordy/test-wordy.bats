@@ -142,14 +142,12 @@ load bats-extra
 }
 
 @test "reject postfix notation" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 1 2 plus?"
     assert_failure
     assert_output "syntax error"
 }
 
 @test "reject prefix notation" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is plus 1 2?"
     assert_failure
     assert_output "syntax error"
