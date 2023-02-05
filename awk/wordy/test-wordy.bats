@@ -15,14 +15,12 @@ load bats-extra
 }
 
 @test "more addition" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 53 plus 2?"
     assert_success
     assert_output "55"
 }
 
 @test "addition with negative numbers" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is -1 plus -10?"
     assert_success
     assert_output "-11"
