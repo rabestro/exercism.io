@@ -2,6 +2,12 @@
 # - num
 
 BEGIN {
-    print "Implement this solution" > "/dev/stderr"
-    exit 1
+    print num == 0 || isAmstrongNumber(num) ? "true" : "false"
+}
+
+function isAmstrongNumber(number,   digits,power,sum,i) {
+    split(number, digits, "")
+    power = length(number)
+    for (i in digits) sum += digits[i] ^ power
+    return number == sum
 }
