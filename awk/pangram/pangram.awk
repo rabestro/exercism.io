@@ -1,4 +1,10 @@
 BEGIN {
-    print "Implement this solution" > "/dev/stderr"
-    exit 1
+    IGNORECASE = 1
+    Alphabet = "abcdefghijklmnopqrstuvwxyz"
+}
+{
+    print isPangram() ? "true" : "false"
+}
+function isPangram() {
+    return !length(gensub("[ "$0"]", "", "g", Alphabet))
 }
