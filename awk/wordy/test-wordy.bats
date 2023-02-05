@@ -45,7 +45,6 @@ load bats-extra
 }
 
 @test "division" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 33 divided by -3?"
     assert_success
     assert_output "-11"
