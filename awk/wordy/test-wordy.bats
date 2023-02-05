@@ -124,14 +124,12 @@ load bats-extra
 }
 
 @test "reject problem with no operands or operators" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is?"
     assert_failure
     assert_output "syntax error"
 }
 
 @test "reject two operations in a row" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is 1 plus plus 2?"
     assert_failure
     assert_output "syntax error"
