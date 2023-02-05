@@ -1,18 +1,17 @@
 BEGIN {
-    FPAT = "-?[[:digit:]]+"
+    FPAT = "-?[[:digit:]]+|plus|minus|(multiplied|divided) by"
 }
-NF == 1 {
+
+/What is -?[[:digit:]]+( (plus|minus|multiplied by|divided by) -?[[:digit:]]+)*\?/ {
+    for (i = 2; i <= NF; ++i) {
+        operand = $i
+        ++i
+        switch (operand) {
+            case "plus": $1 += $i; break
+            case "minus": $1 -= $i; break
+            case "multiplied by": $1 *= $i; break
+            case "divided by": $1 /= $i; break
+        }
+    }
     print $1
-}
-/What is -?[[:digit:]]+ plus -?[[:digit:]]+/ {
-    print $1 + $2
-}
-/What is -?[[:digit:]]+ minus -?[[:digit:]]+/ {
-    print $1 - $2
-}
-/What is -?[[:digit:]]+ multiplied by -?[[:digit:]]+/ {
-    print $1 * $2
-}
-/What is -?[[:digit:]]+ divided by -?[[:digit:]]+/ {
-    print $1 / $2
 }
