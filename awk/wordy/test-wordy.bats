@@ -39,7 +39,6 @@ load bats-extra
 }
 
 @test "multiplication" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f wordy.awk <<< "What is -3 multiplied by 25?"
     assert_success
     assert_output "-75"
