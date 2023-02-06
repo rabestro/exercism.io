@@ -121,14 +121,13 @@ load bats-extra
 }
 
 @test "numbers below zero are out of range" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f say.awk <<< -1
     assert_failure
     assert_output "input out of range"
 }
 
 @test "numbers above 999,999,999,999 are out of range" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+#    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f say.awk <<< 1000000000000
     assert_failure
     assert_output "input out of range"
