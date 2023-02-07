@@ -34,7 +34,7 @@ EXPECTED
 }
 
 @test "a win is three points, a loss is zero points" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+#    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     # ignore this test in CI
     (( HAS_TTY )) || skip
 
