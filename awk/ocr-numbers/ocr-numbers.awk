@@ -1,7 +1,6 @@
 BEGIN {
     RS = ""
     FS = "\n"
-    ORS = ""
     DigitWidth = 3
     DigitHight = 4
 }
@@ -33,6 +32,10 @@ function digit(row, col,   text) {
         case " _  _| _|": return 3
         case "   |_|  |": return 4
         case " _ |_  _|": return 5
+        case " _ |_ |_|": return 6
+        case " _   |  |": return 7
+        case " _ |_||_|": return 8
+        case " _ |_| _|": return 9
         default: return "?"
     }
 }
