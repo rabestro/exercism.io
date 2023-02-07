@@ -10,7 +10,6 @@ load bats-extra
 }
 
 @test "Recognizes 0" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
  _ 
 | |
@@ -22,7 +21,6 @@ INPUT
 }
 
 @test "Recognizes 1" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
    
   |
@@ -34,7 +32,6 @@ INPUT
 }
 
 @test "Unreadable but correctly sized inputs return ?" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
    
   _
@@ -46,7 +43,6 @@ INPUT
 }
 
 @test "Input with a number of lines that is not a multiple of four raises an error" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
  _ 
 | |
@@ -57,7 +53,6 @@ INPUT
 }
 
 @test "Input with a number of columns that is not a multiple of three raises an error" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
     
    |
@@ -69,7 +64,6 @@ INPUT
 }
 
 @test "Recognizes 110101100" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
        _     _        _  _ 
   |  || |  || |  |  || || |
