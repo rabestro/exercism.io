@@ -75,7 +75,6 @@ INPUT
 }
 
 @test "Garbled numbers in a string are replaced with ?" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
        _     _           _ 
   |  || |  || |     || || |
@@ -109,7 +108,6 @@ INPUT
 }
 
 @test "Recognizes 4" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
    
 |_|
@@ -121,7 +119,6 @@ INPUT
 }
 
 @test "Recognizes 5" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
  _ 
 |_ 
@@ -181,7 +178,6 @@ INPUT
 }
 
 @test "Recognizes string of decimal numbers" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
     _  _     _  _  _  _  _  _ 
   | _| _||_||_ |_   ||_||_|| |
@@ -193,7 +189,6 @@ INPUT
 }
 
 @test "Numbers separated by empty lines are recognized. Lines are joined by commas." {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
     _  _ 
   | _| _|
