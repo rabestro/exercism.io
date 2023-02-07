@@ -16,7 +16,6 @@ WORD_LIST
 }
 
 @test "detects two anagrams" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f anagram.awk -v key=solemn <<WORD_LIST
 lemons
@@ -76,7 +75,6 @@ WORD_LIST
 }
 
 @test "detects multiple anagrams with different case" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f anagram.awk -v key=nose <<WORD_LIST
 Eons
@@ -165,7 +163,6 @@ WORD_LIST
 }
 
 @test "words are not anagrams of themselves" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f anagram.awk -v key=BANANA <<WORD_LIST
 BANANA
@@ -176,7 +173,6 @@ WORD_LIST
 }
 
 @test "words are not anagrams of themselves even if letter case is partially different" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f anagram.awk -v key=BANANA <<WORD_LIST
 Banana
