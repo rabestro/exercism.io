@@ -87,7 +87,6 @@ INPUT
 }
 
 @test "Recognizes 2" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
  _ 
  _|
@@ -99,7 +98,6 @@ INPUT
 }
 
 @test "Recognizes 3" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f ocr-numbers.awk << INPUT
  _ 
  _|

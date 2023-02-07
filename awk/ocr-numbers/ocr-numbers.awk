@@ -17,6 +17,8 @@ function digit(i,   text) {
     switch (text) {
         case " _ | ||_|": return 0
         case "     |  |": return 1
+        case " _  _||_ ": return 2
+        case " _  _| _|": return 3
         default: return "?"
     }
 }
