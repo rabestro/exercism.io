@@ -16,9 +16,10 @@ function die(message) {print message > "/dev/stderr"; exit 1}
 $1 == ":" {
     if ($NF != ";") die("macro not terminated with semicolon")
     if (NF < 4) die("empty macro definition")
-    if ($2 ~ /-?[[:digit:]]+/) die("illegal operation")
+    if ($2 ~ Number) die("illegal operation")
     name = $2
     $1 = $2 = $NF = ""
+    for (i = 3; i < NF; ++i) if ($i in Macro) $i = Macro[$i]
     Macro[name] = $0
     next
 }

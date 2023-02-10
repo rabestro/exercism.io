@@ -279,7 +279,6 @@ END
 }
 
 @test macro_maintain_order {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : countup 1 2 3 ;
 countup
@@ -289,7 +288,6 @@ END
 }
 
 @test macro_can_override_macro {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo dup ;
 : foo dup dup ;
@@ -300,7 +298,6 @@ END
 }
 
 @test macro_can_override_builtin {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : swap dup ;
 1 swap
@@ -310,7 +307,6 @@ END
 }
 
 @test macro_can_override_operator {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : + * ;
 3 4 +
@@ -320,7 +316,6 @@ END
 }
 
 @test macro_expand_in_macro_definition {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo 5 ;
 : bar foo ;
@@ -332,7 +327,6 @@ END
 }
 
 @test macro_empty_definition {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo ;
 END
