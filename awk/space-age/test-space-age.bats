@@ -11,14 +11,12 @@ load bats-extra
 }
 
 @test "age on Mercury" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f space-age.awk <<< "Mercury 2134835688"
     assert_success
     assert_output 280.88
 }
 
 @test "age on Venus" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f space-age.awk <<< "Venus 189839836"
     assert_success
     assert_output 9.78
