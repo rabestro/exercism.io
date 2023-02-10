@@ -369,7 +369,6 @@ END
 }
 
 @test macro_missing_semicolon {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo 1
 foo
@@ -381,7 +380,6 @@ END
 # each file gets it's own forth evaluator: 
 # a stack and macros, and prints the stack at the end of the file
 @test each_file_gets_its_own_forth {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     echo ': + - ;' >  first.txt
     echo '1 1 +'   >> first.txt
     echo '1 1 +'   >  second.txt

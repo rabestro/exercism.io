@@ -1,17 +1,13 @@
 BEGIN {
-    #    RS = " "
     Number = @/-?[[:digit:]]+/
     BiOperator = @/[-+*]|[/]|swap|over/
 }
-#{
-#    print "Record["$0"]"
-#}
+
 BEGINFILE {
     delete Stack
     delete Macro
     Size = 0
 }
-function die(message) {print message > "/dev/stderr"; exit 1}
 
 $1 == ":" {
     if ($NF != ";") die("macro not terminated with semicolon")
@@ -54,7 +50,7 @@ $1 == ":" {
     }
 }
 
-END {
+ENDFILE {
     NF = Size
     while (Size) {
         $Size = Stack[Size]
@@ -62,6 +58,9 @@ END {
     }
     print
 }
+
+function die(message) {print message > "/dev/stderr"; exit 1}
+
 function required(n) {
     if (!Size) print "empty stack"
     else if (n > 1 && Size == 1) print "only one value on the stack"
