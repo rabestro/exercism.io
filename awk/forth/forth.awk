@@ -50,7 +50,7 @@ $1 == ":" {
             if ($i ~ /dup/) {
                 push(a); push(a);
             }
-        }
+        } else die("undefined operation")
     }
 }
 

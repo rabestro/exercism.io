@@ -335,7 +335,6 @@ END
 }
 
 @test macro_expand_in_macro_redefinition {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo 10 ;
 : foo foo 1 + ;
@@ -346,7 +345,6 @@ END
 }
 
 @test macro_cannot_redefine_non_negative_numbers {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : 1 2 ;
 END
@@ -355,7 +353,6 @@ END
 }
 
 @test macro_cannot_redefine_negative_numbers {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : -1 2 ;
 END
@@ -364,7 +361,6 @@ END
 }
 
 @test macro_undefined {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 foo
 END
