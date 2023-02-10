@@ -236,7 +236,6 @@ END
 
 # over
 @test over_1 {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 1 2 over
 END
@@ -433,7 +432,6 @@ END
 }
 
 @test case_macro_definitions {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : SWAP DUP Dup dup ;
 1 swap

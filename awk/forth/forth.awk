@@ -1,5 +1,4 @@
 BEGIN {
-#    IGNORECASE = 1
     Number = @/-?[[:digit:]]+/
     BiOperator = @/[-+*]|[/]|swap|over/
 }
