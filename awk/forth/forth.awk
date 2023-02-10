@@ -1,4 +1,5 @@
 BEGIN {
+#    IGNORECASE = 1
     Number = @/-?[[:digit:]]+/
     BiOperator = @/[-+*]|[/]|swap|over/
 }
@@ -8,7 +9,9 @@ BEGINFILE {
     delete Macro
     Size = 0
 }
-
+{
+    $0 = tolower($0)
+}
 $1 == ":" {
     if ($NF != ";") die("macro not terminated with semicolon")
     if (NF < 4) die("empty macro definition")
@@ -43,7 +46,7 @@ $1 == ":" {
         } else if ($i ~ /dup|drop/) {
             required(1)
             a = pop()
-            if ($i ~ /dup/) {
+            if ($i == "dup") {
                 push(a); push(a);
             }
         } else die("undefined operation")

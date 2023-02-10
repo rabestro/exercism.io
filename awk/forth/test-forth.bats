@@ -392,7 +392,6 @@ END
 
 # case insensitivity
 @test case_dup {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 1 DUP Dup dup
 END
@@ -401,7 +400,6 @@ END
 }
 
 @test case_drop {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 1 2 3 4 DROP DrOp drop
 END
@@ -410,7 +408,6 @@ END
 }
 
 @test case_swap {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 1 2 SWAP 3 Swap 4 swap
 END
@@ -419,7 +416,6 @@ END
 }
 
 @test case_over {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 1 2 OVER Over over
 END
@@ -428,7 +424,6 @@ END
 }
 
 @test case_macro_names {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f forth.awk <<END
 : foo dup ;
 1 FOO Foo foo
