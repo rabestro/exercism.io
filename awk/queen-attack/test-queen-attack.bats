@@ -72,21 +72,18 @@ load bats-extra
 }
 
 @test "can attack on third diagonal" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f queen-attack.awk <<< "2 2 1 1"
     assert_success 
     assert_output "true"
 }
 
 @test "can attack on fourth diagonal" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f queen-attack.awk <<< "1 7 0 6"
     assert_success 
     assert_output "true"
 }
 
 @test "cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f queen-attack.awk <<< "4 1 2 5"
     assert_success 
     assert_output "false"
