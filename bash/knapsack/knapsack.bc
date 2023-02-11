@@ -1,21 +1,29 @@
-define maxim(capacity,start){
+#!/usr/bin/env bc -lq
+#
+# Copyright (c) 2023 Jegors Cemisovs
+# License: Apache-2.0 license
+#
+# Knapsack problem solution
+#
+define max_value(capacity,start){
     auto value, weight, i, max;
+    max = 0;
     for (i = start; i < length(weights); ++i) {
-        weight = capacity - weights[i]
-        if (weight < 0) value = 0 else { value = values[i] + maxim(weight, i + 1) }
-        if (value > max) { max = value }
+        weight = capacity - weights[i];
+        if (weight < 0) value = 0 else value = values[i] + max_value(weight, i + 1);
+        if (value > max) max = value;
     }
-    return max
+    return max;
 }
 
-capacity = read()
+capacity = read();
+items = read();
+#print "-->", capacity, "--", items
 
-while(1) {
-    weight = read()
-    if (!weight) break
-    weights[i] = weight
-    values[i] = read()
-    ++i
+while(items--) {
+    weights[items] = read();
+    values[items] = read();
+    # print items, " -> ", weights[items], " ", values[items], "<--"
 }
 
-print maxim(capacity, 0)
+max_value(capacity, 0);
