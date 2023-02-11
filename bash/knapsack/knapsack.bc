@@ -1,14 +1,11 @@
 #!/usr/bin/env bc -lq
 #
-# Copyright (c) 2023 Jegors Cemisovs
-# License: Apache-2.0 license
-#
 # Knapsack problem solution
 #
 define max_value(capacity,start){
     auto value, weight, i, max;
     max = 0;
-    for (i = start; i < length(weights); ++i) {
+    for (i = start; i < items; ++i) {
         weight = capacity - weights[i];
         if (weight < 0) value = 0 else value = values[i] + max_value(weight, i + 1);
         if (value > max) max = value;
@@ -16,14 +13,12 @@ define max_value(capacity,start){
     return max;
 }
 
-capacity = read();
-items = read();
-#print "-->", capacity, "--", items
+capacity = read()
+i = items = read()
 
-while(items--) {
-    weights[items] = read();
-    values[items] = read();
-    # print items, " -> ", weights[items], " ", values[items], "<--"
+while(i--) {
+    weights[i] = read()
+    values[i] = read()
 }
 
-max_value(capacity, 0);
+max_value(capacity, 0)
