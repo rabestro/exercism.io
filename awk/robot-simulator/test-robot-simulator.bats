@@ -159,14 +159,12 @@ teardown() {
 # error conditions
 
 @test "invalid direction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f robot-simulator.awk -v dir=foo /dev/null
     assert_failure
     assert_output "invalid direction"
 }
 
 @test "invalid instructions" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     write_instructions L R A X
     run gawk -f robot-simulator.awk instructions.txt
     assert_failure
