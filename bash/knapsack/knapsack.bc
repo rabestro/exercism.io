@@ -1,0 +1,21 @@
+define maxim(capacity,start){
+    auto value, weight, i, max;
+    for (i = start; i < length(weights); ++i) {
+        weight = capacity - weights[i]
+        if (weight < 0) value = 0 else { value = values[i] + maxim(weight, i + 1) }
+        if (value > max) { max = value }
+    }
+    return max
+}
+
+capacity = read()
+
+while(1) {
+    weight = read()
+    if (!weight) break
+    weights[i] = weight
+    values[i] = read()
+    ++i
+}
+
+print maxim(capacity, 0)
