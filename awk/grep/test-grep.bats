@@ -53,7 +53,6 @@ teardown() {
 }
 
 @test "One file, one match, print line numbers flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n" -v pattern="Forbidden" paradise-lost.txt
 
@@ -62,7 +61,6 @@ teardown() {
 }
 
 @test "One file, one match, case-insensitive flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="i" -v pattern="FORBIDDEN" paradise-lost.txt
 
@@ -71,7 +69,6 @@ teardown() {
 }
 
 @test "One file, one match, print file names flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="l" -v pattern="Forbidden" paradise-lost.txt
 
@@ -80,7 +77,6 @@ teardown() {
 }
 
 @test "One file, one match, match entire lines flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v pattern="With loss of Eden, till one greater Man" paradise-lost.txt
 
@@ -89,7 +85,6 @@ teardown() {
 }
 
 @test "One file, one match, multiple flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n i x" -v pattern="OF ATREUS, Agamemnon, KIng of MEN." iliad.txt
 
@@ -98,7 +93,6 @@ teardown() {
 }
 
 @test "One file, several matches, no flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v pattern="may" midsummer-night.txt
 
@@ -110,7 +104,6 @@ teardown() {
 }
 
 @test "One file, several matches, print line numbers flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n" -v pattern="may" midsummer-night.txt
 
@@ -122,7 +115,6 @@ teardown() {
 }
 
 @test "One file, several matches, match entire lines flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="x" -v pattern="may" midsummer-night.txt
 
@@ -131,7 +123,6 @@ teardown() {
 }
 
 @test "One file, several matches, case-insensitive flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="i" -v pattern="ACHILLES" iliad.txt
 
@@ -142,7 +133,6 @@ teardown() {
 }
 
 @test "One file, several matches, inverted flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="v" -v pattern="Of" paradise-lost.txt
 
@@ -156,7 +146,6 @@ teardown() {
 }
 
 @test "One file, no matches, various flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n l x i" -v pattern="Gandalf" iliad.txt
 
@@ -165,7 +154,6 @@ teardown() {
 }
 
 @test "One file, one match, file flag takes precedence over line flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n l" -v pattern="ten" iliad.txt
 
@@ -174,7 +162,6 @@ teardown() {
 }
 
 @test "One file, several matches, inverted and match entire lines flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="x v" -v pattern="Illustrious into Ades premature," iliad.txt
 
@@ -193,7 +180,6 @@ teardown() {
 # Multiple files
 
 @test "Multiple files, one match, no flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v pattern="Agamemnon" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -202,7 +188,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, no flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v pattern="may" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -214,7 +199,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, print line numbers flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n" -v pattern="that" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -227,7 +211,6 @@ teardown() {
 }
 
 @test "Multiple files, one match, print file names flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="l" -v pattern="who" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -238,7 +221,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, case-insensitive flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="i" -v pattern="TO" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -257,7 +239,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, inverted flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="v" -v pattern="a" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -269,7 +250,6 @@ teardown() {
 }
 
 @test "Multiple files, one match, match entire lines flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="x" -v pattern="But I beseech your grace that I may know" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -278,7 +258,6 @@ teardown() {
 }
 
 @test "Multiple files, one match, multiple flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n i x" -v pattern="WITH LOSS OF EDEN, TILL ONE GREATER MAN" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -287,7 +266,6 @@ teardown() {
 }
 
 @test "Multiple files, no matches, various flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n l i x" -v pattern="Frodo" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -296,7 +274,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, file flag takes precedence over line number flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="n l" -v pattern="who" iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -307,7 +284,6 @@ teardown() {
 }
 
 @test "Multiple files, several matches, inverted and match entire lines flags" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="x v" -v pattern="Illustrious into Ades premature," iliad.txt midsummer-night.txt paradise-lost.txt
 
@@ -341,7 +317,6 @@ teardown() {
 # awk-specific tests: actual regular expressions
 
 @test "regular expression" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="i n" -v pattern="i.*d." midsummer-night.txt
 
@@ -356,7 +331,6 @@ teardown() {
 
 # awk-specific tests: actual regular expressions
 @test "same regular expression with -x flag" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grep.awk -v flags="i n x" -v pattern="i.*d." midsummer-night.txt
 
