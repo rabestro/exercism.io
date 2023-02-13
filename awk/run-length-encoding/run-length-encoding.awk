@@ -5,29 +5,21 @@ BEGIN {
     FPAT = "[[:digit:]]+|."
 }
 {
-    print @type()
-    #    print NF
+    @type()
 }
 function encode(   i,previous,count,out) {
-    for (i = 1; i <= NF; ++i) {
-        if (previous == $i) {
-            ++count
-            continue
+    for (i = 0; i++ <= NF; ++count)
+        if (previous != $i) {
+            out = out (count > 1 ? count : "") previous
+            previous = $i
+            count = 0
         }
-        out = out (count > 1 ? count : "") previous
-        previous = $i
-        count = 1
-    }
-    out = out (count > 1 ? count : "") previous
-    return out
+    print out
 }
 
 function decode(   out,i,n) {
-    for (i = 1; i <= NF; ++i) {
-        if ($i ~ /[[:digit:]]+/) {
-            n = $(i++)
-        } else n = 1
-        while (n-- > 0) out = out $i
-    }
-    return out
+    for (i = 1; i <= NF; ++i)
+        for (n = +$i ? $(i++) : 1; n > 0; --n)
+            out = out $i
+    print out
 }
