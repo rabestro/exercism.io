@@ -34,7 +34,6 @@ END_INPUT
 
 
 @test "Student not added to same grade in the roster more than once" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Blair,2
@@ -48,7 +47,6 @@ END_INPUT
 }
 
 @test "Students in multiple grades are added to the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Chelsea,3
@@ -60,7 +58,6 @@ END_INPUT
 }
 
 @test "Student not added to multiple grades in the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Blair,2
@@ -74,7 +71,6 @@ END_INPUT
 }
 
 @test "Students are sorted by grades in the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Jim,3
@@ -87,7 +83,6 @@ END_INPUT
 }
 
 @test "Students are sorted by name in the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Peter,2
@@ -100,7 +95,6 @@ END_INPUT
 }
 
 @test "Students are sorted by grades and then by name in the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=roster << END_INPUT
 Peter,2
