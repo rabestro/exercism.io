@@ -10,12 +10,16 @@ BEGIN {
     if (!Students[$1]) Students[$1] = $2
 }
 END {
-    @action()
-}
-
-function roster(   student) {
     NF = 0
-    for (student in Students) $(++NF) = student
+    switch (action) {
+        case "roster":
+            for (student in Students) $(++NF) = student
+            break
+        case "grade":
+            for (student in Students)
+                if (Students[student] == grade)
+                    $(++NF) = student
+    }
     print
 }
 

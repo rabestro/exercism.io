@@ -111,7 +111,6 @@ END_INPUT
 }
 
 @test "Grade is empty if no students in the roster" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=1 < /dev/null
 
