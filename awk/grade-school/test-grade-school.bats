@@ -119,7 +119,6 @@ END_INPUT
 }
 
 @test "Grade is empty if no students in that grade" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=1 << END_INPUT
 Peter,2
@@ -133,7 +132,6 @@ END_INPUT
 }
 
 @test "Student not added to same grade more than once" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=2 << END_INPUT
 Blair,2
@@ -147,7 +145,6 @@ END_INPUT
 }
 
 @test "Student not added to multiple grades" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=2 << END_INPUT
 Blair,2
@@ -161,7 +158,6 @@ END_INPUT
 }
 
 @test "Student not added to other grade for multiple grades" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=3 << END_INPUT
 Blair,2
@@ -175,7 +171,6 @@ END_INPUT
 }
 
 @test "Students are sorted by name in a grade" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run gawk -f grade-school.awk -v action=grade -v grade=5 << END_INPUT
 Franklin,5

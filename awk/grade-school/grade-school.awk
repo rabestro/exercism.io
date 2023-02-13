@@ -7,19 +7,13 @@ BEGIN {
     PROCINFO["sorted_in"] = "compare_students"
 }
 {
-    if (!Students[$1]) Students[$1] = $2
+    if (!Grades[$1]) Grades[$1] = $2
 }
 END {
     NF = 0
-    switch (action) {
-        case "roster":
-            for (student in Students) $(++NF) = student
-            break
-        case "grade":
-            for (student in Students)
-                if (Students[student] == grade)
-                    $(++NF) = student
-    }
+    for (student in Grades)
+        if (action == "roster" || Grades[student] == grade)
+            $(++NF) = student
     print
 }
 
