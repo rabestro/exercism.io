@@ -37,7 +37,6 @@ function foldr (list, funcname, initial,   i) {
 }
 
 # the list reversed
-function reverse (list, result) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function reverse (list, result,   i,size) {
+    for (i = length(list); i > 0; --i) result[++size] = list[i]
 }

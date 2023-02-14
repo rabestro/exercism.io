@@ -47,7 +47,6 @@ load bats-extra
 }
 
 @test "append empty list to list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -481,7 +480,6 @@ load bats-extra
 ## reverse the elements of the list
 
 @test "reverse empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -501,7 +499,6 @@ load bats-extra
 }
 
 @test "reverse non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
