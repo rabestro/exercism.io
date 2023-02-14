@@ -9,7 +9,6 @@ load bats-extra
 }
 
 @test "Degenerate case with no row containing 3 distinct groups of spaces" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f diamond.awk <<< B
     assert_success
     assert_line --index 0 -- " A "
@@ -19,7 +18,6 @@ load bats-extra
 }
 
 @test "Smallest non-degenerate case with odd diamond side length" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f diamond.awk <<< C
     assert_success
     assert_line --index 0 -- "  A  "
@@ -31,7 +29,6 @@ load bats-extra
 }
 
 @test "Smallest non-degenerate case with even diamond side length" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f diamond.awk <<< D
     assert_success
     assert_line --index 0 -- "   A   "
@@ -45,7 +42,6 @@ load bats-extra
 }
 
 @test "Largest possible diamond" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f diamond.awk <<< Z
     assert_success
     assert_line --index  0 -- "                         A                         "
@@ -101,4 +97,3 @@ load bats-extra
     assert_line --index 50 -- "                         A                         "
     assert_equal "${#lines[@]}" 51
 }
-
