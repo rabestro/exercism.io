@@ -24,7 +24,6 @@ load bats-extra
 }
 
 @test "append list to empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -72,7 +71,6 @@ load bats-extra
 }
 
 @test "append non-empty lists" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -117,7 +115,6 @@ load bats-extra
 }
 
 @test "append scalar value to non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"

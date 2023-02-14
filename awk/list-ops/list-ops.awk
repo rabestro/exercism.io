@@ -2,9 +2,12 @@
 
 # Append to a list all the elements of another list.
 # Or append to a list a single new element
-function append(list, item_or_list) {
-#    print awk::typeof(item_or_list)
-    for (i in item_or_list) list[i] = item_or_list[i]
+function append(list, item_or_list,   size,i) {
+
+    size = length(list)
+    if (awk::typeof(item_or_list) == "array")
+        for (i in item_or_list) list[++size] = item_or_list[i]
+    else list[++size] = item_or_list
 }
 
 # Concatenate is flattening a list of lists one level
