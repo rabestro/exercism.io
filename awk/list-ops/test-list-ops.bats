@@ -96,7 +96,6 @@ load bats-extra
 }
 
 @test "append scalar value to empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -191,7 +190,6 @@ load bats-extra
 ## filter list returning only values that satisfy the filter function
 
 @test "filter empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -214,7 +212,6 @@ load bats-extra
 }
 
 @test "filter non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"

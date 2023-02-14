@@ -10,14 +10,13 @@ function append(list, item_or_list,   size,i) {
 }
 
 # Concatenate is flattening a list of lists one level
-function concat(list, result,   a,b,i) {
-    for (a in list) for (b in list[a]) result[++i] = list[a][b]
+function concat(list, result,   a,b,size) {
+    for (a in list) for (b in list[a]) result[++size] = list[a][b]
 }
 
 # Only the list elements that pass the given function.
-function filter(list, funcname, result) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function filter(list, funcname, result,   i,size) {
+    for (i in list) if (@funcname(list[i])) result[++size] = list[i]
 }
 
 # Transform the list elements, using the given function, into a new list.
