@@ -138,7 +138,6 @@ load bats-extra
 ## concatenate a list of lists
 
 @test "concatenate an empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -158,7 +157,6 @@ load bats-extra
 }
 
 @test "concatenate a list of lists" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"

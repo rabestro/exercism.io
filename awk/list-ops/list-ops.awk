@@ -3,7 +3,6 @@
 # Append to a list all the elements of another list.
 # Or append to a list a single new element
 function append(list, item_or_list,   size,i) {
-
     size = length(list)
     if (awk::typeof(item_or_list) == "array")
         for (i in item_or_list) list[++size] = item_or_list[i]
@@ -11,9 +10,8 @@ function append(list, item_or_list,   size,i) {
 }
 
 # Concatenate is flattening a list of lists one level
-function concat(list, result) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function concat(list, result,   a,b,i) {
+    for (a in list) for (b in list[a]) result[++i] = list[a][b]
 }
 
 # Only the list elements that pass the given function.
