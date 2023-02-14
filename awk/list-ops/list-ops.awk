@@ -20,21 +20,20 @@ function filter(list, funcname, result,   i,size) {
 }
 
 # Transform the list elements, using the given function, into a new list.
-function map(list, funcname, result) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function map(list, funcname, result,   i,size) {
+    for (i in list) result[++size] = @funcname(list[i])
 }
 
 # Left-fold the list using the function and the initial value.
-function foldl(list, funcname, initial) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function foldl(list, funcname, initial,   i) {
+    for (i in list) initial = @funcname(initial, list[i])
+    return initial
 }
 
 # Right-fold the list using the function and the initial value.
-function foldr (list, funcname, initial) {
-    print "Implement me" > "/dev/stderr"
-    exit 1
+function foldr (list, funcname, initial,   i) {
+    for (i = length(list); i > 0; --i) initial = @funcname(list[i], initial)
+    return initial
 }
 
 # the list reversed

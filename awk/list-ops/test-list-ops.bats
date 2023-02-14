@@ -244,7 +244,6 @@ load bats-extra
 ## transformed by the mapping function
 
 @test "map empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -268,7 +267,6 @@ load bats-extra
 }
 
 @test "map non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -298,7 +296,6 @@ load bats-extra
 ## folds (reduces) the given list from the left with a function
 
 @test "foldl empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -321,7 +318,6 @@ load bats-extra
 }
 
 @test "foldl direction independent function applied to non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -344,7 +340,6 @@ load bats-extra
 }
 
 @test "foldl direction dependent function applied to non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -369,7 +364,6 @@ load bats-extra
 
 # track-specific test
 @test "foldl not just numbers" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -395,7 +389,6 @@ load bats-extra
 # Note the order of the arguments to the given functions!
 
 @test "foldr empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -418,7 +411,6 @@ load bats-extra
 }
 
 @test "foldr direction independent function applied to non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -441,7 +433,6 @@ load bats-extra
 }
 
 @test "foldr direction dependent function applied to non-empty list" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
@@ -466,7 +457,6 @@ load bats-extra
 
 # track-specific test
 @test "foldr not just numbers" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk '
         @include "array-utils.awk"
         @include "list-ops.awk"
