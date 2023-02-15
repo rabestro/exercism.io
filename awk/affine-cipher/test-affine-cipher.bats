@@ -11,21 +11,18 @@ load bats-extra
 }
 
 @test "encode no" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|15|18|no"
     assert_success
     assert_output "fu"
 }
 
 @test "encode OMG" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|21|3|OMG"
     assert_success
     assert_output "lvz"
 }
 
 @test "encode O M G" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|25|47|O M G"
     assert_success
     assert_output "hjp"
@@ -39,28 +36,24 @@ load bats-extra
 }
 
 @test "encode numbers" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|3|4|Testing,1 2 3, testing."
     assert_success
     assert_output "jqgjc rw123 jqgjc rw"
 }
 
 @test "encode deep thought" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|5|17|Truth is fiction."
     assert_success
     assert_output "iynia fdqfb ifje"
 }
 
 @test "encode all the letters" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|17|33|The quick brown fox jumps over the lazy dog."
     assert_success
     assert_output "swxtj npvyk lruol iejdc blaxk swxmh qzglf"
 }
 
 @test "encode with a not coprime to m" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|6|17|This is a test."
     assert_failure
     assert_output --partial "a and m must be coprime."

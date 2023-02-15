@@ -3,14 +3,15 @@ BEGIN {
     Alphabet = "abcdefghijklmnopqrstuvwxyz"
     M = length(Alphabet)
 }
-{
-    a = $2
-    b = $3
-    print M
-}
-
-function encode() {
-
+$1 == "encode" {
+#    phrase = $4
+    for (i = 1; i <= length($4); ++i) {
+        symbol = substr($4, i, 1)
+        if (symbol !~ /[[:alnum:]]/) continue
+        if (out && (1 + length(out)) % 6 == 0) out = out " "
+        out = out E(symbol)
+    }
+    print out
 }
 
 function E(x,   i,e) {
