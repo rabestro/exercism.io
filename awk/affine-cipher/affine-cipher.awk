@@ -4,7 +4,6 @@ BEGIN {
     M = length(Alphabet)
 }
 $1 == "encode" {
-#    phrase = $4
     for (i = 1; i <= length($4); ++i) {
         symbol = substr($4, i, 1)
         if (symbol !~ /[[:alnum:]]/) continue
@@ -14,6 +13,9 @@ $1 == "encode" {
     print out
 }
 
+function coprime(a, b) {
+    
+}
 function E(x,   i,e) {
     if (x ~ /[[:digit:]]/) return x
     i = index(Alphabet, tolower(x)) - 1
