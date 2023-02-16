@@ -34,7 +34,6 @@ load bats-extra
 }
 
 @test 'full time with day roll-over' {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run gawk -f gigasecond.awk <<< '2015-01-24T23:59:59'
 
   assert_success

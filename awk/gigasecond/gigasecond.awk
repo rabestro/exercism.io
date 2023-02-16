@@ -1,10 +1,11 @@
 BEGIN {
     GigaSecond = 1e9
+    FS = "[-T:]"
+}
+NF == 3 {
+    $4 = $5 = $6 = "00"
 }
 {
-    gsub(/[-T:]/, " ")
-}
-{
-    time = mktime($0" 01 00 00") + GigaSecond
-    print strftime("%FT%T", time)
+    epoch = mktime($1" "$2" "$3" "$4" "$5" "$6, 1)
+    print strftime("%FT%T", epoch + GigaSecond, 1)
 }
