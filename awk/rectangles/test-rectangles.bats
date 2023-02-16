@@ -74,7 +74,6 @@ INPUT
 }
 
 @test "1x1 square is counted" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 ++
 ++
@@ -96,7 +95,6 @@ INPUT
 }
 
 @test "rectangles can be of different sizes" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +------+----+
 |      |    |
@@ -109,7 +107,6 @@ INPUT
 }
 
 @test "corner is required for a rectangle to be complete" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +------+----+
 |      |    |
@@ -122,7 +119,6 @@ INPUT
 }
 
 @test "large input with many rectangles" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +---+--+----+
 |   +--+----+
@@ -138,7 +134,6 @@ INPUT
 }
 
 @test "nested rectangles" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +-----------+
 |           |
@@ -151,7 +146,6 @@ INPUT
 }
 
 @test "side by side rectangles" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +------+ +--+
 |      | |  |
@@ -164,7 +158,6 @@ INPUT
 }
 
 @test "rectangles must have four sides" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +-+ +-+
 | | | |

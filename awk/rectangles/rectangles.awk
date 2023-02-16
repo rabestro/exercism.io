@@ -11,8 +11,8 @@ END {
 
     for (row in Board) {
         Width = length(Board[row])
-        for (col = 1; col <= Width; ++col) {
-            total += cornerA(row, col)
+        for (i = 1; i <= Width; ++i) {
+            total += cornerA(row, i)
         }
     }
     print +total
@@ -34,8 +34,14 @@ function cornerB(rowA, colA, colB,   rowC,total) {
     return +total
 }
 
-function cornerC(rowA, colA, colB, rowC) {
+function cornerC(rowA, colA, colB, rowC,   i) {
     if (!isCross(rowC, colA)) return 0
+    for (i = colB - 1; i > colA; --i) {
+        if (!isHorizontalLine(rowC, i)) return 0
+    }
+    for (i = rowC - 1; i > rowA; --i) {
+        if (!isVerticalLine(i, colA)) return 0
+    }
     return 1
 }
 
