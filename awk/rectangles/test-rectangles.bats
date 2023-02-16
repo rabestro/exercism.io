@@ -21,7 +21,6 @@ load bats-extra
 }
 
 @test "one rectangle" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +-+
 | |
@@ -32,7 +31,6 @@ INPUT
 }
 
 @test "two rectangles without shared parts" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
   +-+
   | |
@@ -45,7 +43,6 @@ INPUT
 }
 
 @test "five rectangles with shared parts" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
   +-+
   | |
@@ -58,7 +55,6 @@ INPUT
 }
 
 @test "rectangle of height 1 is counted" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 +--+
 +--+
@@ -68,7 +64,6 @@ INPUT
 }
 
 @test "rectangle of width 1 is counted" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
 ++
 ||
@@ -89,7 +84,6 @@ INPUT
 }
 
 @test "only complete rectangles are counted" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f rectangles.awk <<INPUT
   +-+
     |
