@@ -21,56 +21,48 @@ load bats-extra
 }
 
 @test "encode largest single byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "7F"
     assert_success
     assert_output "7F"
 }
 
 @test "encode smallest double byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "80"
     assert_success
     assert_output "81 00"
 }
 
 @test "encode arbitrary double byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "2000"
     assert_success
     assert_output "C0 00"
 }
 
 @test "encode largest double byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "3FFF"
     assert_success
     assert_output "FF 7F"
 }
 
 @test "encode smallest triple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "4000"
     assert_success
     assert_output "81 80 00"
 }
 
 @test "encode arbitrary triple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "100000"
     assert_success
     assert_output "C0 80 00"
 }
 
 @test "encode largest triple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "1FFFFF"
     assert_success
     assert_output "FF FF 7F"
 }
 
 @test "encode smallest quadruple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "200000"
     assert_success
     assert_output "81 80 80 00"
@@ -91,21 +83,18 @@ load bats-extra
 }
 
 @test "encode smallest quintuple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "10000000"
     assert_success
     assert_output "81 80 80 80 00"
 }
 
 @test "encode arbitrary quintuple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "FF000000"
     assert_success
     assert_output "8F F8 80 80 00"
 }
 
 @test "encode maximum 32-bit integer input" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "FFFFFFFF"
     assert_success
     assert_output "8F FF FF FF 7F"
