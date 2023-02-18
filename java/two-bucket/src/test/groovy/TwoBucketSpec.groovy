@@ -1,3 +1,4 @@
+import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -17,14 +18,16 @@ class TwoBucketSpec extends Specification {
         where:
         capOne | capTwo | goal | startBucket || expectMoves | expectFinal | expectOther
         3      | 5      | 1    | 'one'       || 4           | 'one'       | 5
-        3      | 5      | 1    | 'two'       || 8           | 'two'       | 3
-        7      | 11     | 2    | 'one'       || 14          | 'one'       | 11
-        7      | 11     | 2    | 'two'       || 18          | 'two'       | 7
-        1      | 3      | 3    | 'two'       || 1           | 'two'       | 0
-        2      | 3      | 3    | 'one'       || 2           | 'two'       | 2
-        6      | 15     | 9    | 'one'       || 10          | 'two'       | 0
+// Uncomment to run test
+//        3      | 5      | 1    | 'two'       || 8           | 'two'       | 3
+//        7      | 11     | 2    | 'one'       || 14          | 'one'       | 11
+//        7      | 11     | 2    | 'two'       || 18          | 'two'       | 7
+//        1      | 3      | 3    | 'two'       || 1           | 'two'       | 0
+//        2      | 3      | 3    | 'one'       || 2           | 'two'       | 2
+//        6      | 15     | 9    | 'one'       || 10          | 'two'       | 0
     }
 
+    @Ignore("Remove to run test")
     @Unroll('#comment')
     def 'attempt to measure when the goal is unreachable'() {
         when:
