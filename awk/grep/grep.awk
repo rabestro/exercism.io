@@ -3,17 +3,21 @@
 # - pattern
 
 BEGIN {
-    IGNORECASE = flags ~ "i"
-    if (flags ~ "x") pattern = "^"pattern"$"
+    IGNORECASE = flags ~ /i/
+    if (flags ~ /x/) pattern = "^"pattern"$"
 }
-($0 ~ pattern) != (flags ~ "v") {
+
+($0 ~ pattern) != (flags ~ /v/) {
     Success = 1
-    if (flags ~ "l") {
+    if (flags ~ /l/) {
         print FILENAME
         nextfile
     }
-    print flags ~ "n" ? NR":"$0 : $0
+    if (ARGC > 2) printf "%s:", FILENAME
+    if (flags ~ /n/) printf "%s:", FNR
+    print
 }
+
 END {
     if (!Success) exit 1
 }
