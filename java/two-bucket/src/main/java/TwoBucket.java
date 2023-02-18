@@ -2,67 +2,63 @@ import java.util.HashSet;
 import java.util.Set;
 
 class TwoBucket {
-    Bucket source;
-    Bucket target;
-    int goal;
-    int step;
-    Set<String> history = new HashSet<>();
+    private static final String[] NAMES = {"one", "two"};
+    private final Set<String> history = new HashSet<>();
+    private final int[] cap;
+    private final int[] volume = {0, 0};
+    private final int source;
+    private final int target;
+    private final int goal;
+
+    private int step;
 
     TwoBucket(int bucketOneCap, int bucketTwoCap, int desiredLiters, String startBucket) {
-        Bucket.one.cap = bucketOneCap;
-        Bucket.two.cap = bucketTwoCap;
-        Bucket.one.volume = Bucket.two.volume = 0;
+        cap = new int[]{bucketOneCap, bucketTwoCap};
+        source = NAMES[0].equals(startBucket) ? 0 : 1;
+        target = 1 - source;
         goal = desiredLiters;
-
-        if (startBucket.equals(Bucket.one.name())) {
-            source = Bucket.one;
-            target = Bucket.two;
-        } else {
-            source = Bucket.two;
-            target = Bucket.one;
-        }
     }
 
     int getTotalMoves() {
         do {
             processStep();
             recordStep();
-        } while (!isGoalArchived());
+        } while (!isGoalAchieved());
         return step;
     }
 
     private void processStep() {
-        if (source.isEmpty()) {
-            source.fill();
-        } else if (target.cap == goal) {
-            target.fill();
-        } else if (target.isFull()) {
-            target.empty();
+        if (volume[source] == 0) {
+            volume[source] = cap[source];
+        } else if (cap[target] == goal) {
+            volume[target] = cap[target];
+        } else if (volume[target] == cap[target]) {
+            volume[target] = 0;
         } else {
-            int pouring = Math.min(source.volume, target.cap - target.volume);
-            source.volume -= pouring;
-            target.volume += pouring;
+            int pouring = Math.min(volume[source], cap[target] - volume[target]);
+            volume[source] -= pouring;
+            volume[target] += pouring;
         }
     }
 
     private void recordStep() {
-        var state = source.volume + "," + target.volume;
+        var state = volume[source] + "," + volume[target];
         if (history.contains(state)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("the goal is not reachable");
         }
         history.add(state);
         ++step;
     }
 
-    private boolean isGoalArchived() {
-        return source.volume == goal || target.volume == goal;
+    private boolean isGoalAchieved() {
+        return volume[source] == goal || volume[target] == goal;
     }
 
     String getFinalBucket() {
-        return source.volume == goal ? source.name() : target.name();
+        return NAMES[volume[source] == goal ? source : target];
     }
 
     int getOtherBucket() {
-        return source.volume == goal ? target.volume : source.volume;
+        return volume[volume[source] == goal ? target : source];
     }
 }

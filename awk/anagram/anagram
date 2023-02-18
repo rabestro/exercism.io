@@ -1,0 +1,1 @@
+awk -f anagram.awk -v key=$1 < alpha.txt

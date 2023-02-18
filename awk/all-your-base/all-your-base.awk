@@ -8,13 +8,17 @@ BEGIN {
 }
 {
     for (i = 1; i <= NF; ++i)
-        if ($i >=0 && $i < ibase) number += $i * ibase ^ (NF - i)
+        if ($i >=0 && $i < ibase)
+            number += $i * ibase ^ (NF - i)
         else die("invalid digit")
 
     for (NF = 0; number; number = int(number / obase))
         digit[NF++] = number % obase
 
-    for (i = NF; i > 0; --i) $i = digit[NF - i]
-} 1
+    for (i = NF; i > 0; --i)
+        $i = digit[NF - i]
+
+    print
+}
 
 function die(message) {print message > "/dev/stderr"; exit 1}
