@@ -38,5 +38,4 @@ class TwoBucketSpec extends Specification {
         6      | 15     | 5    | 'one'       || 'not possible to reach the goal'
         5      | 7      | 8    | 'one'       || 'goal larger than both buckets is impossible'
     }
-
 }
