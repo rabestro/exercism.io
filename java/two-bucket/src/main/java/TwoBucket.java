@@ -10,21 +10,33 @@ class TwoBucket {
     private final int target;
     private final int goal;
 
-    private int step;
+    private int moves;
 
     TwoBucket(int bucketOneCap, int bucketTwoCap, int desiredLiters, String startBucket) {
         cap = new int[]{bucketOneCap, bucketTwoCap};
         source = NAMES[0].equals(startBucket) ? 0 : 1;
         target = 1 - source;
         goal = desiredLiters;
+        calculateMoves();
     }
 
     int getTotalMoves() {
+        return moves;
+    }
+
+    String getFinalBucket() {
+        return NAMES[volume[source] == goal ? source : target];
+    }
+
+    int getOtherBucket() {
+        return volume[volume[source] == goal ? target : source];
+    }
+
+    private void calculateMoves() {
         do {
             processStep();
             recordStep();
         } while (!isGoalAchieved());
-        return step;
     }
 
     private void processStep() {
@@ -47,18 +59,10 @@ class TwoBucket {
             throw new IllegalArgumentException("the goal is not reachable");
         }
         history.add(state);
-        ++step;
+        ++moves;
     }
 
     private boolean isGoalAchieved() {
         return volume[source] == goal || volume[target] == goal;
-    }
-
-    String getFinalBucket() {
-        return NAMES[volume[source] == goal ? source : target];
-    }
-
-    int getOtherBucket() {
-        return volume[volume[source] == goal ? target : source];
     }
 }
