@@ -69,14 +69,12 @@ load bats-extra
 }
 
 @test "encode arbitrary quadruple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "8000000"
     assert_success
     assert_output "C0 80 80 00"
 }
 
 @test "encode largest quadruple byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=encode <<< "FFFFFFF"
     assert_success
     assert_output "FF FF FF 7F"
