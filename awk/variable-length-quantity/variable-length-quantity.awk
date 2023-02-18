@@ -15,11 +15,11 @@ action == "encode" {
 
 action == "decode" {
     for (i = 1; i <= NF; ++i) {
-        hex = strtonum("0x"$i)
-        if (hex >= MSB) {
-            number = number * MSB + hex - MSB
+        dec = strtonum("0x"$i)
+        if (dec >= MSB) {
+            number = number * MSB + dec - MSB
         } else {
-            $(++k) = sprintf("%02X", number * MSB + hex)
+            $(++k) = dec2hex(number * MSB + dec)
             number = 0
         }
     }
