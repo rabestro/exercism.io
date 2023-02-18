@@ -121,42 +121,36 @@ load bats-extra
 # Decode a series of bytes, producing a series of integers.
 
 @test "decode one byte" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "7F"
     assert_success
     assert_output "7F"
 }
 
 @test "decode two bytes" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "C0 00"
     assert_success
     assert_output "2000"
 }
 
 @test "decode three bytes" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "FF FF 7F"
     assert_success
     assert_output "1FFFFF"
 }
 
 @test "decode four bytes" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "81 80 80 00"
     assert_success
     assert_output "200000"
 }
 
 @test "decode maximum 32-bit integer" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "8F FF FF FF 7F"
     assert_success
     assert_output "FFFFFFFF"
 }
 
 @test "decode multiple values" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "C0 00 C8 E8 56 FF FF FF 7F 00 FF 7F 81 80 00"
     assert_success
     assert_output "2000 123456 FFFFFFF 00 3FFF 4000"
@@ -165,21 +159,18 @@ load bats-extra
 # Some error conditions
 
 @test "decode incomplete sequence causes error" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "FF"
     assert_failure
     assert_output --partial "incomplete byte sequence"
 }
 
 @test "decode incomplete sequence causes error, even if value is zero" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=decode <<< "80"
     assert_failure
     assert_output --partial "incomplete byte sequence"
 }
 
 @test "invalid subcommand" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f variable-length-quantity.awk -v action=hello <<< "80"
     assert_failure
     assert_output --partial "unknown action"

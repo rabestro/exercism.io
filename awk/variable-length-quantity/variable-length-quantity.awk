@@ -1,13 +1,23 @@
 # These variables are initialized on the command line (using '-v'):
 # - action
 
-{
-    for (i = 1; i <= NF; ++i) {
-        $i = encode_number(strtonum("0x"$i))
-    }
+action == "encode" {
+    for (i = 1; i <= NF; ++i) $i = encode($i)
     print
 }
-function encode_number(number,   out,hex,format) {
+
+action == "decode" {
+    sequnce = $0
+    print
+}
+
+action !~ /(en|de)code/ {
+    print "unknown action"
+    exit 1
+}
+
+function encode(number,   out,hex,format) {
+    number = strtonum("0x"number)
     do {
         hex = out ? 128 : 0
         hex += number % 128
