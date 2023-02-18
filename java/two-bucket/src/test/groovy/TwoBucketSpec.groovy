@@ -1,4 +1,5 @@
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class TwoBucketSpec extends Specification {
 
@@ -21,5 +22,21 @@ class TwoBucketSpec extends Specification {
         7      | 11     | 2    | 'two'       || 18          | 'two'       | 7
         1      | 3      | 3    | 'two'       || 1           | 'two'       | 0
         2      | 3      | 3    | 'one'       || 2           | 'two'       | 2
+        6      | 15     | 9    | 'one'       || 10          | 'two'       | 0
     }
+
+    @Unroll('#comment')
+    def 'attempt to measure when the goal is unreachable'() {
+        when:
+        new TwoBucket(capOne, capTwo, goal, startBucket)
+
+        then:
+        thrown(IllegalArgumentException)
+
+        where:
+        capOne | capTwo | goal | startBucket || comment
+        6      | 15     | 5    | 'one'       || 'not possible to reach the goal'
+        5      | 7      | 8    | 'one'       || 'goal larger than both buckets is impossible'
+    }
+
 }
