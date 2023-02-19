@@ -1,9 +1,10 @@
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 class TwoBucket {
-    private static final String[] NAMES = {"one", "two"};
-    private final Set<String> history = new HashSet<>();
+    private static final List<String> NAMES = List.of("one", "two");
+    private final Set<State> history = new HashSet<>();
     private final int[] cap;
     private final int[] volume = {0, 0};
     private final int source;
@@ -14,7 +15,7 @@ class TwoBucket {
 
     TwoBucket(int bucketOneCap, int bucketTwoCap, int desiredLiters, String startBucket) {
         cap = new int[]{bucketOneCap, bucketTwoCap};
-        source = NAMES[0].equals(startBucket) ? 0 : 1;
+        source = NAMES.indexOf(startBucket);
         target = 1 - source;
         goal = desiredLiters;
         calculateMoves();
@@ -25,7 +26,7 @@ class TwoBucket {
     }
 
     String getFinalBucket() {
-        return NAMES[volume[source] == goal ? source : target];
+        return NAMES.get(volume[source] == goal ? source : target);
     }
 
     int getOtherBucket() {
@@ -36,7 +37,7 @@ class TwoBucket {
         do {
             processStep();
             recordStep();
-        } while (!isGoalAchieved());
+        } while (goalIsNotAchieved());
     }
 
     private void processStep() {
@@ -54,15 +55,17 @@ class TwoBucket {
     }
 
     private void recordStep() {
-        var state = volume[source] + "," + volume[target];
-        if (history.contains(state)) {
+        if (history.add(new State(volume[source], volume[target]))) {
+            ++moves;
+        } else {
             throw new IllegalArgumentException("the goal is not reachable");
         }
-        history.add(state);
-        ++moves;
     }
 
-    private boolean isGoalAchieved() {
-        return volume[source] == goal || volume[target] == goal;
+    private boolean goalIsNotAchieved() {
+        return volume[source] != goal && volume[target] != goal;
+    }
+
+    record State(int sourceVolume, int targetVolume) {
     }
 }
