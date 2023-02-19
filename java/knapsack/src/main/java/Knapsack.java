@@ -3,28 +3,20 @@ import java.util.stream.IntStream;
 
 public class Knapsack {
     int maximumValue(int capacity, List<Item> items) {
-        return IntStream.range(0, items.size()).map(i -> {
-            final var weight = capacity - items.get(i).getWeight();
-            final var value = items.get(i).getValue();
-            return weight < 0 ? 0 : value + maximumValue(weight, items.subList(i + 1, items.size()));
-        }).max().orElse(0);
+        return new MaxValue(items.toArray(Item[]::new))
+                .maximum(capacity, 0);
     }
 }
 
-class Item {
-    private final int weight;
-    private final int value;
+record Item(int weight, int value) {
+}
 
-    public Item(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getValue() {
-        return value;
+record MaxValue(Item[] items) {
+    int maximum(int capacity, int index) {
+        return IntStream.range(index, items.length).map(i -> {
+            var weight = capacity - items[i].weight();
+            var value = items[i].value();
+            return weight < 0 ? 0 : value + maximum(weight, ++i);
+        }).max().orElse(0);
     }
 }

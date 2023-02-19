@@ -28,7 +28,6 @@ gcd(A, M) != 1 {
 function code(symbol, f,   y) {
     if (symbol ~ /[[:digit:]]/) return symbol
     y = index(Alphabet, tolower(symbol)) - 1
-
     return substr(Alphabet, @f(y), 1)
 }
 function encode(y) {

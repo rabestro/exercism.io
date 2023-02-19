@@ -6,9 +6,14 @@ class DiamondPrinter {
 
     List<String> printToList(char a) {
         final int d = a - 'A';
+        var half =  a - 'A' + 1;
 
         return IntStream.rangeClosed(0, d * 2)
                 .mapToObj(i -> {
+
+                    var width = 2 * half - 1;
+                    var symbol = (char) ('A' + i);
+
                     if (i == 0 || i == 2 * d) {
                         return " ".repeat(d) + "A" + " ".repeat(d);
                     } else if (i < d) {
