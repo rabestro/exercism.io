@@ -7,37 +7,34 @@ BEGIN {
 !coprime() {
     print "a and m must be coprime."; exit 1
 }
-
-$1 == "encode" {
-    for (i = 1; i <= length($4); ++i) {
-        symbol = substr($4, i, 1)
+{
+    Cryption = $1
+    A = $2
+    B = $3
+    Message = $4
+}
+{
+    for (i = 1; i <= length(Message); ++i) {
+        symbol = substr(Message, i, 1)
         if (symbol !~ /[[:alnum:]]/) continue
-        if (out && (1 + length(out)) % 6 == 0) out = out " "
-        out = out E(symbol)
+        if (Cryption == "encode" && out && (1 + length(out)) % 6 == 0) out = out " "
+        out = out code(symbol, Cryption)
     }
     print out
 }
 
-$1 == "decode" {
-    for (i = 1; i <= length($4); ++i) {
-        symbol = substr($4, i, 1)
-        if (symbol !~ /[[:alnum:]]/) continue
-        out = out D(symbol)
-    }
-    print out
+function code(symbol, f,   y) {
+    if (symbol ~ /[[:digit:]]/) return symbol
+    y = index(Alphabet, tolower(symbol)) - 1
+    return substr(Alphabet, @f(y), 1)
 }
-
-function E(x,   i,e) {
-    if (x ~ /[[:digit:]]/) return x
-    i = index(Alphabet, tolower(x)) - 1
-    e = 1 + ($2 * i + $3) % M
-    return substr(Alphabet, e, 1)
+function encode(y) {
+    return 1 + (A * y + B) % M
 }
-function D(y,   i,e) {
-    if (y ~ /[[:digit:]]/) return y
-    i = index(Alphabet, tolower(y)) - 1
-    e = ($2^-1)(i - $3) % M
-    return substr(Alphabet, e, 1)
+function decode(y,   i,mmi) {
+    for (i = 0; !mmi && i < M; i++)
+        if (A * i % M == 1) mmi = i
+    return 1 + mmi * (2 * M + y - B) % M
 }
 function coprime() {return gcd($2, M)==1}
 function gcd(p,q){return(q?gcd(q,(p%q)):p)}

@@ -29,7 +29,6 @@ load bats-extra
 }
 
 @test "encode mindblowingly" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f affine-cipher.awk <<< "encode|11|15|mindblowingly"
     assert_success
     assert_output "rzcwa gnxzc dgt"
