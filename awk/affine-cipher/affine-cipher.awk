@@ -1,5 +1,6 @@
 BEGIN {
     FS = "|"
+    OFS = ""
     Alphabet = "abcdefghijklmnopqrstuvwxyz"
     M = length(Alphabet)
 }
@@ -14,13 +15,14 @@ BEGIN {
     Message = $4
 }
 {
+    NF = 0
     for (i = 1; i <= length(Message); ++i) {
         symbol = substr(Message, i, 1)
         if (symbol !~ /[[:alnum:]]/) continue
-        if (Cryption == "encode" && out && (1 + length(out)) % 6 == 0) out = out " "
-        out = out code(symbol, Cryption)
+        if (Cryption == "encode" && NF && (1 + NF) % 6 == 0) $(++NF) = " "
+        $(++NF) = code(symbol, Cryption)
     }
-    print out
+    print
 }
 
 function code(symbol, f,   y) {
