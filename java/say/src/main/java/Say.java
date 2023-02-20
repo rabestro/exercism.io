@@ -4,27 +4,36 @@ import java.util.stream.Collectors;
 
 import static java.util.Comparator.reverseOrder;
 
-public class Say {
-    private static final String[] numbers = new String[]{
+public final class Say {
+    public static final long MAXIMUM_PRONOUNCEABLE_NUMBER = 999_999_999_999L;
+    private static final String[] numbers = {
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
             "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
     };
-    private static final Map<Long, String> units = Map.of(
-            1_000_000_000L, " billion", 1_000_000L, " million", 1_000L, " thousand", 1L, "");
+    private static final Map<Long, String> MAGNITUDES = Map.of(
+            1_000_000_000L, " billion",
+            1_000_000L, " million",
+            1_000L, " thousand",
+            1L, "");
 
     public String say(long number) {
-        if (number < 0 || number > 999_999_999_999L) {
-            throw new IllegalArgumentException();
-        }
+        validateNumber(number);
+
         if (number == 0) {
             return numbers[0];
         }
-        return units.entrySet().stream()
+        return MAGNITUDES.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey(reverseOrder()))
                 .map(e -> translate((int) (number % (e.getKey() * 1000) / e.getKey()), e.getValue()))
                 .filter(Predicate.not(String::isBlank))
                 .collect(Collectors.joining(" "));
+    }
+
+    private void validateNumber(long number) {
+        if (number < 0 || number > MAXIMUM_PRONOUNCEABLE_NUMBER) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private String translate(int number, String unit) {
@@ -35,11 +44,21 @@ public class Say {
             return numbers[number] + unit;
         }
         if (number < 100) {
-            final var units = number % 10;
-            return numbers[18 + number / 10] + (units == 0 ? "" : "-" + numbers[units]) + unit;
+            return tens(number) + lastDigit(number) + unit;
         }
-        final var units = translate(number % 100, "");
+        var units = translate(number % 100, "");
         return translate(number / 100, " hundred") + (units.isBlank() ? "" : " " + units) + unit;
     }
 
+    private String tens(int number) {
+        return numbers[18 + number / 10];
+    }
+
+    private String lastDigit(int number) {
+        var lastDigit = number % 10;
+        if (lastDigit == 0) {
+            return "";
+        }
+        return "-" + numbers[lastDigit];
+    }
 }
