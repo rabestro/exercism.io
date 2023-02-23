@@ -40,7 +40,7 @@ export function checkPhoneNumber(number) {
  * @returns {string[] | null} all the possible URL's that the user may have answered
  */
 export function getURL(userInput) {
-    throw new Error('Please implement the userInput function');
+    return userInput.match(/\w+\.\w{2,3}/g);
 }
 
 /**
