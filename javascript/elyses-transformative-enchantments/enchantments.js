@@ -77,5 +77,5 @@ export function perfectlyOrdered(deck) {
  * @returns {number[]} reordered deck
  */
 export function reorder(deck) {
-    throw new Error('Implement the reorder function');
+    return deck.reverse();
 }
