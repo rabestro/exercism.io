@@ -10,14 +10,9 @@ const ORBITAL_PERIODS = {
     uranus: 84.016846,
     neptune: 164.79132
 }
-const FORMAT = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 2 });
 
 export const age = (planet, seconds) => {
     const ageOnEarth = seconds / EARTH_YEAR_SECOND;
     const ageOnPlanet = ageOnEarth / ORBITAL_PERIODS[planet];
-    return FORMAT.format(ageOnPlanet);
+    return +ageOnPlanet.toFixed(2);
 };
-
-function round(number) {
-    return Math.round(number * 100) / 100;
-}
