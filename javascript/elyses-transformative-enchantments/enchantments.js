@@ -18,9 +18,9 @@ export function seeingDouble(deck) {
  *
  * @returns {number[]} deck with triplicate 3s
  */
-export function threeOfEachThree(deck) {
-    return deck.reduce((d, c) => c === 3 ? [...d, 3, 3, 3] : [...d, c], []);
-}
+export const threeOfEachThree = deck => deck
+    .reduce((d, c) => c === 3 ? [...d, 3, 3, 3] : [...d, c], []);
+
 
 /**
  * Extracts the middle two cards from a deck.
@@ -30,9 +30,7 @@ export function threeOfEachThree(deck) {
  *
  * @returns {number[]} deck with only two middle cards
  */
-export function middleTwo(deck) {
-    return deck.slice(4, 6);
-}
+export const middleTwo = deck => deck.slice(4, 6);
 
 /**
  * Moves the outside two cards to the middle.
@@ -43,7 +41,10 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-    throw new Error('Implement the sandwichTrick function');
+    const first = deck.shift();
+    const last = deck.pop();
+    deck.splice(deck.length / 2, 0, last, first)
+    return deck
 }
 
 /**
