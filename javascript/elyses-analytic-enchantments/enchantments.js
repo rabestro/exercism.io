@@ -25,7 +25,7 @@ export function getCardPosition(stack, card) {
  * @returns {boolean} true if card is in the stack, false otherwise
  */
 export function doesStackIncludeCard(stack, card) {
-    throw new Error('Implement the doesStackIncludeCard function');
+    return stack.includes(card);
 }
 
 /**
