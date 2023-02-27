@@ -1,4 +1,10 @@
+import BitSet from "bitset";
+
 export function count(diagram) {
+    let bs = new BitSet;
+    bs.set(128, 1); // Set bit at position 128
+    console.log(bs.toString(16));
+
     const board = new Board(diagram);
     return board.rectangles();
 }
