@@ -1,23 +1,31 @@
 export function count(diagram) {
-    const board = new Board(diagram);
-    return board.rectangles();
+    return new Board(diagram).rectangles();
 }
 
+const HYPHEN = 45;
+const PLUS_SIGN = 43;
+const VERTICAL_BAR = 124;
+
 class Board {
+    /**
+     * Can handle an unlimited number of lines
+     * But no more than 64 characters per line
+     *
+     * @param diagram
+     */
     constructor(diagram) {
         this._rows = diagram.length;
         this._cols = diagram[0]?.length ?? 0;
         this._horizontal = [];
         this._vertical = [];
-        let row = 0;
-        for (const line of diagram) {
-            let column = 0;
-            for (const symbol of line) {
-                if (symbol.match(/[-+]/)) this._horizontal[row] |= 1 << column;
-                if (symbol.match(/[|+]/)) this._vertical[row] |= 1 << column;
-                column++;
+        for (let row = 0; row < this._rows; ++row) {
+            for (let col = 0; col < this._cols; ++col) {
+                const symbol = diagram[row].codePointAt(col);
+                if (symbol === PLUS_SIGN || symbol === HYPHEN)
+                    this._horizontal[row] |= 1 << col;
+                if (symbol === PLUS_SIGN || symbol === VERTICAL_BAR)
+                    this._vertical[row] |= 1 << col;
             }
-            row++
         }
     }
 
