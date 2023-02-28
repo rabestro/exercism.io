@@ -1,19 +1,24 @@
-import BitSet from "bitset";
-
 export function count(diagram) {
-    let bs = new BitSet;
-    bs.set(128, 1); // Set bit at position 128
-    console.log(bs.toString(16));
-
     const board = new Board(diagram);
     return board.rectangles();
 }
 
 class Board {
     constructor(diagram) {
-        this._diagram = diagram;
         this._rows = diagram.length;
         this._cols = diagram[0]?.length ?? 0;
+        this._horizontal = [];
+        this._vertical = [];
+        let row = 0;
+        for (const line of diagram) {
+            let column = 0;
+            for (const symbol of line) {
+                if (symbol.match(/[-+]/)) this._horizontal[row] |= 1 << column;
+                if (symbol.match(/[|+]/)) this._vertical[row] |= 1 << column;
+                column++;
+            }
+            row++
+        }
     }
 
     rectangles() {
@@ -27,10 +32,7 @@ class Board {
     }
 
     cornerA(rowA, colA) {
-        if (this.isNotCross(rowA, colA)) {
-            return 0;
-        }
-
+        if (this.isNotCross(rowA, colA)) return 0;
         let total = 0;
         for (let colB = colA + 1; this.isHorizontalSymbol(rowA, colB); ++colB) {
             total += this.cornerB(rowA, colA, colB)
@@ -39,44 +41,31 @@ class Board {
     }
 
     cornerB(rowA, colA, colB, rowC) {
-        if (this.isNotCross(rowA, colB)) {
-            return 0;
-        }
-
+        if (this.isNotCross(rowA, colB)) return 0;
         let total = 0;
-        for (rowC = rowA + 1; this.isVerticalSymbol(rowC, colB); ++rowC) {
+        for (rowC = rowA + 1; this.isVerticalSymbol(rowC, colA) && this.isVerticalSymbol(rowC, colB); ++rowC) {
             total += this.cornerC(rowA, colA, colB, rowC)
         }
         return total
     }
 
     cornerC(rowA, colA, colB, rowC) {
-        if (this.isNotCross(rowC, colA)) return 0;
-
+        if (this.isNotCross(rowC, colB) || this.isNotCross(rowC, colA)) return 0;
         for (let i = colB - 1; i > colA; --i) {
             if (!this.isHorizontalSymbol(rowC, i)) return 0
         }
-        for (let i = rowC - 1; i > rowA; --i) {
-            if (!this.isVerticalSymbol(i, colA)) return 0
-        }
-
         return 1
     }
 
-    symbol(row, col) {
-        const line = this._diagram.at(row);
-        return line.charAt(col);
-    }
-
     isNotCross(row, col) {
-        return this.symbol(row, col) !== '+'
+        return !(this.isHorizontalSymbol(row, col) && this.isVerticalSymbol(row, col));
     }
 
     isHorizontalSymbol(row, col) {
-        return col < this._cols && '-+'.includes(this.symbol(row, col));
+        return col < this._cols && (this._horizontal[row] & 1 << col)
     }
 
     isVerticalSymbol(row, col) {
-        return row < this._rows && '|+'.includes(this.symbol(row, col));
+        return row < this._rows && (this._vertical[row] & 1 << col)
     }
 }
