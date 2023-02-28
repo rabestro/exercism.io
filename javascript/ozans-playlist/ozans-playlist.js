@@ -56,5 +56,5 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-    throw new Error('Please implement the listArtists function');
+    return [...new Set(playlist.map(track => track.split(' - ')[1]))];
 }
