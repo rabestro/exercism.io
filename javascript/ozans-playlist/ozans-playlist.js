@@ -33,7 +33,7 @@ export function hasTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function addTrack(playlist, track) {
-    throw new Error('Please implement the addTrack function');
+    return [...new Set(playlist).add(track)];
 }
 
 /**
