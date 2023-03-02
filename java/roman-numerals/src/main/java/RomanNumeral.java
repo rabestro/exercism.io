@@ -1,10 +1,10 @@
-enum RomanNumerals {
+enum RomanNumeral {
     M(1000), CM(900), D(500), CD(400), C(100), XC(90),
     L(50), XL(40), X(10), IX(9), V(5), IV(4), I(1);
 
     private final int value;
 
-    RomanNumerals(final int value) {
+    RomanNumeral(final int value) {
         this.value = value;
     }
 
@@ -14,7 +14,7 @@ enum RomanNumerals {
 
     public static String arabicToRoman(int number) {
         final var sb = new StringBuilder();
-        for (var romanNumber : RomanNumerals.values()) {
+        for (var romanNumber : RomanNumeral.values()) {
             while (romanNumber.getValue() <= number) {
                 number -= romanNumber.getValue();
                 sb.append(romanNumber.toString());
@@ -24,14 +24,14 @@ enum RomanNumerals {
     }
 }
 
-class RomanNumeral {
-    final private int value;
+class RomanNumerals {
+    private final int value;
 
-    public RomanNumeral(int value) {
+    public RomanNumerals(int value) {
         this.value = value;
     }
 
     public String getRomanNumeral() {
-        return RomanNumerals.arabicToRoman(value);
+        return RomanNumeral.arabicToRoman(value);
     }
 }
