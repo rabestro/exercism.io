@@ -16,28 +16,28 @@ bool is_paired(const char *input) {
         bool is_matched;
         switch (*c) {
             case '[':
-                stack |= 1 << index++;
+                stack |= 1ull << index++;
                 index++;
                 continue;
             case '{':
-                stack |= 1 << index;
+                stack |= 1ull << index;
             case '(':
-                stack |= 1 << ++index;
+                stack |= 1ull << ++index;
                 ++index;
                 continue;
             case ']':
-                is_matched = !(stack & (1 << --index)) && (stack & (1 << --index));
+                is_matched = !(stack & (1ull << --index)) && (stack & (1ull << --index));
                 break;
             case '}':
-                is_matched = (stack & (1 << --index)) && (stack & (1 << --index));
+                is_matched = (stack & (1ull << --index)) && (stack & (1ull << --index));
                 break;
             case ')':
-                is_matched = (stack & (1 << --index)) && !(stack & (1 << --index));
+                is_matched = (stack & (1ull << --index)) && !(stack & (1ull << --index));
                 break;
             default:
                 continue;
         }
-        if (is_matched) stack &= (1 << index) - 1;
+        if (is_matched) stack &= (1ull << index) - 1;
         else return false;
     }
     return !index;
