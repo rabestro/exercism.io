@@ -14,7 +14,7 @@ bool is_paired(const char *input) {
     unsigned int index = 0;
 
     for (const char *c = input; *c; ++c) {
-        bool is_matched;
+        bool is_matched = index > 0;
         switch (*c) {
             case '[':
                 brackets |= 1ull << index++;
@@ -25,13 +25,13 @@ bool is_paired(const char *input) {
                 braces |= 1ull << index++;
                 continue;
             case ']':
-                is_matched = index && (brackets & (1ull << --index)) && !(braces & (1ull << index));
+                is_matched &= (brackets & (1ull << --index)) && !(braces & (1ull << index));
                 break;
             case '}':
-                is_matched = index && (braces & (1ull << --index)) && !(brackets & (1ull << index));
+                is_matched &= (braces & (1ull << --index)) && !(brackets & (1ull << index));
                 break;
             case ')':
-                is_matched = index && (brackets & (1ull << --index)) && (braces & (1ull << index));
+                is_matched &= (brackets & (1ull << --index)) && (braces & (1ull << index));
                 break;
             default:
                 continue;
