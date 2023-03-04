@@ -21,14 +21,15 @@ Position.prototype.move = function (x, y) {
 };
 
 export class ProgramWindow {
+    #screenSize;
     constructor() {
-        this._screenSize = new Size(800, 600);
+        this.#screenSize = new Size(800, 600);
         this._size = new Size();
         this._position = new Position();
     }
 
     get screenSize() {
-        return this._screenSize;
+        return this.#screenSize;
     }
 
     get size() {
@@ -40,16 +41,16 @@ export class ProgramWindow {
     }
 
     resize(size) {
-        const maxWidth = this._screenSize.width - this._position.x;
-        const maxHeight = this._screenSize.height - this._position.y;
+        const maxWidth = this.screenSize.width - this._position.x;
+        const maxHeight = this.screenSize.height - this._position.y;
         const width = Math.max(1, size.width);
         const height = Math.max(1, size.height);
         this._size = new Size(Math.min(width, maxWidth), Math.min(height, maxHeight));
     }
 
     move(position) {
-        const maxX = this._screenSize.width - this._size.width;
-        const maxY = this._screenSize.height - this._size.height;
+        const maxX = this.screenSize.width - this._size.width;
+        const maxY = this.screenSize.height - this._size.height;
         const x = Math.max(0, position.x);
         const y = Math.max(0, position.y);
         this._position = new Position(Math.min(x, maxX), Math.min(y, maxY));

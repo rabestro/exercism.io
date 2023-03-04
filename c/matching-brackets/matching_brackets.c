@@ -21,6 +21,9 @@ bool is_paired(const char *input) {
                 continue;
             case '{':
                 stack |= 1ull << index;
+                stack |= 1ull << ++index;
+                ++index;
+                continue;
             case '(':
                 stack |= 1ull << ++index;
                 ++index;
