@@ -3,6 +3,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import static java.util.stream.Stream.iterate;
+
 class SimpleLinkedList<T> {
     private Node<T> head;
 
@@ -29,16 +31,15 @@ class SimpleLinkedList<T> {
     }
 
     void reverse() {
-        var reverse = new Node<T>(null);
-        for (var node = head.next; node != null; node = node.next) {
-            reverse.data = node.data;
-            reverse = new Node<>(reverse);
-        }
-        head = reverse;
+        var reverse = head.next;
+        head = new Node<>(null);
+        iterate(reverse, Objects::nonNull, e -> e.next)
+                .map(e -> e.data)
+                .forEach(this::push);
     }
 
     Stream<Node<T>> stream() {
-        return Stream.iterate(head.next, Objects::nonNull, e -> e.next);
+        return iterate(head.next, Objects::nonNull, e -> e.next);
     }
 
     @SuppressWarnings("unchecked")

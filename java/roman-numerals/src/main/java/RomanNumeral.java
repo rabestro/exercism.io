@@ -13,11 +13,11 @@ enum RomanNumeral {
     }
 
     public static String arabicToRoman(int number) {
-        final var sb = new StringBuilder();
+        var sb = new StringBuilder();
         for (var romanNumber : RomanNumeral.values()) {
             while (romanNumber.getValue() <= number) {
                 number -= romanNumber.getValue();
-                sb.append(romanNumber.toString());
+                sb.append(romanNumber);
             }
         }
         return sb.toString();
