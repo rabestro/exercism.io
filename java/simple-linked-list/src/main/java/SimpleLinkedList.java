@@ -3,9 +3,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static java.util.stream.Stream.iterate;
-
-class SimpleLinkedList<T> {
+final class SimpleLinkedList<T> {
     private Node<T> head;
 
     SimpleLinkedList() {
@@ -35,7 +33,7 @@ class SimpleLinkedList<T> {
     }
 
     Stream<T> stream() {
-        return iterate(head, Objects::nonNull, Node::next).map(Node::data);
+        return Stream.iterate(head, Objects::nonNull, Node::next).map(Node::data);
     }
 
     @SuppressWarnings({"unchecked", "unused"})
