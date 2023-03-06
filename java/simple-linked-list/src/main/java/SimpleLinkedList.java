@@ -29,22 +29,18 @@ class SimpleLinkedList<T> {
     }
 
     void reverse() {
-        var nodes = stream(head);
+        var nodes = stream();
         head = null;
-        nodes.map(Node::data).forEach(this::push);
+        nodes.forEach(this::push);
     }
 
-    Stream<Node<T>> stream(Node<T> first) {
-        return iterate(first, Objects::nonNull, Node::next);
+    Stream<T> stream() {
+        return iterate(head, Objects::nonNull, Node::next).map(Node::data);
     }
 
-    Stream<Node<T>> stream() {
-        return stream(head);
-    }
-
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "unused"})
     T[] asArray(Class<T> clazz) {
-        return (T[]) stream().map(Node::data).toArray();
+        return (T[]) stream().toArray();
     }
 
     int size() {
