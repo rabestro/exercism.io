@@ -9,54 +9,48 @@ class SimpleLinkedList<T> {
     private Node<T> head;
 
     SimpleLinkedList() {
-        head = new Node<>(null);
     }
 
     SimpleLinkedList(T[] values) {
-        this();
         Arrays.stream(values).forEach(this::push);
     }
 
     void push(T element) {
-        head.data = element;
-        head = new Node<>(head);
+        head = new Node<>(element, head);
     }
 
     T pop() {
-        if (head.next == null) {
+        if (head == null) {
             throw new NoSuchElementException();
         }
+        var element = head.data;
         head = head.next;
-        return head.data;
+        return element;
     }
 
     void reverse() {
-        var reverse = head.next;
-        head = new Node<>(null);
-        iterate(reverse, Objects::nonNull, e -> e.next)
-                .map(e -> e.data)
-                .forEach(this::push);
+        var nodes = stream(head);
+        head = null;
+        nodes.map(Node::data).forEach(this::push);
+    }
+
+    Stream<Node<T>> stream(Node<T> first) {
+        return iterate(first, Objects::nonNull, Node::next);
     }
 
     Stream<Node<T>> stream() {
-        return iterate(head.next, Objects::nonNull, e -> e.next);
+        return stream(head);
     }
 
     @SuppressWarnings("unchecked")
     T[] asArray(Class<T> clazz) {
-        return (T[]) stream().map(e -> e.data).toArray();
+        return (T[]) stream().map(Node::data).toArray();
     }
 
     int size() {
         return (int) stream().count();
     }
 
-    static class Node<T> {
-        T data;
-        Node<T> next;
-
-        public Node(Node<T> next) {
-            this.next = next;
-        }
+    record Node<T>(T data, Node<T> next) {
     }
 }
