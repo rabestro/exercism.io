@@ -16,8 +16,7 @@ def production_rate_per_hour:
 
 # Task 2: calculate the number of working items produces per minute
 def working_items_per_minute:
-  # remove the constant and implement this function
-  -2
+  production_rate_per_hour | . / 60 | floor
 ;
 
 
