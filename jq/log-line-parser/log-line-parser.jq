@@ -9,12 +9,12 @@ def trim: sub("^\\s+"; "") | sub("\\s+$"; "");
 
 # Task 1. Get message from a log line
 def message:
-  sub("^.+?: "; "")
+  sub("^.+?:"; "") | trim
 ;
 
 # Task 2. Get log level from a log line
 def log_level:
-  . # implement the body of this function
+  capture("^\\[(?<level>[A-Z]+)]") | .level | ascii_downcase
 ;
 
 # Task 3. Reformat a log line
