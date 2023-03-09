@@ -9,7 +9,7 @@ def trim: sub("^\\s+"; "") | sub("\\s+$"; "");
 
 # Task 1. Get message from a log line
 def message:
-  . # implement the body of this function
+  sub("^.+?: "; "")
 ;
 
 # Task 2. Get log level from a log line
