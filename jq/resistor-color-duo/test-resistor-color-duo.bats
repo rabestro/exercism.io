@@ -20,7 +20,6 @@ END_INPUT
 }
 
 @test 'Blue and grey' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -37,7 +36,6 @@ END_INPUT
 }
 
 @test 'Yellow and violet' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -54,7 +52,6 @@ END_INPUT
 }
 
 @test 'White and red' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -71,7 +68,6 @@ END_INPUT
 }
 
 @test 'Orange and orange' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -88,7 +84,6 @@ END_INPUT
 }
 
 @test 'Ignore additional colors' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -106,7 +101,6 @@ END_INPUT
 }
 
 @test 'Black and brown, one-digit' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f resistor-color-duo.jq << 'END_INPUT'
         {
@@ -121,4 +115,3 @@ END_INPUT
     expected=1
     assert_equal "$output" "$expected"
 }
-
