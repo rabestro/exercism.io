@@ -51,7 +51,7 @@ def get_domains:
 # input: {string} sentence with name clause
 # output: {string} greeting from the Chatbot
 def nice_to_meet_you:
-  . # implement the body of this function
+  sub(".* name is (?<name>[^ ]+).*"; "Nice to meet you, \(.name)")
 ;
 
 # Perform very simple CSV parsing
