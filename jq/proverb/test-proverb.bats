@@ -17,7 +17,6 @@ END_INPUT
 }
 
 @test 'one piece' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f proverb.jq << 'END_INPUT'
         {
@@ -33,7 +32,6 @@ END_INPUT
 }
 
 @test 'two pieces' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f proverb.jq << 'END_INPUT'
         {
@@ -50,7 +48,6 @@ END_INPUT
 }
 
 @test 'three pieces' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f proverb.jq << 'END_INPUT'
         {
@@ -68,7 +65,6 @@ END_INPUT
 }
 
 @test 'full proverb' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f proverb.jq << 'END_INPUT'
         {
@@ -90,7 +86,6 @@ END_INPUT
 }
 
 @test 'four pieces modernized' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f proverb.jq << 'END_INPUT'
         {
@@ -107,4 +102,3 @@ END_INPUT
     expected='["For want of a pin the gun was lost.","For want of a gun the soldier was lost.","For want of a soldier the battle was lost.","And all for the want of a pin."]'
     assert_equal "$output" "$expected"
 }
-
