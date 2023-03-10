@@ -6,7 +6,7 @@
 # output: {boolean} whether or not the command is valid
 #
 def is_valid_command:
-  . # implement the body of this function
+  test("^Chatbot\\b"; "i")
 ;
 
 # Given a certain message, help the Chatbot get rid of all the 
@@ -16,7 +16,7 @@ def is_valid_command:
 # input: {string} message
 # output: {string} the message without the emojis
 def remove_emoji:
-  . # implement the body of this function
+  gsub("emoji\\d+"; "")
 ;
 
 # Given a certain phone number, help the Chatbot recognize
