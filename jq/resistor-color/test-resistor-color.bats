@@ -52,7 +52,6 @@ END_INPUT
 }
 
 @test 'Colors' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f resistor-color.jq << 'END_INPUT'
         {
