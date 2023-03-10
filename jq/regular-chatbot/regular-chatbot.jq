@@ -27,7 +27,12 @@ def remove_emoji:
 # input: {string} number
 # output: {string} the Chatbot response to the phone validation
 def check_phone_number:
-  . # implement the body of this function
+  if test("[(][+]\\d{2}[)] (\\d{3}-){2}\\d{3}")
+  then
+    "Thanks! Your phone number is OK."
+  else
+    "Oops, it seems like I can't reach out to \(.)."
+  end
 ;
 
 # Given a certain response from the user, help the Chatbot get
