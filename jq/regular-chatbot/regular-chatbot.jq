@@ -42,7 +42,7 @@ def check_phone_number:
 # input: {string} userInput
 # output: {array} all the domains in the input
 def get_domains:
-  . # implement the body of this function
+  [scan("\\w+[.]\\w{2,3}\\b")]
 ;
 
 # Greet the user using their name
