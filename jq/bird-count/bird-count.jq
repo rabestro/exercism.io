@@ -9,7 +9,7 @@
 
 {
   # Task 1: output the array for last week's data
-  last_week: ("Replace this value with the needed expression"),
+  last_week: (.[7]),
 
   # Task 2: output count for yesterday in this week's data
   yesterday: ("Replace this value with the needed expression"),
