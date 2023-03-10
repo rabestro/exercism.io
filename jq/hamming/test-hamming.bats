@@ -18,7 +18,6 @@ END_INPUT
 }
 
 @test 'single letter identical strands' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f hamming.jq << 'END_INPUT'
         {
@@ -33,7 +32,6 @@ END_INPUT
 }
 
 @test 'single letter different strands' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f hamming.jq << 'END_INPUT'
         {
@@ -48,7 +46,6 @@ END_INPUT
 }
 
 @test 'long identical strands' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f hamming.jq << 'END_INPUT'
         {
@@ -63,7 +60,6 @@ END_INPUT
 }
 
 @test 'long different strands' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f hamming.jq << 'END_INPUT'
         {
