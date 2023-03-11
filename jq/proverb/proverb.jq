@@ -6,5 +6,5 @@
 +
 [
     $words | first | values |
-    "And all for the want of a \(.)."
+    "And all for the want of a \(.)." 
 ]
