@@ -1,23 +1,29 @@
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.regex.Pattern;
 
-class Matrix {
-    private final int[][] matrix;
+final class Matrix {
+    private static final Pattern SPACE = Pattern.compile("\\s");
+    private final int[][] cells;
 
     Matrix(String matrixAsString) {
-        matrix = matrixAsString.lines().map(this::parseLine).toArray(int[][]::new);
+        cells = matrixAsString.lines()
+                .map(this::parseLine)
+                .toArray(int[][]::new);
     }
 
     private int[] parseLine(String line) {
-        return new Scanner(line).tokens().mapToInt(Integer::parseInt).toArray();
+        return SPACE.splitAsStream(line)
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 
     int[] getRow(int rowNumber) {
-        return Arrays.copyOf(matrix[rowNumber - 1], matrix[0].length);
+        return Arrays.copyOf(cells[rowNumber - 1], cells[0].length);
     }
 
     int[] getColumn(int columnNumber) {
-        return Arrays.stream(matrix).mapToInt(ints -> ints[columnNumber - 1]).toArray();
+        return Arrays.stream(cells).mapToInt(ints -> ints[columnNumber - 1])
+                .toArray();
     }
 
 }

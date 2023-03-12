@@ -31,4 +31,5 @@ def resell_price:
   if .age < 3 then 0.8
   elif .age > 10 then 0.5
   else 0.7
-  end;
+  end
+;
