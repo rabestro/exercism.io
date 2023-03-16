@@ -1,7 +1,2 @@
 #!/usr/bin/env bash
-
-
-main () {
-}
-
-main "$@"
+sed -Enf parentheses.sed <<< "$@"
