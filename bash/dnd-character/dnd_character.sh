@@ -1,24 +1,43 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+modifier () {
+    echo $(( $1 / 2 - 5 ))
+}
+
+dice() {
+    echo $(( $RANDOM % 6 + 1 ))
+}
+
+generate_ability() {
+    local -i sum=0 roll min=6
+
+    for round in {1..4}
+    do
+        roll=$(dice)
+        (( sum += roll ))
+        (( min = roll < min ? roll : min ))
+    done
+    echo "$(( sum - min ))"
+}
+
+generate() {
+    local -ir constitution=$(generate_ability)
+    local -ir hitpoints="10 + $(modifier $constitution)"
+
+    printf "constitution %d\n" $constitution
+    printf "hitpoints %d\n" $hitpoints
+
+    for ability in strength dexterity intelligence wisdom charisma
+    do
+        printf "%s %d\n" $ability $(generate_ability)
+    done
+}
+
+main () {
+    case "$1" in
+        modifier) modifier "$2";;
+        generate) generate;;
+    esac
+}
+
+main "$@"
