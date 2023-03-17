@@ -9,12 +9,14 @@ dice () {
 }
 
 generate_ability () {
-    local -i round roll
+    local -i roll
     local -i sum=0 min=6
 
-    for round in {1..4}
+    # shellcheck disable=SC2034
+    for _ in {1..4}
     do
-        (( sum += roll = $(dice) ))
+        roll=$(dice)
+        (( sum += roll ))
         (( min = roll < min ? roll : min ))
     done
     echo "$(( sum - min ))"
@@ -35,8 +37,7 @@ generate () {
 
 main () {
     case "$1" in
-        modifier) modifier "$2";;
-        generate) generate;;
+        modifier|generate) "$@";;
     esac
 }
 
