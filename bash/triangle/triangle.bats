@@ -13,21 +13,18 @@ load bats-extra
 }
 
 @test "any side is unequal" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh equilateral 2 3 2
   assert_success
   assert_output "false"
 }
 
 @test "no sides are equal, equilateral" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh equilateral 5 4 6
   assert_success
   assert_output "false"
 }
 
 @test "all zero sides is not a triangle" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh equilateral 0 0 0
   assert_success
   assert_output "false"
