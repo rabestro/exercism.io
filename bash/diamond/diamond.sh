@@ -13,6 +13,7 @@ main () {
     local -ir half=$(( $(ord $1) - a + 1 ))
     local -ir size=$(( 2 * half - 1 ))
     local -a board
+    local -i row symbol i l r
 
     for (( row = 0; row < size; ++row ))
     do
@@ -31,7 +32,7 @@ main () {
             (( l = half + row - size + 1 ))
             (( r = half - row + size - 1 ))
         fi
-        letter=$(chr "$symbol")
+        local letter=$(chr "$symbol")
         board[$l]=$letter
         board[$r]=$letter
         printf '%s' "${board[@]}"
