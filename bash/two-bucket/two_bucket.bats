@@ -14,7 +14,6 @@ load bats-extra
 }
 
 @test "Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="moves: 8, goalBucket: two, otherBucket: 3"
     run bash two_bucket.sh 3 5 1 "two"
     assert_success
@@ -69,7 +68,6 @@ load bats-extra
 }
 
 @test "Goal larger than both buckets is impossible" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash two_bucket.sh 5 7 8 "one"
     assert_failure
     assert_output --partial "invalid goal"
