@@ -8,8 +8,18 @@ declare -A Volume=( [one]="$1" [two]="$2" )
 declare -A Water=( [one]=0 [two]=0 )
 declare -i Step=0
 
+prepare_data () {
+    if [[ $4 == "one" ]]
+    then
+        Source=one
+        Target=two
+    else
+        Source=two
+        Target=one
+    fi
+}
+
 is_empty () {
-    debug "is_empty $1 "
     (( Water[$1] == 0 ))
 }
 
@@ -18,14 +28,10 @@ is_full () {
 }
 
 is_goal () {
-     debug "is_goal $1"
-     echo "${Water[$1]} == $Goal" >> log.txt
-     (( Water[$1] == Goal )) && echo "true" >> log.txt
      (( Water[$1] == Goal ))
 }
 
 fill () {
-    debug "fill $1 "
     (( Water[$1] = Volume[$1] ))
 }
 
@@ -34,18 +40,13 @@ empty () {
 }
 
 pouring () {
-    debug "pouring"
     local -ir free_volume=$(( Volume[$Target] - Water[$Target] ))
     local -ir pouring_volume=$(( Water[$Source] < free_volume ? Water[$Source] : free_volume ))
-
-    echo "f=$free_volume, p=$pouring_volume" >> log.txt
-
     (( Water[$Source] -= pouring_volume ))
     (( Water[$Target] += pouring_volume ))
 }
 
 process_step() {
-    debug process_step
     if is_empty $Source
     then
         fill $Source
@@ -60,41 +61,19 @@ process_step() {
     fi
 }
 
-state () {
-    echo "["${Water[$Source]}","${Water[$Target]}"]"
-}
-
-debug () {
-    echo "--> $1 " "["${Water[$Source]}","${Water[$Target]}"]" >> log.txt
-}
-
 record_step () {
-    printf -v state "_%2d,%2d_" "${Water[$Source]}" "${Water[$Target]}"
+    local state="_${Water[$Source]},${Water[$Target]}_"
     if [[ $History =~ $state ]]
     then
         echo "invalid goal"
         exit 1
     else
         History+=$state
+        (( ++Step ))
     fi
 }
 
-main () {
-    if [[ $4 == "one" ]]
-    then
-        Source=one
-        Target=two
-    else
-        Source=two
-        Target=one
-    fi
-
-    until (( Water[one] == Goal || Water[two] == Goal ))
-    do
-        process_step
-        record_step
-    done
-
+print_result () {
     local winner second
     if is_goal one
     then
@@ -104,8 +83,17 @@ main () {
         winner=two
         second=one
     fi
-    echo "History: $History" >> log.txt
-    printf "moves: %d, goalBucket: %s, otherBucket: %d" $((${#History}/7)) $winner ${Water[$second]}
+    printf "moves: %d, goalBucket: %s, otherBucket: %d" "$Step" "$winner" ${Water[$second]}
 }
 
-main "$@"
+main () {
+    until (( Water[one] == Goal || Water[two] == Goal ))
+    do
+        process_step
+        record_step
+    done
+    print_result
+}
+
+prepare_data "$@"
+main
