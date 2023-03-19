@@ -11,28 +11,24 @@ load bats-extra
 }
 
 @test 'binary to single decimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1 0 1" 10
     assert_success
     assert_output "5"
 }
 
 @test 'single decimal to binary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 10 "5" 2
     assert_success
     assert_output "1 0 1"
 }
 
 @test 'binary to multiple decimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1 0 1 0 1 0" 10
     assert_success
     assert_output "4 2"
 }
 
 @test 'decimal to binary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 10 "4 2" 2
     assert_success
     assert_output "1 0 1 0 1 0"
