@@ -17,14 +17,14 @@ load bats-extra
 }
 
 @test "should be able to score a game with no strikes or spares" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+#    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash bowling.sh 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6
     assert_success
     assert_output "90"
 }
 
 @test "a spare followed by zeros is worth ten points" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+#    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash bowling.sh 6 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
     assert_success
     assert_output "10"
