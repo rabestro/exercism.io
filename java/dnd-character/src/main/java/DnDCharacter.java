@@ -1,7 +1,9 @@
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 class DnDCharacter {
-    private static final Random random = new Random();
+    private static final int ROLLING_SEQUENCE_SIZE = 4;
 
     private final int strength = this.ability();
     private final int dexterity = this.ability();
@@ -12,7 +14,9 @@ class DnDCharacter {
     private final int hitpoints = 10 + this.modifier(constitution);
 
     int ability() {
-        return random.ints(4,1,7).sorted().skip(1).sum();
+        return ThreadLocalRandom.current()
+                .ints(ROLLING_SEQUENCE_SIZE, 1, 7)
+                .sorted().skip(1).sum();
     }
 
     int modifier(int input) {
@@ -47,4 +51,13 @@ class DnDCharacter {
         return hitpoints;
     }
 
+    int ability(List<Integer> rolls) {
+        return rolls.stream().sorted().mapToInt(Integer::intValue).skip(1).sum();
+    }
+
+    public List<Integer> rollDice() {
+        return ThreadLocalRandom.current()
+                .ints(ROLLING_SEQUENCE_SIZE, 1, 7)
+                .boxed().toList();
+    }
 }
