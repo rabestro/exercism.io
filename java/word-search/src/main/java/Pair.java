@@ -17,6 +17,10 @@ class Pair {
         return y;
     }
 
+    public boolean isValid() {
+        return x > 0 && y > 0;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
