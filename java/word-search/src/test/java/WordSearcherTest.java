@@ -32,6 +32,7 @@ public class WordSearcherTest {
         assertEquals(expectedLocations, actualLocations);
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testLocatesOneWordWrittenLeftToRight() {
         Map<String, Optional<WordLocation>> expectedLocations = new HashMap<>();
