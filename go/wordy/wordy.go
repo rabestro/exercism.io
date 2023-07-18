@@ -5,25 +5,25 @@ import (
 	"strconv"
 )
 
-var pattern = regexp.MustCompile(`(What is) (-?\d+)(?: (plus|minus|multiplied by|divided by) (-?\d+))*\?`)
-var tokens = regexp.MustCompile(`-?\d+|is|plus|minus|multiplied by|divided by`)
+var pattern = regexp.MustCompile(`What is (-?\d+)(?: (?:plus|minus|multiplied by|divided by) -?\d+)*\?`)
+var operationPattern = regexp.MustCompile(`(plus|minus|multiplied by|divided by) (-?\d+)`)
 
 func Answer(question string) (int, bool) {
-	if !pattern.MatchString(question) {
+	matches := pattern.FindStringSubmatch(question)
+	if matches == nil {
 		return 0, false
 	}
-	var result int64
-	var operator string
 
-	for i, token := range tokens.FindAllString(question, -1) {
-		if i%2 == 0 {
-			operator = token
-			continue
-		}
-		number, _ := strconv.ParseInt(token, 10, 64)
+	result, _ := strconv.Atoi(matches[1])
+
+	// Get all operation and number pairs
+	operations := operationPattern.FindAllStringSubmatch(question, -1)
+
+	for _, operation := range operations {
+		operator := operation[1]
+		number, _ := strconv.Atoi(operation[2])
+
 		switch operator {
-		case "is":
-			result = number
 		case "plus":
 			result += number
 		case "minus":
