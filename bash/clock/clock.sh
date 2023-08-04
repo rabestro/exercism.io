@@ -12,7 +12,7 @@ print_clock () {
 }
 
 validate_parameters () {
-    [ $# -ne 2 ] && [ $# -ne 4 ] && die "invalid arguments"
+    (( $# == 2 || $# == 4 )) || die "invalid arguments"
     [[ $1 =~ ^-?[0-9]+$ ]] || die "Hours must be an integer"
     [[ $2 =~ ^-?[0-9]+$ ]] || die "Minutes must be an integer"
     [[ $3 =~ ^[+-]$ ]] || [ -z "$3" ] || die "invalid arguments"
