@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
+die () { echo "$1" >&2; exit 1; }
+
 main () {
     local -i x=$1
     local -i y=$2
     local direction=${3:-north}
     local movements=$4
+
+    [[ $direction =~ north|east|south|west ]] || die "invalid direction: $direction"
+    [[ $movements =~ ^[ARL]*$ ]] || die "invalid instruction: $movements"
 
     for (( i=0; i<${#movements}; i++ )); do
         case ${movements:$i:1} in
