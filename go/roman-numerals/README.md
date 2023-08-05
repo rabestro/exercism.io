@@ -1,18 +1,21 @@
 # Roman Numerals
 
+Welcome to Roman Numerals on Exercism's Go Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
 Write a function to convert from normal numbers to Roman Numerals.
 
-The Romans were a clever bunch. They conquered most of Europe and ruled
-it for hundreds of years. They invented concrete and straight roads and
-even bikinis. One thing they never discovered though was the number
-zero. This made writing and dating extensive histories of their exploits
-slightly more challenging, but the system of numbers they came up with
-is still in use today. For example the BBC uses Roman numerals to date
-their programmes.
+The Romans were a clever bunch.
+They conquered most of Europe and ruled it for hundreds of years.
+They invented concrete and straight roads and even bikinis.
+One thing they never discovered though was the number zero.
+This made writing and dating extensive histories of their exploits slightly more challenging, but the system of numbers they came up with is still in use today.
+For example the BBC uses Roman numerals to date their programs.
 
-The Romans wrote numbers using letters - I, V, X, L, C, D, M. (notice
-these letters have lots of straight lines and are hence easy to hack
-into stone tablets).
+The Romans wrote numbers using letters - I, V, X, L, C, D, M.
+(notice these letters have lots of straight lines and are hence easy to hack into stone tablets).
 
 ```text
  1  => I
@@ -20,12 +23,10 @@ into stone tablets).
  7  => VII
 ```
 
-There is no need to be able to convert numbers larger than about 3000.
+The maximum number supported by this notation is 3,999.
 (The Romans themselves didn't tend to go any higher)
 
-Wikipedia says: Modern Roman numerals ... are written by expressing each
-digit separately starting with the left most digit and skipping any
-digit with a value of zero.
+Wikipedia says: Modern Roman numerals ... are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero.
 
 To see this in practice, consider the example of 1990.
 
@@ -40,33 +41,35 @@ In Roman numerals 1990 is MCMXC:
 2000=MM
 8=VIII
 
-See also: http://www.novaroma.org/via_romana/numbers.html
+Learn more about [Roman numerals on Wikipedia][roman-numerals].
 
-## Coding the solution
-
-Look for a stub file having the name roman_numerals.go
-and place your solution code in that file.
-
-## Running the tests
-
-To run the tests run the command `go test` from within the exercise directory.
-
-If the test suite contains benchmarks, you can run these with the `--bench` and `--benchmem`
-flags:
-
-    go test -v --bench . --benchmem
-
-Keep in mind that each reviewer will run benchmarks on a different machine, with
-different specs, so the results from these benchmark tests may vary.
-
-## Further information
-
-For more detailed information about the Go track, including how to get help if
-you're having trouble, please visit the exercism.io [Go language page](http://exercism.io/languages/go/resources).
+[roman-numerals]: https://wiki.imperivm-romanvm.com/wiki/Roman_Numerals
 
 ## Source
 
-The Roman Numeral Kata [http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals](http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals)
+### Created by
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+- @mikegehard
+
+### Contributed to by
+
+- @alebaffa
+- @bitfield
+- @dvrkps
+- @ekingery
+- @ferhatelmas
+- @hilary
+- @ilmanzo
+- @kytrinyx
+- @leenipper
+- @petertseng
+- @robphoenix
+- @sebito91
+- @soniakeys
+- @tleen
+- @tompao
+- @eklatzer
+
+### Based on
+
+The Roman Numeral Kata - https://codingdojo.org/kata/RomanNumerals/
