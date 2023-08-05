@@ -17,9 +17,7 @@ validate_pins () {
 
 get_pins () {
     local -ir throw=$1
-    if (( throw >= ${#THROWS[*]} )); then
-        die "Score cannot be taken until the end of the game."
-    fi
+    (( throw >= ${#THROWS[*]} )) && die "Score cannot be taken until the end of the game."
 
     local -ir pins=${THROWS[$throw]}
     validate_pins $pins
@@ -31,9 +29,8 @@ score () {
 
     while (( throw < ${#THROWS[*]} && frame < LAST_FRAME ))
     do
-        frame+=1
+        (( frame++ ))
         first_throw=$(get_pins $throw)
-        (( $? )) && exit 1
         score+=first_throw
         (( throw++ ))
 
@@ -42,8 +39,8 @@ score () {
         score+=second_throw
         (( throw++ ))
 
-        strike=$(( first_throw == MAX_PINS ))
-        spare=$(( !strike && first_throw + second_throw == MAX_PINS ))
+        strike='first_throw == MAX_PINS'
+        spare='!strike && first_throw + second_throw == MAX_PINS'
 
         if (( strike || spare )); then
             third_throw=$(get_pins $throw)
