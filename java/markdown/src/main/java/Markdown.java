@@ -1,4 +1,8 @@
+import java.util.Optional;
+import java.util.stream.Stream;
+
 class Markdown {
+    private static final StyleParser BOLD_PARSER = new StyleParser("__(.+)__", "<strong>$1</strong>");
 
     String parse(String markdown) {
         var lines = markdown.split("\n");
@@ -64,13 +68,6 @@ class Markdown {
     }
 
     private String parseSomeSymbols(String markdown) {
-
-        var lookingFor = "__(.+)__";
-        var update = "<strong>$1</strong>";
-        var workingOn = markdown.replaceAll(lookingFor, update);
-
-        lookingFor = "_(.+)_";
-        update = "<em>$1</em>";
-        return workingOn.replaceAll(lookingFor, update);
+        return new TextStylesParser().apply(markdown);
     }
 }
