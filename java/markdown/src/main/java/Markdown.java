@@ -38,16 +38,15 @@ class Markdown {
     }
 
     private String parseHeader(String markdown) {
-        int count = 0;
+        int count = (int)markdown.chars().takeWhile(ch -> ch == '#').count();
 
-        for (int i = 0; i < markdown.length() && markdown.charAt(i) == '#'; i++) 
-        {
-            count++;
+        if (count == 0) {
+            return null;
         }
 
-        if (count == 0) { return null; }
+        String content = markdown.substring(count).trim();
 
-        return "<h" + count + ">" + markdown.substring(count + 1) + "</h" + count + ">";
+        return String.format("<h%d>%s</h%d>", count, content, count);
     }
 
     private String parseListItem(String markdown) {
