@@ -27,7 +27,7 @@ get_pins () {
 }
 
 score () {
-    local -i throw=0 score=0 frame=0 first_throw second_throw third_throw
+    local -i throw=0 score=0 frame=0 first_throw second_throw third_throw spare strike
 
     while (( throw < ${#THROWS[*]} && frame < LAST_FRAME ))
     do
@@ -42,17 +42,22 @@ score () {
         score+=second_throw
         (( throw++ ))
 
-        if (( first_throw == MAX_PINS || first_throw + second_throw == MAX_PINS )); then
+        strike=$(( first_throw == MAX_PINS ))
+        spare=$(( !strike && first_throw + second_throw == MAX_PINS ))
+
+        if (( strike || spare )); then
             third_throw=$(get_pins $throw)
             (( $? )) && exit 1
-            if (( first_throw == MAX_PINS && frame == LAST_FRAME && second_throw < MAX_PINS )); then
+            if (( strike && frame == LAST_FRAME && second_throw < MAX_PINS )); then
                 validate_pins $(( second_throw + third_throw ))
             fi
             score+=third_throw
         fi
-        (( first_throw == MAX_PINS )) && (( throw-- ))
+        (( strike )) && (( throw-- ))
     done
     (( frame == 10 )) || die "Score cannot be taken until the end of the game."
+    (( throw += spare + 2*strike ))
+    (( throw == ${#THROWS[*]} )) || die "Cannot roll after game is over."
     echo $score
 }
 
