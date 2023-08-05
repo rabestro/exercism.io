@@ -5,31 +5,28 @@ class Markdown {
         String result = "";
         boolean activeList = false;
 
-        for (int i = 0; i < lines.length; i++) {
+        for (String line : lines) {
 
-            String theLine = parseHeader(lines[i]);
+            String theLine = parseHeader(line);
 
             if (theLine == null) {
-              theLine = parseListItem(lines[i]);
+                theLine = parseListItem(line);
             }
 
-            if (theLine == null) 
-            {
-                theLine = parseParagraph(lines[i]);
+            if (theLine == null) {
+                theLine = parseParagraph(line);
             }
 
             if (theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList) {
                 activeList = true;
-              result = result + "<ul>";
+                result = result + "<ul>";
                 result = result + theLine;
-            } 
-
-            else if (!theLine.matches("(<li>).*") && activeList) {
+            } else if (!theLine.matches("(<li>).*") && activeList) {
                 activeList = false;
                 result = result + "</ul>";
                 result = result + theLine;
             } else {
-              result = result + theLine;
+                result = result + theLine;
             }
         }
 
