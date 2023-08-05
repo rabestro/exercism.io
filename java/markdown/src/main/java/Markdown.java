@@ -1,13 +1,13 @@
 class Markdown {
 
     String parse(String markdown) {
-        String[] lines = markdown.split("\n");
-        StringBuilder result = new StringBuilder();
-        boolean activeList = false;
+        var lines = markdown.split("\n");
+        var result = new StringBuilder();
+        var activeList = false;
 
-        for (String line : lines) {
+        for (var line : lines) {
 
-            String theLine = parseHeader(line);
+            var theLine = parseHeader(line);
 
             if (theLine == null) {
                 theLine = parseListItem(line);
@@ -38,21 +38,21 @@ class Markdown {
     }
 
     private String parseHeader(String markdown) {
-        int count = (int)markdown.chars().takeWhile(ch -> ch == '#').count();
+        var count = (int)markdown.chars().takeWhile(ch -> ch == '#').count();
 
         if (count == 0) {
             return null;
         }
 
-        String content = markdown.substring(count).trim();
+        var content = markdown.substring(count).trim();
 
         return String.format("<h%d>%s</h%d>", count, content, count);
     }
 
     private String parseListItem(String markdown) {
         if (markdown.startsWith("*")) {
-            String skipAsterisk = markdown.substring(2);
-            String listItemString = parseSomeSymbols(skipAsterisk);
+            var skipAsterisk = markdown.substring(2);
+            var listItemString = parseSomeSymbols(skipAsterisk);
             return "<li>" + listItemString + "</li>";
         }
 
@@ -65,9 +65,9 @@ class Markdown {
 
     private String parseSomeSymbols(String markdown) {
 
-        String lookingFor = "__(.+)__";
-        String update = "<strong>$1</strong>";
-        String workingOn = markdown.replaceAll(lookingFor, update);
+        var lookingFor = "__(.+)__";
+        var update = "<strong>$1</strong>";
+        var workingOn = markdown.replaceAll(lookingFor, update);
 
         lookingFor = "_(.+)_";
         update = "<em>$1</em>";
