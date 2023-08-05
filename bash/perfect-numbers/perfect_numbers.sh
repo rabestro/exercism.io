@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+main () {
+  local -ir number=$1
+  local -i aliquot_sum=1 opposite factor
+  (( number < 1 )) && echo "Classification is only possible for natural numbers." && exit 1
+
+  for (( factor=2; factor*factor<=number; factor++ )); do
+    (( number % factor )) && continue
+    (( aliquot_sum += factor ))
+    (( opposite = number / factor ))
+    (( factor != opposite )) && (( aliquot_sum += opposite ))
+  done
+
+  if (( number == 1 || aliquot_sum < number )); then
+    echo "deficient"
+  elif (( aliquot_sum > number )); then
+    echo "abundant"
+  else
+    echo "perfect"
+  fi
+}
+
+main "$@"
