@@ -1,14 +1,14 @@
 package parser;
 
 import java.util.function.Function;
-import java.util.function.UnaryOperator;
 
 public class LineParserFabric implements Function<String, Function<String, String>> {
     private static final Parser LIST_PARSER = new ReplaceAllParser("^\\* (.+)$", "<li>$1</li>");
     private static final Parser PARAGRAPH_PARSER = new ReplaceAllParser("^.*$", "<p>$0</p>");
+    private static final Parser BOLD_STYLE_PARSER = new ReplaceAllParser("__(.+)__", "<strong>$1</strong>");
+    private static final Parser ITALIC_STYLE_PARSER = new ReplaceAllParser("_(.+)_", "<em>$1</em>");
 
     private final Parser headerParser = new HeaderParser();
-    private final Parser textStyleParser = new TextStylesParser();
 
     @Override
     public Function<String, String> apply(String line) {
@@ -20,7 +20,7 @@ public class LineParserFabric implements Function<String, Function<String, Strin
         } else {
             lineParser = PARAGRAPH_PARSER;
         }
-        return lineParser.andThen(textStyleParser);
+        return lineParser.andThen(BOLD_STYLE_PARSER).andThen(ITALIC_STYLE_PARSER);
     }
 
     private boolean isHeader(String line) {
