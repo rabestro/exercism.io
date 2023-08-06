@@ -12,7 +12,7 @@ public class MarkdownParser implements Parser {
     private static final Predicate<String> PARAGRAPH_MATCHER = Pattern.compile("(<p>).*").asMatchPredicate();
     private static final Predicate<String> LIST_MATCHER = LIST_ITEM_MATCHER.and(not(PARAGRAPH_MATCHER)).and(not(HEADER_MATCHER));
 
-    private final Function<String, Function<String, String>> lineParserFabric = new LineParserFactory();
+    private final Function<String, Function<String, String>> lineParserFactory = new LineParserFactory();
 
     private boolean activeList;
     private StringBuilder result;
@@ -37,7 +37,7 @@ public class MarkdownParser implements Parser {
     }
 
     private void parseLine(String line) {
-        var lineParser = lineParserFabric.apply(line);
+        var lineParser = lineParserFactory.apply(line);
         var parsedLine = lineParser.apply(line);
         appendLine(parsedLine);
     }
