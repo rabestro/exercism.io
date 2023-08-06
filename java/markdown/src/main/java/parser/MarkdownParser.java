@@ -3,6 +3,10 @@ package parser;
 import java.util.function.UnaryOperator;
 
 public class MarkdownParser implements UnaryOperator<String> {
+    private final UnaryOperator<String> headerParser = new HeaderParser();
+    private final UnaryOperator<String> listItemParser = new ListItemParser();
+    private final UnaryOperator<String> paragraphParser = new ParagraphParser();
+
     private boolean activeList;
     private StringBuilder result;
 
@@ -47,12 +51,12 @@ public class MarkdownParser implements UnaryOperator<String> {
 
     private UnaryOperator<String> selectParser(String markdown) {
         if (isHeader(markdown)) {
-            return new HeaderParser();
+            return headerParser;
         }
         if (isListItem(markdown)) {
-            return new ListItemParser();
+            return listItemParser;
         }
-        return new ParagraphParser();
+        return paragraphParser;
     }
 
     private void startList(String line) {
