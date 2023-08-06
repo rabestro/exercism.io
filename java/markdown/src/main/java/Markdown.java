@@ -2,6 +2,8 @@ import parser.HeaderParser;
 import parser.ListItemParser;
 import parser.ParagraphParser;
 
+import java.util.function.UnaryOperator;
+
 class Markdown {
     String parse(String markdown) {
         var lines = markdown.split("\n");
@@ -9,16 +11,7 @@ class Markdown {
         var activeList = false;
 
         for (var line : lines) {
-
-            var theLine = parseHeader(line);
-
-            if (theLine == null) {
-                theLine = parseListItem(line);
-            }
-
-            if (theLine == null) {
-                theLine = new ParagraphParser().apply(line);
-            }
+            var theLine = selectParser(line).apply(line);
 
             if (theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList) {
                 activeList = true;
@@ -40,18 +33,20 @@ class Markdown {
         return result.toString();
     }
 
-    private String parseHeader(String markdown) {
-        if (markdown.startsWith("#")) {
-            return new HeaderParser().apply(markdown);
-        }
-        return null;
+    private boolean isHeader(String markdown) {
+        return markdown.startsWith("#");
+    }
+    private boolean isListItem(String markdown) {
+        return markdown.startsWith("*");
     }
 
-    private String parseListItem(String markdown) {
-        if (markdown.startsWith("*")) {
-            return new ListItemParser().apply(markdown);
+    private UnaryOperator<String> selectParser(String markdown) {
+        if (isHeader(markdown)) {
+            return new HeaderParser();
         }
-        return null;
+        if (isListItem(markdown)) {
+            return new ListItemParser();
+        }
+        return new ParagraphParser();
     }
-
 }
