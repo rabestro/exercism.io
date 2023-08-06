@@ -1,8 +1,14 @@
 package parser;
 
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class MarkdownParser implements UnaryOperator<String> {
+    private static final Predicate<String> LIST_ITEM_MATCHER = Pattern.compile("(<li>).*").asMatchPredicate();
+    private static final Predicate<String> HEADER_MATCHER = Pattern.compile("(<h).*").asMatchPredicate();
+    private static final Predicate<String> PARAGRAPH_MATCHER = Pattern.compile("(<p>).*").asMatchPredicate();
+
     private final UnaryOperator<String> headerParser = new HeaderParser();
     private final UnaryOperator<String> listItemParser = new ListItemParser();
     private final UnaryOperator<String> paragraphParser = new ParagraphParser();
@@ -33,12 +39,12 @@ public class MarkdownParser implements UnaryOperator<String> {
         appendLine(selectParser(line).apply(line));
     }
 
-    private boolean shouldEndList(String theLine) {
-        return !theLine.matches("(<li>).*") && activeList;
+    private boolean shouldEndList(String line) {
+        return !LIST_ITEM_MATCHER.test(line) && activeList;
     }
 
-    private boolean shouldStartList(String theLine) {
-        return theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList;
+    private boolean shouldStartList(String line) {
+        return LIST_ITEM_MATCHER.test(line) && !HEADER_MATCHER.test(line) && !PARAGRAPH_MATCHER.test(line) && !activeList;
     }
 
     private boolean isHeader(String markdown) {
