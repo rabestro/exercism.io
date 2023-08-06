@@ -22,6 +22,6 @@ public final class HeaderParserBuilder implements IntFunction<UnaryOperator<Stri
         }
         var pattern = "^#{" + headerLevel + "} (.+)$";
         var template = "<h" + headerLevel + ">$1</h" + headerLevel + ">";
-        return new ReplaceAllParser(pattern, template);
+        return Parser.of(pattern, template);
     }
 }

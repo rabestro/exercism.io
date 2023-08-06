@@ -3,11 +3,6 @@ package parser;
 import java.util.function.Function;
 
 public class LineParserFabric implements Function<String, Function<String, String>> {
-    private static final Parser LIST_PARSER = new ReplaceAllParser("^\\* (.+)$", "<li>$1</li>");
-    private static final Parser PARAGRAPH_PARSER = new ReplaceAllParser("^.*$", "<p>$0</p>");
-    private static final Parser BOLD_STYLE_PARSER = new ReplaceAllParser("__(.+)__", "<strong>$1</strong>");
-    private static final Parser ITALIC_STYLE_PARSER = new ReplaceAllParser("_(.+)_", "<em>$1</em>");
-
     private final Parser headerParser = new HeaderParser();
 
     @Override
@@ -16,11 +11,11 @@ public class LineParserFabric implements Function<String, Function<String, Strin
         if (isHeader(line)) {
             lineParser = headerParser;
         } else if (isListItem(line)) {
-            lineParser = LIST_PARSER;
+            lineParser = Parser.LIST_ITEM;
         } else {
-            lineParser = PARAGRAPH_PARSER;
+            lineParser = Parser.PARAGRAPH;
         }
-        return lineParser.andThen(BOLD_STYLE_PARSER).andThen(ITALIC_STYLE_PARSER);
+        return lineParser.andThen(Parser.BOLD_STYLE).andThen(Parser.ITALIC_STYLE);
     }
 
     private boolean isHeader(String line) {
