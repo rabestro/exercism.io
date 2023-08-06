@@ -8,50 +8,39 @@ public class MarkdownParser implements UnaryOperator<String> {
 
     @Override
     public String apply(String text) {
-        header();
+        initParseProcess();
         text.lines().forEach(this::parseLine);
-        footer();
+        endParseProcess();
         return result.toString();
     }
 
-    private void footer() {
+    private void endParseProcess() {
         if (activeList) {
             result.append("</ul>");
         }
     }
 
-    private void header() {
+    private void initParseProcess() {
         activeList = false;
         result = new StringBuilder();
     }
 
     private void parseLine(String line) {
-        var theLine = selectParser(line).apply(line);
-
-        if (isListItemTag(theLine)) {
-            activeList = true;
-            result.append("<ul>");
-            result.append(theLine);
-        } else if (isNotListItemInActiveList(theLine)) {
-            activeList = false;
-            result.append("</ul>");
-            result.append(theLine);
-        } else {
-            result.append(theLine);
-        }
+        appendLine(selectParser(line).apply(line));
     }
 
-    private boolean isNotListItemInActiveList(String theLine) {
+    private boolean shouldEndList(String theLine) {
         return !theLine.matches("(<li>).*") && activeList;
     }
 
-    private boolean isListItemTag(String theLine) {
+    private boolean shouldStartList(String theLine) {
         return theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList;
     }
 
     private boolean isHeader(String markdown) {
         return markdown.startsWith("#");
     }
+
     private boolean isListItem(String markdown) {
         return markdown.startsWith("*");
     }
@@ -64,5 +53,25 @@ public class MarkdownParser implements UnaryOperator<String> {
             return new ListItemParser();
         }
         return new ParagraphParser();
+    }
+
+    private void startList(String line) {
+        activeList = true;
+        result.append("<ul>").append(line);
+    }
+
+    private void endList(String line) {
+        activeList = false;
+        result.append("</ul>").append(line);
+    }
+
+    private void appendLine(String parsedLine) {
+        if (shouldStartList(parsedLine)) {
+            startList(parsedLine);
+        } else if (shouldEndList(parsedLine)) {
+            endList(parsedLine);
+        } else {
+            result.append(parsedLine);
+        }
     }
 }
