@@ -1,7 +1,7 @@
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
-public record StyleParser(Pattern pattern, String template) implements UnaryOperator<String> {
+record StyleParser(Pattern pattern, String template) implements UnaryOperator<String> {
     StyleParser(String pattern, String template) {
         this(Pattern.compile(pattern), template);
     }
