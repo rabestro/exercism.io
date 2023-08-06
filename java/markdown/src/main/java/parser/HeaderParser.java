@@ -2,7 +2,6 @@ package parser;
 
 import java.util.function.IntFunction;
 import java.util.function.ToIntFunction;
-import java.util.function.UnaryOperator;
 
 public record HeaderParser(
         ToIntFunction<String> leadingHashesCounter,

@@ -1,7 +1,6 @@
 package parser;
 
 import java.util.function.IntFunction;
-import java.util.function.UnaryOperator;
 
 /**
  * A builder class for creating header parsers.
