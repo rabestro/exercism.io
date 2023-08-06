@@ -1,3 +1,4 @@
+import parser.HeaderParser;
 import parser.ListItemParser;
 import parser.ParagraphParser;
 
@@ -40,22 +41,16 @@ class Markdown {
     }
 
     private String parseHeader(String markdown) {
-        var count = (int)markdown.chars().takeWhile(ch -> ch == '#').count();
-
-        if (count == 0) {
-            return null;
+        if (markdown.startsWith("#")) {
+            return new HeaderParser().apply(markdown);
         }
-
-        var content = markdown.substring(count).trim();
-
-        return String.format("<h%d>%s</h%d>", count, content, count);
+        return null;
     }
 
     private String parseListItem(String markdown) {
         if (markdown.startsWith("*")) {
             return new ListItemParser().apply(markdown);
         }
-
         return null;
     }
 
