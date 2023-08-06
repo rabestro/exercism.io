@@ -7,7 +7,7 @@ import java.util.function.UnaryOperator;
 public record HeaderParser(
         ToIntFunction<String> leadingHashesCounter,
         IntFunction<UnaryOperator<String>> headerParserBuilder
-) implements UnaryOperator<String> {
+) implements Parser {
 
     HeaderParser() {
         this(new LeadingHashesCounter(), new HeaderParserBuilder());

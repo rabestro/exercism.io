@@ -2,7 +2,7 @@ package parser;
 
 import java.util.function.UnaryOperator;
 
-public final class ParagraphParser implements UnaryOperator<String> {
+public final class ParagraphParser implements Parser {
     private static final UnaryOperator<String> PARAGRAPH_PARSER = new ReplaceAllParser("^.*$", "<p>$0</p>");
 
     @Override

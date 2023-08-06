@@ -2,9 +2,8 @@ package parser;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.UnaryOperator;
 
-public record TextStylesParser(List<Function<String, String>> parsers) implements UnaryOperator<String> {
+public record TextStylesParser(List<Function<String, String>> parsers) implements Parser {
     public TextStylesParser() {
         this(List.of(
                 new ReplaceAllParser("__(.+)__", "<strong>$1</strong>"),
