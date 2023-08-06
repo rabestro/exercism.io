@@ -3,8 +3,8 @@ package parser;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
-record StyleParser(Pattern pattern, String template) implements UnaryOperator<String> {
-    StyleParser(String pattern, String template) {
+public record ReplaceAllParser(Pattern pattern, String template) implements UnaryOperator<String> {
+    ReplaceAllParser(String pattern, String template) {
         this(Pattern.compile(pattern), template);
     }
 
