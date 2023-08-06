@@ -3,8 +3,9 @@ package parser;
 import java.util.function.Function;
 
 public class LineParserFabric implements Function<String, Function<String, String>> {
+    private static final Parser LIST_PARSER = new ReplaceAllParser("^\\* (.+)$", "<li>$1</li>");
+
     private final Parser headerParser = new HeaderParser();
-    private final Parser listItemParser = new ListItemParser();
     private final Parser paragraphParser = new ParagraphParser();
     private final Parser textStyleParser = new TextStylesParser();
 
@@ -14,7 +15,7 @@ public class LineParserFabric implements Function<String, Function<String, Strin
         if (isHeader(line)) {
             lineParser = headerParser;
         } else if (isListItem(line)) {
-            lineParser = listItemParser;
+            lineParser = LIST_PARSER;
         } else {
             lineParser = paragraphParser;
         }
