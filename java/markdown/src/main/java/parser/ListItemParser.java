@@ -7,6 +7,6 @@ public final class ListItemParser implements UnaryOperator<String> {
 
     @Override
     public String apply(String text) {
-        return LIST_PARSER.andThen(new TextStylesParser()).apply(text);
+        return LIST_PARSER.apply(text);
     }
 }

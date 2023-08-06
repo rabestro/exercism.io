@@ -7,6 +7,6 @@ public final class ParagraphParser implements UnaryOperator<String> {
 
     @Override
     public String apply(String text) {
-        return PARAGRAPH_PARSER.andThen(new TextStylesParser()).apply(text);
+        return PARAGRAPH_PARSER.apply(text);
     }
 }

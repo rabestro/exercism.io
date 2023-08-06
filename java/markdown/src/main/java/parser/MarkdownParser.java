@@ -12,6 +12,7 @@ public class MarkdownParser implements UnaryOperator<String> {
     private final UnaryOperator<String> headerParser = new HeaderParser();
     private final UnaryOperator<String> listItemParser = new ListItemParser();
     private final UnaryOperator<String> paragraphParser = new ParagraphParser();
+    private final UnaryOperator<String> textStyleParser = new TextStylesParser();
 
     private boolean activeList;
     private StringBuilder result;
@@ -36,7 +37,8 @@ public class MarkdownParser implements UnaryOperator<String> {
     }
 
     private void parseLine(String line) {
-        appendLine(selectParser(line).apply(line));
+        var parsedLine = selectParser(line).andThen(textStyleParser).apply(line);
+        appendLine(parsedLine);
     }
 
     private boolean shouldEndList(String line) {
