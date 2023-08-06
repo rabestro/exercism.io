@@ -4,6 +4,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+import static java.util.function.Predicate.not;
+
 public class MarkdownParser implements Parser {
     private static final Predicate<String> LIST_ITEM_MATCHER = Pattern.compile("(<li>).*").asMatchPredicate();
     private static final Predicate<String> HEADER_MATCHER = Pattern.compile("(<h).*").asMatchPredicate();
@@ -44,7 +46,7 @@ public class MarkdownParser implements Parser {
     }
 
     private boolean shouldStartList(String line) {
-        return LIST_ITEM_MATCHER.test(line) && !HEADER_MATCHER.test(line) && !PARAGRAPH_MATCHER.test(line) && !activeList;
+        return !activeList && LIST_ITEM_MATCHER.and(not(PARAGRAPH_MATCHER)).and(not(HEADER_MATCHER)).test(line);
     }
 
     private void startList(String line) {
