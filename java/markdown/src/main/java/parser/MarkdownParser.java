@@ -28,17 +28,25 @@ public class MarkdownParser implements UnaryOperator<String> {
     private void parseLine(String line) {
         var theLine = selectParser(line).apply(line);
 
-        if (theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList) {
+        if (isListItemTag(theLine)) {
             activeList = true;
             result.append("<ul>");
             result.append(theLine);
-        } else if (!theLine.matches("(<li>).*") && activeList) {
+        } else if (isNotListItemInActiveList(theLine)) {
             activeList = false;
             result.append("</ul>");
             result.append(theLine);
         } else {
             result.append(theLine);
         }
+    }
+
+    private boolean isNotListItemInActiveList(String theLine) {
+        return !theLine.matches("(<li>).*") && activeList;
+    }
+
+    private boolean isListItemTag(String theLine) {
+        return theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList;
     }
 
     private boolean isHeader(String markdown) {
