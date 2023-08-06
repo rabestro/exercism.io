@@ -1,9 +1,7 @@
-import java.util.Optional;
-import java.util.stream.Stream;
+import parser.ListItemParser;
+import parser.TextStylesParser;
 
 class Markdown {
-    private static final StyleParser BOLD_PARSER = new StyleParser("__(.+)__", "<strong>$1</strong>");
-
     String parse(String markdown) {
         var lines = markdown.split("\n");
         var result = new StringBuilder();
@@ -55,9 +53,7 @@ class Markdown {
 
     private String parseListItem(String markdown) {
         if (markdown.startsWith("*")) {
-            var skipAsterisk = markdown.substring(2);
-            var listItemString = parseSomeSymbols(skipAsterisk);
-            return "<li>" + listItemString + "</li>";
+            return new ListItemParser().apply(markdown);
         }
 
         return null;
