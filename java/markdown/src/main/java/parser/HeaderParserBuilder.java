@@ -10,13 +10,13 @@ import java.util.function.UnaryOperator;
  * based on the specified header level.
  * The header parser returned by this builder replaces header text to HTML tags based on the header level.
  */
-public final class HeaderParserBuilder implements IntFunction<UnaryOperator<String>> {
+public final class HeaderParserBuilder implements IntFunction<Parser> {
     private static boolean isInvalidHeaderLevel(int headerLevel) {
         return headerLevel < 1 || headerLevel > 6;
     }
 
     @Override
-    public UnaryOperator<String> apply(int headerLevel) {
+    public Parser apply(int headerLevel) {
         if (isInvalidHeaderLevel(headerLevel)) {
             return text -> text;
         }
