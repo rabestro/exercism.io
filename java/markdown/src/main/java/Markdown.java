@@ -1,5 +1,5 @@
 import parser.ListItemParser;
-import parser.TextStylesParser;
+import parser.ParagraphParser;
 
 class Markdown {
     String parse(String markdown) {
@@ -16,7 +16,7 @@ class Markdown {
             }
 
             if (theLine == null) {
-                theLine = parseParagraph(line);
+                theLine = new ParagraphParser().apply(line);
             }
 
             if (theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList) {
@@ -59,11 +59,4 @@ class Markdown {
         return null;
     }
 
-    private String parseParagraph(String markdown) {
-        return "<p>" + parseSomeSymbols(markdown) + "</p>";
-    }
-
-    private String parseSomeSymbols(String markdown) {
-        return new TextStylesParser().apply(markdown);
-    }
 }
