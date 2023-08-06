@@ -10,8 +10,9 @@ public class MarkdownParser implements Parser {
     private static final Predicate<String> LIST_ITEM_MATCHER = Pattern.compile("(<li>).*").asMatchPredicate();
     private static final Predicate<String> HEADER_MATCHER = Pattern.compile("(<h).*").asMatchPredicate();
     private static final Predicate<String> PARAGRAPH_MATCHER = Pattern.compile("(<p>).*").asMatchPredicate();
+    private static final Predicate<String> LIST_MATCHER = LIST_ITEM_MATCHER.and(not(PARAGRAPH_MATCHER)).and(not(HEADER_MATCHER));
 
-    private final Function<String, Function<String, String>> lineParserFabric = new LineParserFabric();
+    private final Function<String, Function<String, String>> lineParserFabric = new LineParserFactory();
 
     private boolean activeList;
     private StringBuilder result;
@@ -46,7 +47,7 @@ public class MarkdownParser implements Parser {
     }
 
     private boolean shouldStartList(String line) {
-        return !activeList && LIST_ITEM_MATCHER.and(not(PARAGRAPH_MATCHER)).and(not(HEADER_MATCHER)).test(line);
+        return !activeList && LIST_MATCHER.test(line);
     }
 
     private void startList(String line) {

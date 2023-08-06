@@ -2,14 +2,13 @@ package parser;
 
 import java.util.function.Function;
 
-public class LineParserFabric implements Function<String, Function<String, String>> {
-    private final Parser headerParser = new HeaderParser();
+public final class LineParserFactory implements Function<String, Function<String, String>> {
 
     @Override
     public Function<String, String> apply(String line) {
         final Parser lineParser;
         if (isHeader(line)) {
-            lineParser = headerParser;
+            lineParser = Parser.HEADER;
         } else if (isListItem(line)) {
             lineParser = Parser.LIST_ITEM;
         } else {
