@@ -1,72 +1,25 @@
 package parser;
 
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
-
-import static java.util.function.Predicate.not;
+import java.util.stream.Collector;
 
 public class MarkdownParser implements Parser {
-    private static final Predicate<String> LIST_ITEM_MATCHER = Pattern.compile("(<li>).*").asMatchPredicate();
-    private static final Predicate<String> HEADER_MATCHER = Pattern.compile("(<h).*").asMatchPredicate();
-    private static final Predicate<String> PARAGRAPH_MATCHER = Pattern.compile("(<p>).*").asMatchPredicate();
-    private static final Predicate<String> LIST_MATCHER = LIST_ITEM_MATCHER.and(not(PARAGRAPH_MATCHER)).and(not(HEADER_MATCHER));
-
-    private final Function<String, Function<String, String>> lineParserFactory = new LineParserFactory();
-
-    private boolean activeList;
-    private StringBuilder result;
+    private final Function<String, Function<String, String>> parserFactory = new ParserFactory();
 
     @Override
     public String apply(String text) {
-        initParseProcess();
-        text.lines().forEach(this::parseLine);
-        endParseProcess();
-        return result.toString();
+        return text.lines()
+                .map(this::parseLine)
+                .collect(Collector.of(
+                        HtmlContainer::new,
+                        HtmlContainer::append,
+                        HtmlContainer::merge,
+                        HtmlContainer::get
+                ));
     }
 
-    private void endParseProcess() {
-        if (activeList) {
-            result.append("</ul>");
-        }
-    }
-
-    private void initParseProcess() {
-        activeList = false;
-        result = new StringBuilder();
-    }
-
-    private void parseLine(String line) {
-        var lineParser = lineParserFactory.apply(line);
-        var parsedLine = lineParser.apply(line);
-        appendLine(parsedLine);
-    }
-
-    private boolean shouldEndList(String line) {
-        return !LIST_ITEM_MATCHER.test(line) && activeList;
-    }
-
-    private boolean shouldStartList(String line) {
-        return !activeList && LIST_MATCHER.test(line);
-    }
-
-    private void startList(String line) {
-        activeList = true;
-        result.append("<ul>").append(line);
-    }
-
-    private void endList(String line) {
-        activeList = false;
-        result.append("</ul>").append(line);
-    }
-
-    private void appendLine(String parsedLine) {
-        if (shouldStartList(parsedLine)) {
-            startList(parsedLine);
-        } else if (shouldEndList(parsedLine)) {
-            endList(parsedLine);
-        } else {
-            result.append(parsedLine);
-        }
+    private String parseLine(String line) {
+        var parser = parserFactory.apply(line);
+        return parser.apply(line);
     }
 }
