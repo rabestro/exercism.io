@@ -238,7 +238,6 @@ public class ForthEvaluatorTest {
                 "Dropping requires that the stack contain at least 1 value");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSwapSwapsTheTopTwosValueOnTheStackIfTheyAreTheOnlyOnes() {
         assertEquals(
@@ -246,7 +245,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 swap")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSwapSwapsTheTopTwosValueOnTheStackIfTheyAreNotTheOnlyOnes() {
         assertEquals(
@@ -254,7 +252,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 3 swap")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfSwappingAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =
@@ -268,7 +265,6 @@ public class ForthEvaluatorTest {
                 "Swapping requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfSwappingAttemptedWithOneNumberOnTheStack() {
         IllegalArgumentException expected =

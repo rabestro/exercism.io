@@ -27,20 +27,20 @@ class ForthEvaluator {
         switch (token) {
             case "+" -> {
                 requireStackHasAtLeast(2, "Addition requires that the stack contain at least 2 values");
-                stack.add(stack.poll() + stack.poll());
+                stack.add(stack.removeLast() + stack.removeLast());
             }
             case "-" -> {
                 requireStackHasAtLeast(2, "Subtraction requires that the stack contain at least 2 values");
-                stack.add(stack.poll() - stack.poll());
+                stack.add(-stack.removeLast() + stack.removeLast());
             }
             case "*" -> {
                 requireStackHasAtLeast(2, "Multiplication requires that the stack contain at least 2 values");
-                stack.add(stack.poll() * stack.poll());
+                stack.add(stack.removeLast() * stack.removeLast());
             }
             case "/" -> {
                 requireStackHasAtLeast(2, "Division requires that the stack contain at least 2 values");
-                int dividend = stack.poll();
-                int divisor = stack.poll();
+                int divisor = stack.removeLast();
+                int dividend = stack.removeLast();
                 if (divisor == 0) {
                     throw new IllegalArgumentException("Division by 0 is not allowed");
                 }
@@ -48,11 +48,18 @@ class ForthEvaluator {
             }
             case "dup" -> {
                 requireStackHasAtLeast(1, "Duplicating requires that the stack contain at least 1 value");
-                stack.add(stack.getLast());
+                stack.add(stack.peekLast());
             }
             case "drop" -> {
                 requireStackHasAtLeast(1, "Dropping requires that the stack contain at least 1 value");
                 stack.removeLast();
+            }
+            case "swap" -> {
+                requireStackHasAtLeast(2, "Swapping requires that the stack contain at least 2 values");
+                int a = stack.removeLast();
+                int b = stack.removeLast();
+                stack.add(a);
+                stack.add(b);
             }
         }
     }
