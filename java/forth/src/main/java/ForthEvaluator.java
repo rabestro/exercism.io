@@ -50,6 +50,10 @@ class ForthEvaluator {
                 requireStackHasAtLeast(1, "Duplicating requires that the stack contain at least 1 value");
                 stack.add(stack.getLast());
             }
+            case "drop" -> {
+                requireStackHasAtLeast(1, "Dropping requires that the stack contain at least 1 value");
+                stack.removeLast();
+            }
         }
     }
 
