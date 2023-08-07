@@ -65,7 +65,18 @@ class ForthEvaluator {
     }
 
     private void evaluateLine(String line) {
-        Arrays.asList(line.split(" ")).forEach(this::evaluateToken);
+        var tokens = Arrays.asList(line.split(" "));
+        if (tokens.get(0).equals(":")) {
+            evaluateMacro(tokens);
+        } else {
+            tokens.forEach(this::evaluateToken);
+        }
+    }
+
+    private void evaluateMacro(List<String> tokens) {
+        var macroName = tokens.get(1);
+        var macroBody = tokens.subList(2, tokens.size() - 1);
+        macros.put(macroName, () -> macroBody.forEach(this::evaluateToken));
     }
 
     private void evaluateToken(String token) {

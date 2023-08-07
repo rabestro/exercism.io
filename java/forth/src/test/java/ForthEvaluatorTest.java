@@ -318,7 +318,6 @@ public class ForthEvaluatorTest {
                 "Overing requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUserDefinedOperatorsCanConsistOfBuiltInOperators() {
         assertEquals(
@@ -326,7 +325,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": dup-twice dup dup ;", "1 dup-twice")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUserDefinedOperatorsAreEvaluatedInTheCorrectOrder() {
         assertEquals(
@@ -334,7 +332,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": countup 1 2 3 ;", "countup")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCanRedefineAUserDefinedOperator() {
         assertEquals(
@@ -342,7 +339,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": foo dup ;", ": foo dup dup ;", "1 foo")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCanOverrideBuiltInWordOperators() {
         assertEquals(
@@ -350,7 +346,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": swap dup ;", "1 swap")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCanOverrideBuiltInArithmeticOperators() {
         assertEquals(
