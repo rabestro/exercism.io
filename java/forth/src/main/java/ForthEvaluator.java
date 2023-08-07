@@ -75,6 +75,9 @@ class ForthEvaluator {
 
     private void evaluateMacro(List<String> tokens) {
         var macroName = tokens.get(1).toLowerCase();
+        if (isNumber(macroName)) {
+            throw new IllegalArgumentException("Cannot redefine numbers");
+        }
         var macroBody = tokens.subList(2, tokens.size() - 1);
         macros.put(macroName, () -> macroBody.forEach(this::evaluateToken));
     }

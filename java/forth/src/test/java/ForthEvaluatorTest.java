@@ -369,7 +369,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": foo 10 ;", ": foo foo 1 + ;", "foo")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCannotRedefineNumbers() {
         IllegalArgumentException expected =
