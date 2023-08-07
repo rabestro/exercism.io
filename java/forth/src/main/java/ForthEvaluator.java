@@ -26,19 +26,21 @@ class ForthEvaluator {
     private void evaluateOperation(String token) {
         switch (token) {
             case "+" -> {
-                if (stack.size() < 2) {
-                    throw new IllegalArgumentException("Addition requires that the stack contain at least 2 values");
-                }
+                requireStackHasAtLeast(2, "Addition");
                 stack.add(stack.poll() + stack.poll());
             }
             case "-" -> {
-                if (stack.size() < 2) {
-                    throw new IllegalArgumentException("Subtraction requires that the stack contain at least 2 values");
-                }
+                requireStackHasAtLeast(2, "Subtraction");
                 stack.add(stack.poll() - stack.poll());
             }
 
 
+        }
+    }
+
+    private void requireStackHasAtLeast(int n, String operation) {
+        if (stack.size() < n) {
+            throw new IllegalArgumentException(operation + " requires that the stack contain at least " + n + " values");
         }
     }
 
