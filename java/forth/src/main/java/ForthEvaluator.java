@@ -31,6 +31,12 @@ class ForthEvaluator {
                 }
                 stack.add(stack.poll() + stack.poll());
             }
+            case "-" -> {
+                if (stack.size() < 2) {
+                    throw new IllegalArgumentException("Subtraction requires that the stack contain at least 2 values");
+                }
+                stack.add(stack.poll() - stack.poll());
+            }
 
 
         }

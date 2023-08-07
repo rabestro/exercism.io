@@ -39,7 +39,6 @@ public class ForthEvaluatorTest {
                 "Addition requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfAdditionAttemptedWithOneNumberOnTheStack() {
         IllegalArgumentException expected =
@@ -53,7 +52,6 @@ public class ForthEvaluatorTest {
                 "Addition requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoNumbersCanBeSubtracted() {
         assertEquals(
@@ -61,7 +59,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("3 4 -")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfSubtractionAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =
@@ -75,7 +72,6 @@ public class ForthEvaluatorTest {
                 "Subtraction requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfSubtractionAttemptedWithOneNumberOnTheStack() {
         IllegalArgumentException expected =
