@@ -33,8 +33,19 @@ class ForthEvaluator {
                 requireStackHasAtLeast(2, "Subtraction");
                 stack.add(stack.poll() - stack.poll());
             }
-
-
+            case "*" -> {
+                requireStackHasAtLeast(2, "Multiplication");
+                stack.add(stack.poll() * stack.poll());
+            }
+            case "/" -> {
+                requireStackHasAtLeast(2, "Division");
+                int dividend = stack.poll();
+                int divisor = stack.poll();
+                if (divisor == 0) {
+                    throw new IllegalArgumentException("Division by 0 is not allowed");
+                }
+                stack.add(dividend / divisor);
+            }
         }
     }
 

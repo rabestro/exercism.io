@@ -85,7 +85,6 @@ public class ForthEvaluatorTest {
                 "Subtraction requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoNumbersCanBeMultiplied() {
         assertEquals(
@@ -93,7 +92,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("2 4 *")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfMultiplicationAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =
@@ -107,7 +105,6 @@ public class ForthEvaluatorTest {
                 "Multiplication requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfMultiplicationAttemptedWithOneNumberOnTheStack() {
         IllegalArgumentException expected =
@@ -121,7 +118,6 @@ public class ForthEvaluatorTest {
                 "Multiplication requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoNumbersCanBeDivided() {
         assertEquals(
@@ -129,7 +125,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("12 3 /")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testThatIntegerDivisionIsUsed() {
         assertEquals(
@@ -137,7 +132,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("8 3 /")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfDividingByZero() {
         IllegalArgumentException expected =
@@ -150,7 +144,6 @@ public class ForthEvaluatorTest {
             .hasMessage("Division by 0 is not allowed");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfDivisionAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =
@@ -164,7 +157,6 @@ public class ForthEvaluatorTest {
                 "Division requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfDivisionAttemptedWithOneNumberOnTheStack() {
         IllegalArgumentException expected =
