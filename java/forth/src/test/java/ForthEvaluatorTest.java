@@ -381,7 +381,6 @@ public class ForthEvaluatorTest {
         assertThat(expected).hasMessage("Cannot redefine numbers");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfEvaluatingAnUndefinedOperator() {
         IllegalArgumentException expected =
@@ -394,7 +393,6 @@ public class ForthEvaluatorTest {
             .hasMessage("No definition available for operator \"foo\"");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testDupIsCaseInsensitive() {
         assertEquals(
@@ -402,7 +400,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 DUP Dup dup")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testDropIsCaseInsensitive() {
         assertEquals(
@@ -410,7 +407,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 3 4 DROP Drop drop")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testSwapIsCaseInsensitive() {
         assertEquals(
@@ -418,7 +414,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 SWAP 3 Swap 4 swap")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testOverIsCaseInsensitive() {
         assertEquals(
@@ -426,7 +421,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 OVER Over over")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testUserDefinedWordsAreCaseInsensitive() {
         assertEquals(
@@ -434,7 +428,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": foo dup ;", "1 FOO Foo foo")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testDefinitionsAreCaseInsensitive() {
         assertEquals(

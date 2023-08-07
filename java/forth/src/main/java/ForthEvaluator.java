@@ -74,7 +74,7 @@ class ForthEvaluator {
     }
 
     private void evaluateMacro(List<String> tokens) {
-        var macroName = tokens.get(1);
+        var macroName = tokens.get(1).toLowerCase();
         var macroBody = tokens.subList(2, tokens.size() - 1);
         macros.put(macroName, () -> macroBody.forEach(this::evaluateToken));
     }
@@ -88,8 +88,8 @@ class ForthEvaluator {
     }
 
     private void evaluateOperation(String token) {
-        macros.getOrDefault(token, () -> {
-            throw new IllegalArgumentException("Unknown operation");
+        macros.getOrDefault(token.toLowerCase(), () -> {
+            throw new IllegalArgumentException("No definition available for operator \"" + token + "\"");
         }).run();
     }
 
