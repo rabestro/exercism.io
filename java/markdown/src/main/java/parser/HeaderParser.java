@@ -3,6 +3,7 @@ package parser;
 import java.util.Objects;
 import java.util.function.IntFunction;
 
+
 public record HeaderParser(IntFunction<Parser> headerParserBuilder) implements Parser {
 
     HeaderParser() {
@@ -16,6 +17,4 @@ public record HeaderParser(IntFunction<Parser> headerParserBuilder) implements P
         var headerParser = headerParserBuilder.apply(headerLevel);
         return headerParser.apply(text);
     }
-
-
 }

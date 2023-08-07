@@ -22,5 +22,4 @@ public class MarkdownParser implements Parser {
         var parser = parserFactory.apply(line);
         return parser.apply(line);
     }
-
 }

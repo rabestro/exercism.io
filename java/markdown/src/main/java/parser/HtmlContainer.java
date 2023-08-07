@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import static java.util.function.Predicate.not;
 
+/**
+ * Represents a container for HTML content.
+ */
 public class HtmlContainer implements Supplier<String> {
     private static final Predicate<String> LIST_ITEM_MATCHER = Pattern.compile("(<li>).*").asMatchPredicate();
     private static final Predicate<String> HEADER_MATCHER = Pattern.compile("(<h).*").asMatchPredicate();

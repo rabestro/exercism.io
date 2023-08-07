@@ -2,6 +2,7 @@ package parser;
 
 import java.util.function.Function;
 
+
 public final class ParserFactory implements Function<String, Function<String, String>> {
 
     @Override
@@ -14,7 +15,9 @@ public final class ParserFactory implements Function<String, Function<String, St
         } else {
             lineParser = Parser.PARAGRAPH;
         }
-        return lineParser.andThen(Parser.BOLD_STYLE).andThen(Parser.ITALIC_STYLE);
+        return lineParser
+                .andThen(Parser.BOLD_STYLE)
+                .andThen(Parser.ITALIC_STYLE);
     }
 
     private boolean isHeader(String line) {
@@ -24,5 +27,4 @@ public final class ParserFactory implements Function<String, Function<String, St
     private boolean isListItem(String line) {
         return line.startsWith("*");
     }
-
 }
