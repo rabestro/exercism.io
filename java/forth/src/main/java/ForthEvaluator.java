@@ -24,10 +24,13 @@ class ForthEvaluator {
     }
 
     private void evaluateOperation(String token) {
-
+        switch (token) {
+            case "+" ->
+                stack.add(stack.poll() + stack.poll());
+        }
     }
 
     private boolean isNumber(String token) {
-        return true;
+        return token.matches("\\d+");
     }
 }

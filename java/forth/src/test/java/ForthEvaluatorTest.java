@@ -19,7 +19,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 3 4 5")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTwoNumbersCanBeAdded() {
         assertEquals(
