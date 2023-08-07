@@ -46,6 +46,10 @@ class ForthEvaluator {
                 }
                 stack.add(dividend / divisor);
             }
+            case "dup" -> {
+                requireStackHasAtLeast(1, "Duplication");
+                stack.add(stack.peek());
+            }
         }
     }
 

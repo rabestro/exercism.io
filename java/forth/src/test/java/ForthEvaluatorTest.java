@@ -170,7 +170,6 @@ public class ForthEvaluatorTest {
                 "Division requires that the stack contain at least 2 values");
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCombinedAdditionAndSubtraction() {
         assertEquals(
@@ -178,7 +177,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 + 4 -")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCombinedMultiplicationAndDivision() {
         assertEquals(
@@ -186,7 +184,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("2 4 * 3 /")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testDupCopiesAValueOnTheStack() {
         assertEquals(
