@@ -191,7 +191,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 dup")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testDupCopiesTopValueOnTheStack() {
         assertEquals(
@@ -199,7 +198,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 dup")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfDuplicatingAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =

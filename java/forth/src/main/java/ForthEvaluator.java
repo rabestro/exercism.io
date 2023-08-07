@@ -1,10 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
-import java.util.Queue;
 
 class ForthEvaluator {
-    private final Queue<Integer> stack = new ArrayDeque<>();
+    private final Deque<Integer> stack = new ArrayDeque<>();
 
     public List<Integer> evaluateProgram(List<String> commands) {
         commands.forEach(this::evaluateLine);
@@ -26,19 +26,19 @@ class ForthEvaluator {
     private void evaluateOperation(String token) {
         switch (token) {
             case "+" -> {
-                requireStackHasAtLeast(2, "Addition");
+                requireStackHasAtLeast(2, "Addition requires that the stack contain at least 2 values");
                 stack.add(stack.poll() + stack.poll());
             }
             case "-" -> {
-                requireStackHasAtLeast(2, "Subtraction");
+                requireStackHasAtLeast(2, "Subtraction requires that the stack contain at least 2 values");
                 stack.add(stack.poll() - stack.poll());
             }
             case "*" -> {
-                requireStackHasAtLeast(2, "Multiplication");
+                requireStackHasAtLeast(2, "Multiplication requires that the stack contain at least 2 values");
                 stack.add(stack.poll() * stack.poll());
             }
             case "/" -> {
-                requireStackHasAtLeast(2, "Division");
+                requireStackHasAtLeast(2, "Division requires that the stack contain at least 2 values");
                 int dividend = stack.poll();
                 int divisor = stack.poll();
                 if (divisor == 0) {
@@ -47,15 +47,15 @@ class ForthEvaluator {
                 stack.add(dividend / divisor);
             }
             case "dup" -> {
-                requireStackHasAtLeast(1, "Duplication");
-                stack.add(stack.peek());
+                requireStackHasAtLeast(1, "Duplicating requires that the stack contain at least 1 value");
+                stack.add(stack.getLast());
             }
         }
     }
 
-    private void requireStackHasAtLeast(int n, String operation) {
+    private void requireStackHasAtLeast(int n, String message) {
         if (stack.size() < n) {
-            throw new IllegalArgumentException(operation + " requires that the stack contain at least " + n + " values");
+            throw new IllegalArgumentException(message);
         }
     }
 
