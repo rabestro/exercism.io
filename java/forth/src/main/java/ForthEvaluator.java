@@ -61,6 +61,13 @@ class ForthEvaluator {
                 stack.add(a);
                 stack.add(b);
             }
+            case "over" -> {
+                requireStackHasAtLeast(2, "Overing requires that the stack contain at least 2 values");
+                int a = stack.removeLast();
+                int b = stack.getLast();
+                stack.add(a);
+                stack.add(b);
+            }
         }
     }
 
