@@ -2,7 +2,7 @@ package parser;
 
 import java.util.function.Function;
 
-public final class LineParserFactory implements Function<String, Function<String, String>> {
+public final class ParserFactory implements Function<String, Function<String, String>> {
 
     @Override
     public Function<String, String> apply(String line) {
