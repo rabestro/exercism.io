@@ -26,7 +26,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Collections.singletonList("1 2 +")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testErrorIfAdditionAttemptedWithNothingOnTheStack() {
         IllegalArgumentException expected =
