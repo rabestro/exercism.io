@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import static forth.word.ForthWord.isNumber;
 
-public class ForthCore implements ForthStack, ForthShell {
+public class ForthCore implements ForthEngine {
     private final Deque<Integer> stack = new ArrayDeque<>();
     private final Map<String, Consumer<ForthStack>> words;
 
@@ -47,12 +47,12 @@ public class ForthCore implements ForthStack, ForthShell {
     }
 
     @Override
-    public List<Integer> getStackAsList() {
+    public List<Integer> asList() {
         return List.copyOf(stack);
     }
 
     @Override
-    public void define(String word, List<String> tokens) {
+    public void accept(String word, List<String> tokens) {
         validateWord(word);
         var compiledAction = tokens.stream()
                 .map(this::compileToken)

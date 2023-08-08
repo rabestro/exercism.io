@@ -1,5 +1,7 @@
 package forth;
 
+import java.util.List;
+
 public interface ForthStack {
     void push(int value);
 
@@ -8,4 +10,6 @@ public interface ForthStack {
     int peek();
 
     void ensureSize(int requiredSize, String errorMessage);
+
+    List<Integer> asList();
 }
