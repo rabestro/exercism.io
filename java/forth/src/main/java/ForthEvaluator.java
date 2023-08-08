@@ -9,47 +9,47 @@ class ForthEvaluator {
     private final Deque<Integer> stack = new ArrayDeque<>();
     private final Map<String, Runnable> forthCore = Map.of(
             "+", () -> {
-                requireStackHasAtLeast(2, "Addition requires that the stack contain at least 2 values");
-                stack.add(stack.removeLast() + stack.removeLast());
+                ensureStackSize(2, "Addition requires that the stack contain at least 2 values");
+                push(pop() + pop());
             },
             "-", () -> {
-                requireStackHasAtLeast(2, "Subtraction requires that the stack contain at least 2 values");
-                stack.add(-stack.removeLast() + stack.removeLast());
+                ensureStackSize(2, "Subtraction requires that the stack contain at least 2 values");
+                push(-pop() + pop());
             },
             "*", () -> {
-                requireStackHasAtLeast(2, "Multiplication requires that the stack contain at least 2 values");
-                stack.add(stack.removeLast() * stack.removeLast());
+                ensureStackSize(2, "Multiplication requires that the stack contain at least 2 values");
+                push(pop() * pop());
             },
             "/", () -> {
-                requireStackHasAtLeast(2, "Division requires that the stack contain at least 2 values");
-                int divisor = stack.removeLast();
-                int dividend = stack.removeLast();
+                ensureStackSize(2, "Division requires that the stack contain at least 2 values");
+                int divisor = pop();
+                int dividend = pop();
                 if (divisor == 0) {
                     throw new IllegalArgumentException("Division by 0 is not allowed");
                 }
-                stack.add(dividend / divisor);
+                push(dividend / divisor);
             },
             "dup", () -> {
-                requireStackHasAtLeast(1, "Duplicating requires that the stack contain at least 1 value");
-                stack.add(stack.peekLast());
+                ensureStackSize(1, "Duplicating requires that the stack contain at least 1 value");
+                push(peek());
             },
             "drop", () -> {
-                requireStackHasAtLeast(1, "Dropping requires that the stack contain at least 1 value");
-                stack.removeLast();
+                ensureStackSize(1, "Dropping requires that the stack contain at least 1 value");
+                pop();
             },
             "swap", () -> {
-                requireStackHasAtLeast(2, "Swapping requires that the stack contain at least 2 values");
-                int a = stack.removeLast();
-                int b = stack.removeLast();
-                stack.add(a);
-                stack.add(b);
+                ensureStackSize(2, "Swapping requires that the stack contain at least 2 values");
+                int a = pop();
+                int b = pop();
+                push(a);
+                push(b);
             },
             "over", () -> {
-                requireStackHasAtLeast(2, "Overing requires that the stack contain at least 2 values");
-                int a = stack.removeLast();
-                int b = stack.getLast();
-                stack.add(a);
-                stack.add(b);
+                ensureStackSize(2, "Overing requires that the stack contain at least 2 values");
+                int a = pop();
+                int b = peek();
+                push(a);
+                push(b);
             }
     );
     private final Map<String, Runnable> words;
@@ -58,9 +58,23 @@ class ForthEvaluator {
         this.words = new HashMap<>(forthCore);
     }
 
+    private void push(int value) {
+        stack.add(value);
+    }
+
+    private int pop() {
+        ensureStackSize(1, "Stack underflow");
+        return stack.removeLast();
+    }
+
+    private int peek() {
+        ensureStackSize(1, "Stack underflow");
+        return stack.getLast();
+    }
+
     public List<Integer> evaluateProgram(List<String> commands) {
         commands.forEach(this::evaluateLine);
-        return stack.stream().toList();
+        return List.copyOf(stack);
     }
 
     private void evaluateLine(String line) {
@@ -94,9 +108,9 @@ class ForthEvaluator {
         words.put(macroName, () -> macroBody.forEach(Runnable::run));
     }
 
-    private void requireStackHasAtLeast(int n, String message) {
-        if (stack.size() < n) {
-            throw new IllegalArgumentException(message);
+    private void ensureStackSize(int requiredStackSize, String errorMessage) {
+        if (stack.size() < requiredStackSize) {
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
