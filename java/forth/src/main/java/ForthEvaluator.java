@@ -65,7 +65,7 @@ class ForthEvaluator {
     }
 
     private void evaluateLine(String line) {
-        var tokens = Arrays.asList(line.split(" "));
+        var tokens = Arrays.asList(line.toLowerCase().split(" "));
         if (tokens.get(0).equals(":")) {
             evaluateMacro(tokens);
         } else {
@@ -74,7 +74,7 @@ class ForthEvaluator {
     }
 
     private void evaluateMacro(List<String> tokens) {
-        var macroName = tokens.get(1).toLowerCase();
+        var macroName = tokens.get(1);
         if (isNumber(macroName)) {
             throw new IllegalArgumentException("Cannot redefine numbers");
         }
@@ -91,7 +91,7 @@ class ForthEvaluator {
     }
 
     private void evaluateOperation(String token) {
-        macros.getOrDefault(token.toLowerCase(), () -> {
+        macros.getOrDefault(token, () -> {
             throw new IllegalArgumentException("No definition available for operator \"" + token + "\"");
         }).run();
     }
