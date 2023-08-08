@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 class ForthEvaluator {
-
     private final Deque<Integer> stack = new ArrayDeque<>();
     private final Map<String, Runnable> forthCore = Map.of(
             "+", () -> {
@@ -53,10 +52,10 @@ class ForthEvaluator {
                 stack.add(b);
             }
     );
-    private final Map<String, Runnable> macros;
+    private final Map<String, Runnable> words;
 
     ForthEvaluator() {
-        this.macros = new HashMap<>(forthCore);
+        this.words = new HashMap<>(forthCore);
     }
 
     public List<Integer> evaluateProgram(List<String> commands) {
@@ -69,7 +68,17 @@ class ForthEvaluator {
         if (tokens.get(0).equals(":")) {
             evaluateMacro(tokens);
         } else {
-            tokens.forEach(this::evaluateToken);
+            tokens.stream().map(this::compileToken).forEach(Runnable::run);
+        }
+    }
+
+    private Runnable compileToken(String token) {
+        if (isNumber(token)) {
+            return () -> stack.add(Integer.parseInt(token));
+        } else {
+            return words.getOrDefault(token, () -> {
+                throw new IllegalArgumentException("No definition available for operator \"" + token + "\"");
+            });
         }
     }
 
@@ -78,22 +87,11 @@ class ForthEvaluator {
         if (isNumber(macroName)) {
             throw new IllegalArgumentException("Cannot redefine numbers");
         }
-        var macroBody = tokens.subList(2, tokens.size() - 1);
-        macros.put(macroName, () -> macroBody.forEach(this::evaluateToken));
-    }
+        var macroBody = tokens.subList(2, tokens.size() - 1).stream()
+                .map(this::compileToken)
+                .toList();
 
-    private void evaluateToken(String token) {
-        if (isNumber(token)) {
-            stack.add(Integer.parseInt(token));
-        } else {
-            evaluateOperation(token);
-        }
-    }
-
-    private void evaluateOperation(String token) {
-        macros.getOrDefault(token, () -> {
-            throw new IllegalArgumentException("No definition available for operator \"" + token + "\"");
-        }).run();
+        words.put(macroName, () -> macroBody.forEach(Runnable::run));
     }
 
     private void requireStackHasAtLeast(int n, String message) {

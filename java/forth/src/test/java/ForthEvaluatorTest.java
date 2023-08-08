@@ -353,7 +353,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": + * ;", "3 4 +")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCanUseDifferentWordsWithTheSameName() {
         assertEquals(
@@ -361,7 +360,6 @@ public class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(Arrays.asList(": foo 5 ;", ": bar foo ;", ": foo 6 ;", "bar foo")));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testCanDefineWordThatUsesWordWithTheSameName() {
         assertEquals(
