@@ -24,8 +24,13 @@ class FoodChain {
 
     public String verse(int verse) {
         var sb = new StringJoiner(System.lineSeparator());
-        sb.add("I know an old lady who swallowed a " + ANIMALS[verse - 1] + ".");
-        sb.add(VERSES[verse - 1]);
+        sb.add("I know an old lady who swallowed a " + ANIMALS[--verse] + ".");
+        while (verse > 0) {
+            sb.add(VERSES[verse]);
+            sb.add("She swallowed the " + ANIMALS[verse] + " to catch the " + ANIMALS[--verse]
+                   + (verse == 1 ? " that wriggled and jiggled and tickled inside her." : "."));
+        }
+        sb.add(VERSES[0]);
         return sb.toString();
     }
 
