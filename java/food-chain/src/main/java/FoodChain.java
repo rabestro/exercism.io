@@ -1,10 +1,10 @@
-/*
+class FoodChain {
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+    public String verse(int verse) {
+        return null;
+    }
 
-Please remove this comment when submitting your solution.
-
-*/
+    public String verses(int startVerse, int endVerse) {
+        return null;
+    }
+}
