@@ -1,4 +1,6 @@
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class FoodChain {
     private static final String[] ANIMALS = {
@@ -40,6 +42,8 @@ class FoodChain {
     }
 
     public String verses(int startVerse, int endVerse) {
-        return null;
+        return IntStream.rangeClosed(startVerse, endVerse)
+                .mapToObj(this::verse)
+                .collect(Collectors.joining(System.lineSeparator().repeat(2)));
     }
 }
