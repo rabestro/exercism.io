@@ -1,10 +1,12 @@
-/*
+import java.util.Map;
 
-Since this exercise has a difficulty of > 4 it doesn't come
-with any starter implementation.
-This is so that you get to practice creating classes and methods
-which is an important part of programming in Java.
+class Alphametics {
 
-Please remove this comment when submitting your solution.
+    public Alphametics(String expression) {
+        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+    }
 
-*/
+    public Map<Character, Integer> solve() {
+        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+    }
+}
