@@ -1,5 +1,6 @@
 package forth.word;
 
+
 import forth.ForthStack;
 
 import java.util.Map;
