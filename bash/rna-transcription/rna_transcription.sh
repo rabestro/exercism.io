@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
-# bashsupport disable=SpellCheckingInspection
-tr "GCTA" "CGAU"
+
+die() {
+  echo >&2 "$@"
+  exit 1
+}
+
+[[ $1 =~ ^[GCTA]*$ ]] &&
+  tr "GCTA" "CGAU" <<<"$1" || die "Invalid nucleotide detected."
