@@ -9,17 +9,18 @@ class WordProblemSolver {
         if (!MATH_QUESTION.matcher(input).matches()) {
             throw new IllegalArgumentException("I'm sorry, I don't understand the question!");
         }
-        final var scanner = new Scanner(
-                input.replaceFirst("What is (.+)\\?", "$1")
-        ).useDelimiter("( by)? ");
+        var scanner = new Scanner(input.replaceFirst("What is (.+)\\?", "$1"))
+                .useDelimiter("( by)? ");
 
         int result = scanner.nextInt();
         while (scanner.hasNext()) {
-            switch (scanner.next()) {
-                case "plus" -> result += scanner.nextInt();
-                case "minus" -> result -= scanner.nextInt();
-                case "multiplied" -> result *= scanner.nextInt();
-                case "divided" -> result /= scanner.nextInt();
+            var operation = scanner.next();
+            var operand = scanner.nextInt();
+            switch (operation) {
+                case "plus" -> result += operand;
+                case "minus" -> result -= operand;
+                case "multiplied" -> result *= operand;
+                case "divided" -> result /= operand;
             }
         }
         return result;
