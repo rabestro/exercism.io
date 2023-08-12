@@ -1,11 +1,11 @@
 package forth.word;
 
-import forth.ForthStack;
+import java.util.Deque;
 
 public class Swapping implements ForthWord {
     @Override
-    public void accept(ForthStack stack) {
-        stack.ensureSize(2, "Swapping requires that the stack contain at least 2 values");
+    public void accept(Deque<Integer> stack) {
+        ForthWord.ensureSize(stack, 2, "Swapping requires that the stack contain at least 2 values");
         int a = stack.pop();
         int b = stack.pop();
         stack.push(a);

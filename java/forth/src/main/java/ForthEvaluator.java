@@ -8,6 +8,6 @@ class ForthEvaluator {
 
     public List<Integer> evaluateProgram(List<String> commands) {
         commands.forEach(forthEngine);
-        return forthEngine.asList();
+        return forthEngine.get();
     }
 }
