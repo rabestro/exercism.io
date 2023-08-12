@@ -1,24 +1,20 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+main() {
+  local -A nucleotides=([A]=0 [C]=0 [G]=0 [T]=0)
+  local -r dna="$1"
+  local -i i=${#dna}
+  local key
+
+  while ((i--)); do
+    key="${dna:i:1}"
+    [[ -v nucleotides[$key] ]] || { echo "Invalid nucleotide in strand"; exit 1; }
+    ((nucleotides[${dna:i:1}]++))
+  done
+
+  for key in A C G T; do
+    printf '%s: %d\n' "$key" "${nucleotides[$key]}"
+  done
+}
+
+main "$@"
