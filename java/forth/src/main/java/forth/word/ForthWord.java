@@ -1,15 +1,14 @@
 package forth.word;
 
 
-import forth.ForthStack;
-
+import java.util.Deque;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 @FunctionalInterface
-public interface ForthWord extends Consumer<ForthStack> {
+public interface ForthWord extends Consumer<Deque<Integer>> {
     Predicate<String> isNumber = Pattern.compile("\\d+").asMatchPredicate();
 
     static Map<String, ForthWord> builtInWords() {
@@ -23,6 +22,12 @@ public interface ForthWord extends Consumer<ForthStack> {
                 "swap", new Swapping(),
                 "over", new Overing()
         );
+    }
+
+    static void ensureSize(Deque<Integer> stack, int requiredSize, String errorMessage) {
+        if (stack.size() < requiredSize) {
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     static ForthWord undefinedWord(String word) {
