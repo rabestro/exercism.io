@@ -3,14 +3,7 @@ package forth;
 
 import forth.word.ForthWord;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -24,6 +17,21 @@ public final class ForthEngine implements Consumer<String>, Supplier<List<Intege
 
     public ForthEngine() {
         words = new HashMap<>(ForthWord.builtInWords());
+    }
+
+    private static List<String> tokenize(String command) {
+        return Arrays.asList(command.toLowerCase(Locale.ENGLISH).split(" "));
+    }
+
+    private static boolean isWordDefinition(List<String> tokens) {
+        return ":".equals(tokens.get(0));
+    }
+
+    private static String validatedWord(String word) {
+        if (IS_NUMBER.test(word)) {
+            throw new IllegalArgumentException("Cannot redefine numbers");
+        }
+        return word;
     }
 
     @Override
@@ -43,14 +51,6 @@ public final class ForthEngine implements Consumer<String>, Supplier<List<Intege
         return list;
     }
 
-    private List<String> tokenize(String command) {
-        return Arrays.asList(command.toLowerCase().split(" "));
-    }
-
-    private boolean isWordDefinition(List<String> tokens) {
-        return ":".equals(tokens.get(0));
-    }
-
     private void defineWord(List<String> tokens) {
         var word = validatedWord(tokens.get(1));
         var definition = tokens.subList(2, tokens.size() - 1);
@@ -62,21 +62,13 @@ public final class ForthEngine implements Consumer<String>, Supplier<List<Intege
     }
 
     private Consumer<Deque<Integer>> parseToken(String token) {
-        return evaluateToken(token)
-                .orElseThrow(() -> new IllegalArgumentException("No definition available for operator \"" + token + "\""));
+        return evaluateToken(token).orElseThrow(() ->
+                new IllegalArgumentException("No definition available for operator \"" + token + "\""));
     }
-
 
     private Optional<Consumer<Deque<Integer>>> evaluateToken(String token) {
         return IS_NUMBER.test(token)
                 ? Optional.of(ForthWord.number(token))
                 : Optional.ofNullable(words.get(token));
-    }
-
-    private String validatedWord(String word) {
-        if (IS_NUMBER.test(word)) {
-            throw new IllegalArgumentException("Cannot redefine numbers");
-        }
-        return word;
     }
 }
