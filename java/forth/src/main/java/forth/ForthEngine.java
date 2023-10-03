@@ -3,7 +3,15 @@ package forth;
 
 import forth.word.ForthWord;
 
-import java.util.*;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -62,6 +70,7 @@ public final class ForthEngine implements Consumer<String>, Supplier<List<Intege
     }
 
     private Consumer<Deque<Integer>> parseToken(String token) {
+
         return evaluateToken(token).orElseThrow(() ->
                 new IllegalArgumentException("No definition available for operator \"" + token + "\""));
     }
