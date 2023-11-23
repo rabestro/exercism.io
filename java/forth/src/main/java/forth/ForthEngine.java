@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 
 public final class ForthEngine implements Consumer<String>, Supplier<List<Integer>> {
-    private static final Predicate<String> IS_NUMBER = Pattern.compile("\\d+").asMatchPredicate();
+    private static final Predicate<String> IS_NUMBER = Pattern.compile("-?\\d+").asMatchPredicate();
     private final Deque<Integer> stack = new ArrayDeque<>();
     private final Map<String, Consumer<Deque<Integer>>> words;
 
